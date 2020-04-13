@@ -18,7 +18,11 @@ namespace findaDoctor.Controllers
         {
             var response = new
             {
-                href = Url.Link(nameof(GetRoot), null)
+                href = Url.Link(nameof(GetRoot), null),
+                doctors = new
+                {
+                    href = Url.Link(nameof(DoctorController.GetDoctors), null)
+                }
 
             };
 
