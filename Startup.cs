@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using findaDoctor.DBContext;
 using Microsoft.EntityFrameworkCore;
+using NSwag;
 
 namespace findaDoctor
 {
@@ -27,6 +28,7 @@ namespace findaDoctor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerDocument();
             services.AddDbContext<DatabaseContext>(options =>
             options.UseInMemoryDatabase("Doctor"));
             services.AddControllers();
@@ -41,6 +43,10 @@ namespace findaDoctor
             }
 
             app.UseHttpsRedirection();
+
+            app.UseOpenApi();
+
+            app.UseSwaggerUi3();
 
             app.UseRouting();
 
