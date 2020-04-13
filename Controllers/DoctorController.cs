@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using findaDoctor.DTO;
+using findaDoctor.QueryClasses;
 
 namespace findaDoctor.Controllers
 {
@@ -25,9 +26,35 @@ namespace findaDoctor.Controllers
         }
 
         [HttpGet(Name = nameof(GetDoctors))]
-        public async Task<ActionResult<IEnumerable<DoctorsDTo>>> GetDoctors()
+        public async Task<ActionResult<IEnumerable<DoctorsDTo>>> GetDoctors([FromQuery] DoctorQueryParameter queryParameters)
         {
-            return await _context.Doctors.Select(x => DoctorToDTO(x)).ToListAsync();
+            IQueryable<Doctor> doctors = _context.Doctors;
+
+
+            if (!string.IsNullOrEmpty(queryParameters.specialisation))
+            {
+                doctors = doctors.Where(p => p.specialisation == queryParameters.specialisation);
+            }
+
+            if (!string.IsNullOrEmpty(queryParameters.city))
+            {
+                doctors = doctors.Where(p => p.city == queryParameters.city);
+            }
+
+            if (!string.IsNullOrEmpty(queryParameters.country))
+            {
+                doctors = doctors.Where(p => p.country == queryParameters.country);
+            }
+
+            if (!string.IsNullOrEmpty(queryParameters.name))
+            {
+                doctors = doctors.Where(p => p.name.ToLower().Contains(queryParameters.name.ToLower()));
+            }
+
+
+            doctors = doctors.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
+
+            return await doctors.Select(x => DoctorToDTO(x)).ToListAsync();
         }
 
         [HttpGet("{id}")]
@@ -58,8 +85,9 @@ namespace findaDoctor.Controllers
             }
 
             doctor.name = doctorDTO.name;
-            doctor.description = doctorDTO.description;
+            doctor.specialisation = doctorDTO.specialisation;
             doctor.location = doctorDTO.location;
+            doctor.description = doctorDTO.description;
             doctor.city = doctorDTO.city;
             doctor.country = doctorDTO.country;
             doctor.email = doctorDTO.email;
@@ -86,6 +114,7 @@ namespace findaDoctor.Controllers
             var doctor = new Doctor
             {
                 name = doctorsDTo.name,
+                specialisation = doctorsDTo.specialisation,
                 description = doctorsDTo.description,
                 location = doctorsDTo.location,
                 city = doctorsDTo.city,
@@ -128,6 +157,7 @@ namespace findaDoctor.Controllers
         {
             Id = doctor.Id,
             name = doctor.name,
+            specialisation = doctor.specialisation,
             description = doctor.description,
             location = doctor.location,
             city = doctor.city,
