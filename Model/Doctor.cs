@@ -7,6 +7,7 @@ namespace findaDoctor.Model
     {
         public int Id { get; set; }
         public string name { get; set; }
+        public string specialisation { get; set; }
         public string description { get; set; }
         public string location { get; set; }
         public string city { get; set; }
