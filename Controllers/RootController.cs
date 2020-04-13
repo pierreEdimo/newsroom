@@ -13,6 +13,7 @@ namespace findaDoctor.Controllers
     public class RootController : ControllerBase
     {
 
+        [HttpGet(Name = nameof(GetRoot))]
         public IActionResult GetRoot()
         {
             var response = new
