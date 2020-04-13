@@ -23,7 +23,7 @@ namespace findaDoctor.Controllers
         }
 
         // GET: api/Doctors
-        [HttpGet]
+        [HttpGet (Name = nameof(GetDoctors)) ]
         public async Task<ActionResult<IEnumerable<DoctorDTO>>> GetDoctors()
         {
            
