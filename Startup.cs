@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
- using findaDoctor.DBContext;
+using findaDoctor.DBContext;
 using Microsoft.EntityFrameworkCore;
 using NSwag;
 
@@ -32,6 +32,12 @@ namespace findaDoctor
             services.AddDbContext<DatabaseContext>(options =>
             options.UseInMemoryDatabase("Doctor"));
             services.AddControllers();
+            services.AddCors(options => options.AddPolicy("EnableAll", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +55,8 @@ namespace findaDoctor
             app.UseSwaggerUi3();
 
             app.UseRouting();
+
+            app.UseCors("EnableAll");
 
             app.UseAuthorization();
 
