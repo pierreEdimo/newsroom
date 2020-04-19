@@ -22,6 +22,10 @@ namespace findaDoctor.Controllers
                 doctors = new
                 {
                     href = Url.Link(nameof(DoctorController.GetDoctors), null)
+                },
+                articles = new
+                {
+                    href = Url.Link(nameof(ArticleController.GetArticles), null)
                 }
 
             };
