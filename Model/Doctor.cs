@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json.Serialization;
+using System.Collections.Generic;
 
 namespace findaDoctor.Model
 {
@@ -19,6 +20,7 @@ namespace findaDoctor.Model
         public int categoryId { get; set; }
         [JsonIgnore]
         public virtual Category Category { get; set; }
+        public virtual List<Article> Articles { get; set; }
 
     }
 }

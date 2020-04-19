@@ -98,7 +98,7 @@ namespace findaDoctor.Controllers
             return CreatedAtAction(nameof(GetArticle), new { id = articleItem.id }, ArticleToDTo(articleItem));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id }")]
         public async Task<IActionResult> DeleteArticle(int id)
         {
             var artcileItem = await _context.Articles.FindAsync(id);
