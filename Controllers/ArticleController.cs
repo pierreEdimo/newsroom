@@ -32,7 +32,7 @@ namespace findaDoctor.Controllers
         }
 
 
-        [HttpGet("{id]")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<ArticleDTo>> GetArticle(int id)
         {
             var article = await _context.Articles.FindAsync();
