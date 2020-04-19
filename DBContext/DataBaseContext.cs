@@ -13,12 +13,15 @@ namespace findaDoctor.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().HasMany(c => c.Doctors).WithOne(a => a.Category).HasForeignKey(async => async.categoryId);
+            modelBuilder.Entity<Category>().HasMany(c => c.Doctors).WithOne(a => a.Category).HasForeignKey(a => a.categoryId);
+
+            modelBuilder.Entity<Doctor>().HasMany(c => c.Articles).WithOne(a => a.Doctor).HasForeignKey(a => a.autorId);
 
             modelBuilder.Seed();
         }
 
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Article> Articles { get; set; }
     }
 }
