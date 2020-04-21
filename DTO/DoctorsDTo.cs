@@ -13,6 +13,7 @@ namespace findaDoctor.DTO
         public string description { get; set; }
         public string location { get; set; }
         public string city { get; set; }
+        public string poBox{get; set; }
         public string country { get; set; }
         public string email { get; set; }
         public string number { get; set; }

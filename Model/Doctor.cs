@@ -10,6 +10,7 @@ namespace findaDoctor.Model
         public string name { get; set; }
         public string specialisation { get; set; }
         public string description { get; set; }
+        public string poBox{get; set; }
         public string location { get; set; }
         public string city { get; set; }
         public string country { get; set; }

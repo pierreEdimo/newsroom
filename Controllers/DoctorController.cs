@@ -95,6 +95,7 @@ namespace findaDoctor.Controllers
             doctor.opening = doctorDTO.opening;
             doctor.closing = doctorDTO.closing;
             doctor.categoryId = doctorDTO.categoryId;
+            doctor.poBox = doctorDTO.poBox;
 
             try
             {
@@ -124,6 +125,7 @@ namespace findaDoctor.Controllers
                 opening = doctorsDTo.opening,
                 closing = doctorsDTo.closing,
                 categoryId = doctorsDTo.categoryId,
+                poBox = doctorsDTo.poBox
             };
 
             _context.Doctors.Add(doctor);
@@ -166,7 +168,8 @@ namespace findaDoctor.Controllers
             number = doctor.number,
             opening = doctor.opening,
             closing = doctor.closing,
-            categoryId = doctor.categoryId
+            categoryId = doctor.categoryId,
+            poBox = doctor.poBox
         };
 
 
