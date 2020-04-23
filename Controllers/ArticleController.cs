@@ -63,7 +63,6 @@ namespace findaDoctor.Controllers
             articleItem.title = articleDTo.title;
             articleItem.imageUrl = articleDTo.imageUrl;
             articleItem.content = articleDTo.content;
-            articleItem.autorId = articleDTo.autorId;
             articleItem.createdAt = articleDTo.createdAt;
 
             try
@@ -86,7 +85,6 @@ namespace findaDoctor.Controllers
                 title = articleDTo.title,
                 imageUrl = articleDTo.imageUrl,
                 content = articleDTo.content,
-                autorId = articleDTo.autorId,
                 createdAt = articleDTo.createdAt
             };
 
@@ -121,7 +119,6 @@ namespace findaDoctor.Controllers
             id = article.id,
             title = article.title,
             imageUrl = article.imageUrl,
-            autorId = article.autorId,
             content = article.content,
             createdAt = article.createdAt
 

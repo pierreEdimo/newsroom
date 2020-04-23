@@ -94,7 +94,6 @@ namespace findaDoctor.Controllers
             doctor.number = doctorDTO.number;
             doctor.opening = doctorDTO.opening;
             doctor.closing = doctorDTO.closing;
-            doctor.categoryId = doctorDTO.categoryId;
             doctor.poBox = doctorDTO.poBox;
             doctor.searchWord = doctorDTO.searchWord;
 
@@ -125,7 +124,6 @@ namespace findaDoctor.Controllers
                 number = doctorsDTo.number,
                 opening = doctorsDTo.opening,
                 closing = doctorsDTo.closing,
-                categoryId = doctorsDTo.categoryId,
                 poBox = doctorsDTo.poBox,
                 searchWord = doctorsDTo.searchWord
             };
@@ -170,7 +168,6 @@ namespace findaDoctor.Controllers
             number = doctor.number,
             opening = doctor.opening,
             closing = doctor.closing,
-            categoryId = doctor.categoryId,
             poBox = doctor.poBox,
             searchWord = doctor.searchWord
         };

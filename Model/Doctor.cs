@@ -19,10 +19,5 @@ namespace findaDoctor.Model
         public string searchWord { get; set; }
         public DateTime opening { get; set; }
         public DateTime closing { get; set; }
-        public int categoryId { get; set; }
-        [JsonIgnore]
-        public virtual Category Category { get; set; }
-        public virtual List<Article> Articles { get; set; }
-
     }
 }

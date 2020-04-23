@@ -20,6 +20,5 @@ namespace findaDoctor.DTO
         public string number { get; set; }
         public DateTime opening { get; set; }
         public DateTime closing { get; set; }
-        public int categoryId { get; set; }
     }
 }
