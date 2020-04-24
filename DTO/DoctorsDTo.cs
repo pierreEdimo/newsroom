@@ -20,5 +20,6 @@ namespace findaDoctor.DTO
         public string number { get; set; }
         public DateTime opening { get; set; }
         public DateTime closing { get; set; }
+        public string imageUrl { get; set; }
     }
 }

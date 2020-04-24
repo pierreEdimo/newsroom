@@ -17,6 +17,7 @@ namespace findaDoctor.Model
         public string email { get; set; }
         public string number { get; set; }
         public string searchWord { get; set; }
+        public string imageUrl { get; set; }
         public DateTime opening { get; set; }
         public DateTime closing { get; set; }
     }

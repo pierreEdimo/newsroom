@@ -96,6 +96,7 @@ namespace findaDoctor.Controllers
             doctor.closing = doctorDTO.closing;
             doctor.poBox = doctorDTO.poBox;
             doctor.searchWord = doctorDTO.searchWord;
+            doctor.imageUrl = doctorDTO.imageUrl;
 
             try
             {
@@ -125,7 +126,8 @@ namespace findaDoctor.Controllers
                 opening = doctorsDTo.opening,
                 closing = doctorsDTo.closing,
                 poBox = doctorsDTo.poBox,
-                searchWord = doctorsDTo.searchWord
+                searchWord = doctorsDTo.searchWord,
+                imageUrl = doctorsDTo.imageUrl
             };
 
             _context.Doctors.Add(doctor);
@@ -169,7 +171,8 @@ namespace findaDoctor.Controllers
             opening = doctor.opening,
             closing = doctor.closing,
             poBox = doctor.poBox,
-            searchWord = doctor.searchWord
+            searchWord = doctor.searchWord,
+            imageUrl = doctor.imageUrl
         };
 
 
