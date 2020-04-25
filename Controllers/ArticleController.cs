@@ -28,7 +28,7 @@ namespace findaDoctor.Controllers
         [HttpGet(Name = nameof(GetArticles))]
         public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticles()
         {
-            return await _context.Articles.Select(x => ArticleToDTo(x)).ToListAsync();
+            return await _context.Articles.Include(a => a.Author).Select(x => ArticleToDTo(x)).ToListAsync();
         }
 
 
@@ -64,6 +64,8 @@ namespace findaDoctor.Controllers
             articleItem.imageUrl = articleDTo.imageUrl;
             articleItem.content = articleDTo.content;
             articleItem.createdAt = articleDTo.createdAt;
+            articleItem.authorId = articleDTo.authorId;
+            articleItem.themeId = articleDTo.themeId;
 
             try
             {
@@ -85,7 +87,11 @@ namespace findaDoctor.Controllers
                 title = articleDTo.title,
                 imageUrl = articleDTo.imageUrl,
                 content = articleDTo.content,
-                createdAt = articleDTo.createdAt
+                createdAt = articleDTo.createdAt,
+                authorId = articleDTo.authorId,
+                themeId = articleDTo.themeId
+
+
             };
 
 
@@ -120,8 +126,10 @@ namespace findaDoctor.Controllers
             title = article.title,
             imageUrl = article.imageUrl,
             content = article.content,
-            createdAt = article.createdAt
-
+            createdAt = article.createdAt,
+            authorId = article.authorId,
+            themeId = article.themeId,
+            Author = article.Author
         };
 
 
