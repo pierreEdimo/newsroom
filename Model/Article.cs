@@ -13,9 +13,11 @@ namespace findaDoctor.Model
         public int themeId { get; set; }
         [JsonIgnore]
         public virtual Theme Theme { get; set; }
+        [JsonIgnore]
         public int authorId { get; set; }
         [JsonIgnore]
         public virtual Author Author { get; set; }
+
 
     }
 }
