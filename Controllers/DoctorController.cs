@@ -51,6 +51,14 @@ namespace findaDoctor.Controllers
                 doctors = doctors.Where(p => p.name.ToLower().Contains(queryParameters.name.ToLower()));
             }
 
+            if (!string.IsNullOrEmpty(queryParameters.sortBy))
+            {
+                if (typeof(Doctor).GetProperty(queryParameters.sortBy) != null)
+                {
+                    doctors = doctors.OrderByCustom(queryParameters.sortBy, queryParameters.SortOrder);
+                }
+            }
+
 
             doctors = doctors.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
