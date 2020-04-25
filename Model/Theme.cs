@@ -7,6 +7,7 @@ namespace findaDoctor.Model
     {
         public int Id { get; set; }
         public string name { get; set; }
+        public string imageUrl { get; set; }
         public virtual List<Article> Articles { get; set; }
     }
 }
