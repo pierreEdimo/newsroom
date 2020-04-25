@@ -26,6 +26,14 @@ namespace findaDoctor.Controllers
                 articles = new
                 {
                     href = Url.Link(nameof(ArticleController.GetArticles), null)
+                },
+                authors = new
+                {
+                    href = Url.Link(nameof(AuthorController.GetAuthors), null)
+                },
+                themes = new
+                {
+                    href = Url.Link(nameof(ThemeController.GetThemes), null)
                 }
 
             };
