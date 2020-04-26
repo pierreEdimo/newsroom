@@ -26,19 +26,20 @@ namespace findaDoctor.Controllers
         }
 
         [HttpGet(Name = nameof(GetArticles))]
-        public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticles([FromQuery] DoctorQueryParameter queryParameter)
+        public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticles([FromQuery] DoctorQueryParameter queryParameters)
         {
             IQueryable<Article> articles = _context.Articles;
 
-            if (!string.IsNullOrEmpty(queryParameter.sortBy))
+            if (!string.IsNullOrEmpty(queryParameters.sortBy))
             {
-                if (typeof(Article).GetProperty(queryParameter.sortBy) != null)
+                if (typeof(Article).GetProperty(queryParameters.sortBy) != null)
                 {
-                    articles = articles.OrderByCustom(queryParameter.sortBy, queryParameter.SortOrder);
+                    articles = articles.OrderByCustom(queryParameters.sortBy, queryParameters.SortOrder);
                 }
             }
 
-            articles = articles.Skip(queryParameter.Size * (queryParameter.Page - 1)).Take(queryParameter.Size);
+
+            articles = articles.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
             return await articles.Include(a => a.Author).Select(x => ArticleToDTo(x)).ToListAsync();
         }
@@ -59,14 +60,14 @@ namespace findaDoctor.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateArticle(int id, ArticleDTo articleDTo)
+        public async Task<IActionResult> UpdateArticle(int Id, ArticleDTo articleDTo)
         {
-            if (id != articleDTo.id)
+            if (Id != articleDTo.Id)
             {
                 return BadRequest();
             }
 
-            var articleItem = await _context.Articles.FindAsync(id);
+            var articleItem = await _context.Articles.FindAsync(Id);
             if (articleItem == null)
             {
                 return NotFound();
@@ -83,7 +84,7 @@ namespace findaDoctor.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) when (!ArticleExists(id))
+            catch (DbUpdateConcurrencyException) when (!ArticleExists(Id))
             {
                 return NotFound();
             }
@@ -111,7 +112,7 @@ namespace findaDoctor.Controllers
             await _context.SaveChangesAsync();
 
 
-            return CreatedAtAction(nameof(GetArticle), new { id = articleItem.id }, ArticleToDTo(articleItem));
+            return CreatedAtAction(nameof(GetArticle), new { id = articleItem.Id }, ArticleToDTo(articleItem));
         }
 
         [HttpDelete("{id }")]
@@ -130,11 +131,11 @@ namespace findaDoctor.Controllers
         }
 
 
-        private bool ArticleExists(int id) => _context.Articles.Any(e => e.id == id);
+        private bool ArticleExists(int Id) => _context.Articles.Any(e => e.Id == Id);
 
         public static ArticleDTo ArticleToDTo(Article article) => new ArticleDTo
         {
-            id = article.id,
+            Id = article.Id,
             title = article.title,
             imageUrl = article.imageUrl,
             content = article.content,
