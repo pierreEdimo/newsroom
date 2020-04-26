@@ -26,9 +26,19 @@ namespace findaDoctor.Controllers
         }
 
         [HttpGet(Name = nameof(GetArticles))]
-        public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticles()
+        public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticles([FromQuery] DoctorQueryParameter queryParameter)
         {
-            return await _context.Articles.Include(a => a.Author).Select(x => ArticleToDTo(x)).ToListAsync();
+            IQueryable<Article> articles = _context.Articles;
+
+            if (!string.IsNullOrEmpty(queryParameter.sortBy))
+            {
+                if (typeof(Article).GetProperty(queryParameter.sortBy) != null)
+                {
+                    articles = articles.OrderByCustom(queryParameter.sortBy, queryParameter.SortOrder);
+                }
+            }
+
+            return await articles.Include(a => a.Author).Select(x => ArticleToDTo(x)).ToListAsync();
         }
 
 
