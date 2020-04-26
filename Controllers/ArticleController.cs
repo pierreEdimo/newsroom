@@ -38,6 +38,8 @@ namespace findaDoctor.Controllers
                 }
             }
 
+            articles = articles.Skip(queryParameter.Size * (queryParameter.Page - 1)).Take(queryParameter.Size);
+
             return await articles.Include(a => a.Author).Select(x => ArticleToDTo(x)).ToListAsync();
         }
 
