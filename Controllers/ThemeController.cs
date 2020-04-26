@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using findaDoctor.DBContext;
 using findaDoctor.DTO;
 using findaDoctor.Model;
+using findaDoctor.QueryClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,9 +27,19 @@ namespace findaDoctor.Controllers
 
 
         [HttpGet(Name = nameof(GetThemes))]
-        public async Task<ActionResult<IEnumerable<ThemeDTo>>> GetThemes()
+        public async Task<ActionResult<IEnumerable<ThemeDTo>>> GetThemes([FromQuery] DoctorQueryParameter queryParameter)
         {
-            return await _context.Themes.Include(a => a.Articles).Select(x => ThemeToDTo(x)).ToListAsync();
+            IQueryable<Theme> themes = _context.Themes;
+
+            if (!string.IsNullOrEmpty(queryParameter.sortBy))
+            {
+                if (typeof(Theme).GetProperty(queryParameter.sortBy) != null)
+                {
+                    themes = themes.OrderByCustom(queryParameter.sortBy, queryParameter.SortOrder);
+                }
+            }
+
+            return await themes.Include(a => a.Articles).Select(x => ThemeToDTo(x)).ToListAsync();
         }
 
 
