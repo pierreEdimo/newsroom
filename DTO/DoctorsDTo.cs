@@ -18,8 +18,8 @@ namespace findaDoctor.DTO
         public string country { get; set; }
         public string email { get; set; }
         public string number { get; set; }
-        public DateTime opening { get; set; }
-        public DateTime closing { get; set; }
+        public String opening { get; set; }
+        public String closing { get; set; }
         public string imageUrl { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace findaDoctor.Model
         public string searchWord { get; set; }
         [Required]
         public string imageUrl { get; set; }
-        public DateTime opening { get; set; }
-        public DateTime closing { get; set; }
+        public String opening { get; set; }
+        public String closing { get; set; }
     }
 }
