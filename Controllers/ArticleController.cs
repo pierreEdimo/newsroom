@@ -46,9 +46,10 @@ namespace findaDoctor.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ArticleDTo>> GetArticle(int id)
+        public async Task<ActionResult<ArticleDTo>> GetArticle(int Id)
         {
-            var article = await _context.Articles.FindAsync();
+
+            var article = await _context.Articles.FindAsync(Id);
 
             if (article == null)
             {
