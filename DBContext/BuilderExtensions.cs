@@ -10,10 +10,10 @@ namespace findaDoctor.DBContext
         {
 
             modelBuilder.Entity<Theme>().HasData(
-                new Theme { Id = 1, name = "sport" },
-                new Theme { Id = 2, name = "Ernahrung" },
-                new Theme { Id = 3, name = "Herzt" },
-                new Theme { Id = 4, name = "Schlaf" }
+                new Theme { Id = 1, name = "sport", imageUrl = "https://images.unsplash.com/photo-1483721310020-03333e577078?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" },
+                new Theme { Id = 2, name = "Ernahrung", imageUrl = "https://images.unsplash.com/photo-1546548970-71785318a17b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60" },
+                new Theme { Id = 3, name = "Herzt", imageUrl = "https://images.unsplash.com/photo-1538113300105-e51e4560b4aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60" },
+                new Theme { Id = 4, name = "Slaf", imageUrl = "https://images.unsplash.com/photo-1531353826977-0941b4779a1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" }
             );
 
             modelBuilder.Entity<Author>().HasData(
