@@ -15,11 +15,7 @@ namespace findaDoctor.DBContext
         {
             modelBuilder.Entity<Theme>().HasMany(c => c.Articles).WithOne(a => a.Theme).HasForeignKey(a => a.themeId);
 
-            modelBuilder.Entity<Author>().HasMany(c => c.Articles).WithOne(a => a.Author).HasForeignKey(a => a.authorId);
-
             modelBuilder.Entity<User>().HasMany(f => f.Favourites);
-
-            modelBuilder.Entity<Article>().HasOne(f => f.Author).WithMany(a => a.Articles);
 
             modelBuilder.Entity<Article>().HasOne(f => f.Theme).WithMany(a => a.Articles);
 
@@ -29,7 +25,6 @@ namespace findaDoctor.DBContext
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Theme> Themes { get; set; }
-        public DbSet<Author> Authors { get; set; }
         public DbSet<User> Users { get; set; }
     }
 }
