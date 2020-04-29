@@ -12,11 +12,11 @@ namespace findaDoctor.DTO
         public string content { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
         [JsonIgnore]
-        public int authorId { get; set; }
-        public virtual Author Author { get; set; }
-        [JsonIgnore]
         public int themeId { get; set; }
         public virtual Theme Theme { get; set; }
+        public string author { get; set; }
+        public string biography { get; set; }
+        public string authorImg { get; set; }
 
     }
 }

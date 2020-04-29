@@ -41,7 +41,7 @@ namespace findaDoctor.Controllers
 
             articles = articles.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
-            return await articles.Include(a => a.Author).Include(a => a.Theme).Select(x => ArticleToDTo(x)).ToListAsync();
+            return await articles.Include(a => a.Theme).Select(x => ArticleToDTo(x)).ToListAsync();
         }
 
 
@@ -78,8 +78,11 @@ namespace findaDoctor.Controllers
             articleItem.imageUrl = articleDTo.imageUrl;
             articleItem.content = articleDTo.content;
             articleItem.createdAt = articleDTo.createdAt;
-            articleItem.authorId = articleDTo.authorId;
             articleItem.themeId = articleDTo.themeId;
+            articleItem.author = articleDTo.author;
+            articleItem.authorImg = articleDTo.authorImg;
+            articleItem.biography = articleDTo.biography;
+
 
             try
             {
@@ -102,8 +105,11 @@ namespace findaDoctor.Controllers
                 imageUrl = articleDTo.imageUrl,
                 content = articleDTo.content,
                 createdAt = articleDTo.createdAt,
-                authorId = articleDTo.authorId,
-                themeId = articleDTo.themeId
+                themeId = articleDTo.themeId,
+                author = articleDTo.author,
+                authorImg = articleDTo.authorImg,
+                biography = articleDTo.biography
+
 
 
             };
@@ -141,10 +147,11 @@ namespace findaDoctor.Controllers
             imageUrl = article.imageUrl,
             content = article.content,
             createdAt = article.createdAt,
-            authorId = article.authorId,
             themeId = article.themeId,
-            Author = article.Author,
-            Theme = article.Theme
+            Theme = article.Theme,
+            author = article.author,
+            authorImg = article.authorImg,
+            biography = article.biography
         };
 
 

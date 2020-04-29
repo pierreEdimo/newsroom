@@ -10,15 +10,12 @@ namespace findaDoctor.Model
         public string imageUrl { get; set; }
         public string content { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
-        [JsonIgnore]
         public int themeId { get; set; }
         [JsonIgnore]
         public virtual Theme Theme { get; set; }
-        [JsonIgnore]
-        public int authorId { get; set; }
-        [JsonIgnore]
-        public virtual Author Author { get; set; }
-
+        public string author { get; set; }
+        public string biography { get; set; }
+        public string authorImg { get; set; }
 
     }
 }
