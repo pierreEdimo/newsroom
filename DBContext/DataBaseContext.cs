@@ -21,6 +21,7 @@ namespace findaDoctor.DBContext
 
             modelBuilder.Entity<Article>().HasOne(f => f.Author).WithMany(a => a.Articles);
 
+            modelBuilder.Entity<Article>().HasOne(f => f.Theme).WithMany(a => a.Articles);
 
             modelBuilder.Seed();
         }

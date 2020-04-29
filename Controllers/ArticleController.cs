@@ -41,7 +41,7 @@ namespace findaDoctor.Controllers
 
             articles = articles.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
-            return await articles.Include(a => a.Author).Select(x => ArticleToDTo(x)).ToListAsync();
+            return await articles.Include(a => a.Author).Include(a => a.Theme).Select(x => ArticleToDTo(x)).ToListAsync();
         }
 
 
@@ -143,7 +143,8 @@ namespace findaDoctor.Controllers
             createdAt = article.createdAt,
             authorId = article.authorId,
             themeId = article.themeId,
-            Author = article.Author
+            Author = article.Author,
+            Theme = article.Theme
         };
 
 

@@ -14,8 +14,8 @@ namespace findaDoctor.DTO
         [JsonIgnore]
         public int authorId { get; set; }
         public virtual Author Author { get; set; }
-        public int themeId { get; set; }
         [JsonIgnore]
+        public int themeId { get; set; }
         public virtual Theme Theme { get; set; }
 
     }

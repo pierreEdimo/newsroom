@@ -63,3 +63,5 @@ C:\Users\pierr\OneDrive\Desktop\MyPortfolioProject\findaDoctor\bin\Debug\netcore
 C:\Users\pierr\OneDrive\Desktop\MyPortfolioProject\findaDoctor\bin\Debug\netcoreapp3.1\NSwag.Generation.dll
 C:\Users\pierr\OneDrive\Desktop\MyPortfolioProject\findaDoctor\bin\Debug\netcoreapp3.1\NSwag.Generation.AspNetCore.dll
 C:\Users\pierr\OneDrive\Desktop\MyPortfolioProject\findaDoctor\obj\Debug\netcoreapp3.1\findaDoctor.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\pierr\OneDrive\Desktop\MyPortfolioProject\findaDoctor\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\pierr\OneDrive\Desktop\MyPortfolioProject\findaDoctor\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
