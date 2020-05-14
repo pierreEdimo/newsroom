@@ -19,7 +19,7 @@ namespace findaDoctor.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class UserController: ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
@@ -32,7 +32,7 @@ namespace findaDoctor.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _configuration = configuration; 
+            _configuration = configuration;
 
         }
 
@@ -40,23 +40,23 @@ namespace findaDoctor.Controllers
         {
             using (var Context = new DatabaseContext())
             {
-                return await _userManager.Users.ToListAsync(); 
+                return await _userManager.Users.ToListAsync();
             }
         }
 
         [HttpPost]
         public async Task<object> Login([FromBody] LoginDTo modelLogin)
         {
-            var user = await _userManager.FindByEmailAsync(modelLogin.Email); 
+            var user = await _userManager.FindByEmailAsync(modelLogin.Email);
 
-            if(user != null)
+            if (user != null)
             {
                 var signInResult = await _signInManager.PasswordSignInAsync(user, modelLogin.Password, false, false);
 
                 if (signInResult.Succeeded)
                 {
                     var loggedUser = _userManager.Users.SingleOrDefault(u => u.Email == modelLogin.Email);
-                    return await GenerateJwtToken(modelLogin.Email, loggedUser); 
+                    return GenerateJwtToken(modelLogin.Email, loggedUser);
                 }
             }
 
@@ -69,15 +69,15 @@ namespace findaDoctor.Controllers
         {
             var user = new UserEntity
             {
-              
-                UserName = model.UserName, 
-                PhoneNumber = model.PhoneNumber, 
-                location = model.location, 
-                city = model.city, 
+
+                UserName = model.UserName,
+                PhoneNumber = model.PhoneNumber,
+                location = model.location,
+                city = model.city,
                 country = model.country,
-                poBox = model.poBox, 
-                Email = model.Email, 
-                firstName = model.firstName, 
+                poBox = model.poBox,
+                Email = model.Email,
+                firstName = model.firstName,
                 lastName = model.lastName
 
             };
@@ -87,17 +87,17 @@ namespace findaDoctor.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.PasswordSignInAsync(user, model.passWord, false, false);
-                return await  GenerateJwtToken(model.Email, user); 
+                return GenerateJwtToken(model.Email, user);
             }
 
             throw new ApplicationException("UNKNOWN_ERROR");
         }
 
 
-        private async  Task<object> GenerateJwtToken(string email, UserEntity user)
+        private object GenerateJwtToken(string email, UserEntity user)
         {
             var claims = new List<Claim> {
-                new Claim(JwtRegisteredClaimNames.Sub, email), 
+                new Claim(JwtRegisteredClaimNames.Sub, email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.NameId, user.Id)
             };
@@ -108,16 +108,16 @@ namespace findaDoctor.Controllers
 
             var token = new JwtSecurityToken(
                  _configuration["JwtIssuer"],
-                 _configuration["JwtIssuer"], 
-                 claims, 
-                 expires:expires, 
-                 signingCredentials:credentials
+                 _configuration["JwtIssuer"],
+                 claims,
+                 expires: expires,
+                 signingCredentials: credentials
                  );
 
-            return new JwtSecurityTokenHandler().WriteToken(token); 
-                
+            return new JwtSecurityTokenHandler().WriteToken(token);
+
         }
-      
-        
+
+
     }
 }
