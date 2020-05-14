@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace findaDoctor.Model
@@ -16,6 +17,8 @@ namespace findaDoctor.Model
         public string author { get; set; }
         public string biography { get; set; }
         public string authorImg { get; set; }
+        [JsonIgnore]
+        public virtual List<FavoriteArticle> FavoriteArticleRef { get; set; }
 
     }
 }
