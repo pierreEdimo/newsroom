@@ -98,7 +98,7 @@ namespace findaDoctor.Controllers
             _context.Themes.Add(theme);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetTheme), new { Id = theme.Id }, ThemeToDTo(theme));
+            return CreatedAtAction(nameof(GetTheme), new { id = theme.Id }, ThemeToDTo(theme));
         }
 
         [HttpDelete("{Id}")]

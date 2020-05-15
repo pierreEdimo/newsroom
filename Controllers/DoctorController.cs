@@ -141,7 +141,7 @@ namespace findaDoctor.Controllers
             _context.Doctors.Add(doctor);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetDoctor), new { Id = doctor.Id }, DoctorToDTO(doctor));
+            return CreatedAtAction(nameof(GetDoctor), new { id = doctor.Id }, DoctorToDTO(doctor));
         }
 
 
