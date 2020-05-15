@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using findaDoctor.DTO;
 using findaDoctor.QueryClasses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace findaDoctor.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class DoctorController : ControllerBase
     {
         private DatabaseContext _context;
@@ -25,6 +27,7 @@ namespace findaDoctor.Controllers
             _context.Database.EnsureCreated();
         }
 
+        [AllowAnonymous]
         [HttpGet(Name = nameof(GetDoctors))]
         public async Task<ActionResult<IEnumerable<DoctorsDTo>>> GetDoctors([FromQuery] DoctorQueryParameter queryParameters)
         {
@@ -180,7 +183,8 @@ namespace findaDoctor.Controllers
             closing = doctor.closing,
             poBox = doctor.poBox,
             searchWord = doctor.searchWord,
-            imageUrl = doctor.imageUrl
+            imageUrl = doctor.imageUrl, 
+            FavoriteDoctorRef = doctor.FavoriteDoctorRef
         };
 
 

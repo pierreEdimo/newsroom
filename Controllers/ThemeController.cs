@@ -6,12 +6,13 @@ using findaDoctor.DBContext;
 using findaDoctor.DTO;
 using findaDoctor.Model;
 using findaDoctor.QueryClasses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace findaDoctor.Controllers
 {
-
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ThemeController : ControllerBase
@@ -25,7 +26,7 @@ namespace findaDoctor.Controllers
             _context.Database.EnsureCreated();
         }
 
-
+        [AllowAnonymous]
         [HttpGet(Name = nameof(GetThemes))]
         public async Task<ActionResult<IEnumerable<ThemeDTo>>> GetThemes([FromQuery] DoctorQueryParameter queryParameter)
         {

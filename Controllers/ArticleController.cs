@@ -9,9 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using findaDoctor.DTO;
 using findaDoctor.QueryClasses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace findaDoctor.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ArticleController : ControllerBase
@@ -151,7 +153,8 @@ namespace findaDoctor.Controllers
             Theme = article.Theme,
             author = article.author,
             authorImg = article.authorImg,
-            biography = article.biography
+            biography = article.biography, 
+            FavoriteArticleRef = article.FavoriteArticleRef
         };
 
 

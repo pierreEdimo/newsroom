@@ -14,9 +14,11 @@ using System.Text;
 using System.Threading.Tasks;
 using findaDoctor.DBContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace findaDoctor.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]/[action]")]
     public class UserController : ControllerBase
@@ -45,6 +47,7 @@ namespace findaDoctor.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<object> Login([FromBody] LoginDTo modelLogin)
         {
@@ -64,7 +67,7 @@ namespace findaDoctor.Controllers
             throw new ApplicationException("UNKNOWN_ERROR");
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public async Task<object> Register([FromBody] RegisterDTo model)
         {
@@ -130,6 +133,7 @@ namespace findaDoctor.Controllers
 
             return favoriteDoctorToDTo(favorite);
         }
+
 
         [HttpPost]
         public async Task<ActionResult<FavoriteDoctorDTo>> addFavorteDoctor(FavoriteDoctorDTo favoriteDoctor)
