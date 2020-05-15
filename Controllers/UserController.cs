@@ -24,16 +24,17 @@ namespace findaDoctor.Controllers
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
         private readonly IConfiguration _configuration;
-
+        private readonly DatabaseContext _context; 
 
         public UserController(UserManager<UserEntity> userManager,
                               SignInManager<UserEntity> signInManager,
-                              IConfiguration configuration)
+                              IConfiguration configuration,
+                              DatabaseContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
-
+            _context = context; 
         }
 
         public async Task<List<UserEntity>> GetAllUsers()
@@ -117,6 +118,106 @@ namespace findaDoctor.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
 
         }
+
+        public async Task<ActionResult<FavoriteDoctorDTo>> GetFavoriteDoctor(int Id)
+        {
+            var favorite = await _context.FavoriteDoctors.FindAsync(Id);
+
+            if(favorite == null)
+            {
+                return NotFound(); 
+            }
+
+            return favoriteDoctorToDTo(favorite);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<FavoriteDoctorDTo>> addFavorteDoctor(FavoriteDoctorDTo favoriteDoctor)
+        {
+            var favorite = new FavoriteDoctor
+            {
+                userId = favoriteDoctor.userId, 
+                doctorId = favoriteDoctor.doctorId
+            };
+
+            _context.FavoriteDoctors.Add(favorite);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetFavoriteDoctor), new { id = favorite.Id }, favoriteDoctorToDTo(favorite)); 
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteFavoriteDoctor(int Id)
+        {
+            var favorite = await _context.FavoriteDoctors.FindAsync(Id);
+            if (favorite == null)
+            {
+                return NotFound(); 
+            }
+            _context.FavoriteDoctors.Remove(favorite);
+            await _context.SaveChangesAsync();
+
+            return NoContent(); 
+        }
+
+        public static FavoriteDoctorDTo favoriteDoctorToDTo(FavoriteDoctor favorite) => new FavoriteDoctorDTo
+        {
+            Id = favorite.Id,
+            userId = favorite.userId,
+            doctorId = favorite.doctorId,
+            Doctor = favorite.Doctor,
+            UserPatient = favorite.UserPatient
+        };
+
+
+        public async Task<ActionResult<FavoriteArticleDTo>> GetFavoriteArticle(int Id)
+        {
+            var favorite = await _context.FavoriteeArticles.FindAsync(Id); 
+            if(favorite == null)
+            {
+                return NotFound(); 
+            }
+            return favoriteArticleToDTo(favorite); 
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<FavoriteArticleDTo>> addFavoriteArticle(FavoriteArticleDTo favorite)
+        {
+            var favoriteArticle = new FavoriteArticle
+            {
+                userId = favorite.userId,
+                articleId = favorite.articleId
+            };
+
+            _context.FavoriteeArticles.Add(favoriteArticle);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetFavoriteArticle), new { id = favoriteArticle.Id }, favoriteArticleToDTo(favoriteArticle)); 
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteFavoriteArticle(int Id)
+        {
+            var favoriteArticle = await _context.FavoriteeArticles.FindAsync(Id); 
+            if(favoriteArticle == null)
+            {
+                return NotFound(); 
+            }
+
+            _context.FavoriteeArticles.Remove(favoriteArticle);
+            await _context.SaveChangesAsync();
+
+            return NoContent(); 
+        }
+
+        public static FavoriteArticleDTo favoriteArticleToDTo(FavoriteArticle favorite) => new FavoriteArticleDTo
+        {
+            Id = favorite.Id,
+            userId = favorite.userId,
+            articleId = favorite.articleId,
+            Article = favorite.Article,
+            UserEntity = favorite.UserEntity
+        }; 
 
 
     }
