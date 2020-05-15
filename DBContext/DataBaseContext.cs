@@ -33,6 +33,10 @@ namespace findaDoctor.DBContext
 
             modelBuilder.Entity<FavoriteDoctor>().HasOne(c => c.Doctor).WithMany(a => a.FavoriteDoctorRef).HasForeignKey(a => a.doctorId);
 
+            modelBuilder.Entity<Doctor>().HasMany(c => c.FavoriteDoctorRef);
+
+            modelBuilder.Entity<Article>().HasMany(c => c.FavoriteArticleRef); 
+
             modelBuilder.Entity<UserEntity>().HasMany(c => c.FavoriteArticles);
 
             modelBuilder.Entity<UserEntity>().HasMany(c => c.FavoriteDoctors);
@@ -48,7 +52,7 @@ namespace findaDoctor.DBContext
         public DbSet<Article> Articles { get; set; }
         public DbSet<Theme> Themes { get; set; }
         public DbSet<FavoriteDoctor> FavoriteDoctors { get; set; }
-        public DbSet<FavoriteArticle> FavortieArticles { get; set;  }
+        public DbSet<FavoriteArticle> FavoriteeArticles { get; set;  }
        
     }
 }
