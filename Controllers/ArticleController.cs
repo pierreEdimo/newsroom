@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace findaDoctor.Controllers
 {
-    [Authorize]
+    
     [ApiController]
     [Route("api/[controller]")]
     public class ArticleController : ControllerBase
@@ -27,6 +27,7 @@ namespace findaDoctor.Controllers
             _context.Database.EnsureCreated();
         }
 
+      
         [HttpGet(Name = nameof(GetArticles))]
         public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticles([FromQuery] DoctorQueryParameter queryParameters)
         {
