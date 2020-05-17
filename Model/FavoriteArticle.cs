@@ -19,6 +19,6 @@ namespace findaDoctor.Model
         [JsonIgnore]
         public virtual Article Article { get; set; }
         [JsonIgnore]
-        public virtual UserEntity UserEntity { get; set;  }
+        public virtual UserEntity UserReader { get; set;  }
     }
 }
