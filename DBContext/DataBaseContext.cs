@@ -25,7 +25,7 @@ namespace findaDoctor.DBContext
 
             modelBuilder.Entity<FavoriteDoctor>().HasKey(f => new { f.doctorId, f.userId }); 
 
-            modelBuilder.Entity<FavoriteArticle>().HasOne(c => c.UserEntity).WithMany(a => a.FavoriteArticles).HasForeignKey(a => a.userId);
+            modelBuilder.Entity<FavoriteArticle>().HasOne(c => c.UserReader).WithMany(a => a.FavoriteArticles).HasForeignKey(a => a.userId);
 
             modelBuilder.Entity<FavoriteArticle>().HasOne(c => c.Article).WithMany(a => a.FavoriteArticleRef).HasForeignKey(a => a.articleId);
 

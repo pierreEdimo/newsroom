@@ -12,6 +12,6 @@ namespace findaDoctor.DTO
         [Required]
         public int articleId { get; set; }
         public virtual Article Article { get; set; }
-        public virtual UserEntity UserEntity { get; set; }
+        public virtual UserEntity UserReader { get; set; }
     }
 }
