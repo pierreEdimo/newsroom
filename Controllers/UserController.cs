@@ -38,6 +38,8 @@ namespace findaDoctor.Controllers
          
         }
 
+        [AllowAnonymous]
+        [HttpGet(Name =nameof(GetAllUsers))]
         public async Task<List<UserEntity>> GetAllUsers()
         {
             using (var Context = new DatabaseContext())
@@ -50,16 +52,16 @@ namespace findaDoctor.Controllers
         [HttpPost]
         public async Task<object> Login([FromBody] LoginDTo modelLogin)
         {
-            var user = await _userManager.FindByEmailAsync(modelLogin.Email);
+            var user = await _userManager.FindByEmailAsync(modelLogin.email);
 
             if (user != null)
             {
-                var signInResult = await _signInManager.PasswordSignInAsync(user, modelLogin.Password, false, false);
+                var signInResult = await _signInManager.PasswordSignInAsync(user, modelLogin.password, false, false);
 
                 if (signInResult.Succeeded)
                 {
-                    var loggedUser = _userManager.Users.SingleOrDefault(u => u.Email == modelLogin.Email);
-                    return GenerateJwtToken(modelLogin.Email, loggedUser);
+                    var loggedUser = _userManager.Users.SingleOrDefault(u => u.Email == modelLogin.email);
+                    return GenerateJwtToken(modelLogin.email, loggedUser);
                 }
             }
 

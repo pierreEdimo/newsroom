@@ -30,6 +30,10 @@ namespace findaDoctor.Controllers
                 themes = new
                 {
                     href = Url.Link(nameof(ThemeController.GetThemes), null)
+                },
+                users= new
+                {
+                    href = Url.Link(nameof(UserController.GetAllUsers), null)
                 }
 
             };

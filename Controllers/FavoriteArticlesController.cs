@@ -98,7 +98,7 @@ namespace findaDoctor.Controllers
             return _context.FavoriteeArticles.Any(e => e.articleId == id);
         }
 
-        private static static FavoriteArticleDTo favoriteArtileToDTo(FavoriteArticle favorite) => new FavoriteArticleDTo
+        private static FavoriteArticleDTo favoriteArtileToDTo(FavoriteArticle favorite) => new FavoriteArticleDTo
         {
             Id = favorite.Id, 
             articleId = favorite.articleId, 

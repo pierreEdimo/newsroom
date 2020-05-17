@@ -10,10 +10,8 @@ namespace findaDoctor.DTO
     public class LoginDTo
     {
         [Required]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set;  }
+        public string email { get; set;  }
         [Required]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string password { get; set; }
     }
 }
