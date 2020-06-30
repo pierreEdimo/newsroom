@@ -10,11 +10,10 @@ namespace findaDoctor.DTO
 {
     public class RegisterDTo
     {
-        [Required]
+
         [MaxLength(50)]
         [DisplayName("Firstname")]
         public string firstName { get; set; }
-        [Required]
         [MaxLength(50)]
         [DisplayName("Lastname")]
         public string lastName { get; set; }
@@ -22,32 +21,27 @@ namespace findaDoctor.DTO
         [MaxLength(50)]
         [DisplayName("Username")]
         public string UserName { get; set; }
-        [Required]
         [MaxLength(255)]
         [DisplayName("Address")]
-        public string location { get; set;  }
-        [Required]
+        public string location { get; set; }
         [MaxLength(255)]
         [DisplayName("City")]
-        public string city { get; set;  }
-        [Required]
+        public string city { get; set; }
         [MaxLength(255)]
         [DisplayName("Country")]
-        public string country { get; set;  }
-        [Required]
+        public string country { get; set; }
         [MaxLength(255)]
         [DisplayName("Postal Box")]
-        public string poBox { get; set;  }
+        public string poBox { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        public string passWord { get; set;  }
-        [Required]
+        public string passWord { get; set; }
         [MaxLength(255)]
         [DisplayName("Telephone Number")]
-        public string PhoneNumber { get; set;  }
+        public string PhoneNumber { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set;  }
-        
+        public string Email { get; set; }
+
     }
 }
