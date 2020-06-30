@@ -16,19 +16,15 @@ namespace findaDoctor.Model
         [MaxLength(50)]
         [DisplayName("Lastname")]
         public string lastName { get; set;  }
-        [Required]
         [MaxLength(255)]
         [DisplayName("Current Living address")]
         public string location { get; set;  }
-        [Required]
         [MaxLength(255)]
         [DisplayName("Current City")]
         public string city { get; set;  }
-        [Required]
         [MaxLength(255)]
         [DisplayName("Current living Country")]
         public string country { get; set;  }
-        [Required]
         [MaxLength(50)]
         [DisplayName("Postal Box")]
         public string poBox { get; set;  }
