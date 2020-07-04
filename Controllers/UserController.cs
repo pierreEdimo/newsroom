@@ -26,7 +26,7 @@ namespace findaDoctor.Controllers
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
         private readonly IConfiguration _configuration;
-       
+
 
         public UserController(UserManager<UserEntity> userManager,
                               SignInManager<UserEntity> signInManager,
@@ -35,11 +35,11 @@ namespace findaDoctor.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
-         
+
         }
 
         [AllowAnonymous]
-        [HttpGet(Name =nameof(GetAllUsers))]
+        [HttpGet(Name = nameof(GetAllUsers))]
         public async Task<List<UserEntity>> GetAllUsers()
         {
             using (var Context = new DatabaseContext())
@@ -61,6 +61,7 @@ namespace findaDoctor.Controllers
                 if (signInResult.Succeeded)
                 {
                     var loggedUser = _userManager.Users.SingleOrDefault(u => u.Email == modelLogin.email);
+
                     return GenerateJwtToken(modelLogin.email, loggedUser);
                 }
             }
@@ -109,7 +110,7 @@ namespace findaDoctor.Controllers
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddHours(Convert.ToDouble(1));
+            var expires = DateTime.Now.AddHours(Convert.ToDouble(24));
 
             var token = new JwtSecurityToken(
                  _configuration["JwtIssuer"],
