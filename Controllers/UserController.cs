@@ -38,6 +38,14 @@ namespace findaDoctor.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<ActionResult<UserEntity>> GetUser()
+        {
+            var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+            var user = await _userManager.FindByEmailAsync(email);
+            return user;
+        }
+
         [AllowAnonymous]
         [HttpGet(Name = nameof(GetAllUsers))]
         public async Task<List<UserEntity>> GetAllUsers()

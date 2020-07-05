@@ -17,31 +17,21 @@ namespace findaDoctor.DBContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); 
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Theme>().HasMany(c => c.Articles).WithOne(a => a.Theme).HasForeignKey(a => a.themeId);
 
             modelBuilder.Entity<FavoriteArticle>().HasKey(f => new { f.articleId, f.userId });
 
-            modelBuilder.Entity<FavoriteDoctor>().HasKey(f => new { f.doctorId, f.userId }); 
-
-            modelBuilder.Entity<FavoriteArticle>().HasOne(c => c.UserReader).WithMany(a => a.FavoriteArticles).HasForeignKey(a => a.userId);
+            modelBuilder.Entity<FavoriteDoctor>().HasKey(f => new { f.doctorId, f.userId });
 
             modelBuilder.Entity<FavoriteArticle>().HasOne(c => c.Article).WithMany(a => a.FavoriteArticleRef).HasForeignKey(a => a.articleId);
-
-            modelBuilder.Entity<FavoriteDoctor>().HasOne(c => c.UserPatient).WithMany(a => a.FavoriteDoctors).HasForeignKey(a => a.userId);
 
             modelBuilder.Entity<FavoriteDoctor>().HasOne(c => c.Doctor).WithMany(a => a.FavoriteDoctorRef).HasForeignKey(a => a.doctorId);
 
             modelBuilder.Entity<Doctor>().HasMany(c => c.FavoriteDoctorRef);
 
-            modelBuilder.Entity<Article>().HasMany(c => c.FavoriteArticleRef); 
-
-            modelBuilder.Entity<UserEntity>().HasMany(c => c.FavoriteArticles);
-
-            modelBuilder.Entity<UserEntity>().HasMany(c => c.FavoriteDoctors);
-
-           
+            modelBuilder.Entity<Article>().HasMany(c => c.FavoriteArticleRef);
 
             modelBuilder.Entity<Article>().HasOne(f => f.Theme).WithMany(a => a.Articles);
 
@@ -52,7 +42,7 @@ namespace findaDoctor.DBContext
         public DbSet<Article> Articles { get; set; }
         public DbSet<Theme> Themes { get; set; }
         public DbSet<FavoriteDoctor> FavoriteDoctors { get; set; }
-        public DbSet<FavoriteArticle> FavoriteeArticles { get; set;  }
-       
+        public DbSet<FavoriteArticle> FavoriteeArticles { get; set; }
+
     }
 }
