@@ -11,14 +11,13 @@ namespace findaDoctor.Model
     public class FavoriteDoctor
     {
         [Key]
-        public int Id { get; set;  }
+        public int Id { get; set; }
         [Required]
         public string userId { get; set; }
         [Required]
-        public int doctorId { get; set;  }
+        public int doctorId { get; set; }
+        public virtual Doctor Doctor { get; set; }
         [JsonIgnore]
-        public virtual Doctor Doctor { get; set;  }
-        [JsonIgnore]
-        public virtual UserEntity UserPatient { get; set;  }
+        public virtual UserEntity UserPatient { get; set; }
     }
 }
