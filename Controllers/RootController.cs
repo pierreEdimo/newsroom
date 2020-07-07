@@ -31,9 +31,13 @@ namespace findaDoctor.Controllers
                 {
                     href = Url.Link(nameof(ThemeController.GetThemes), null)
                 },
-                users= new
+                users = new
                 {
                     href = Url.Link(nameof(UserController.GetAllUsers), null)
+                },
+                favoritesarticles = new
+                {
+                    href = Url.Link(nameof(FavoriteArticlesController.GetFavoriteeArticles), null)
                 }
 
             };
