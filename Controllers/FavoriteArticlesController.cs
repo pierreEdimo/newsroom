@@ -23,14 +23,16 @@ namespace findaDoctor.Controllers
         {
             _context = context;
 
-            _context.Database.EnsureCreated(); 
+            _context.Database.EnsureCreated();
         }
 
         // GET: api/FavoriteArticles
         [HttpGet(Name = nameof(GetFavoriteeArticles))]
         public async Task<ActionResult<IEnumerable<FavoriteArticleDTo>>> GetFavoriteeArticles()
         {
-            return await _context.FavoriteeArticles.Select(x => favoriteArtileToDTo(x)).ToListAsync();
+            IQueryable<FavoriteArticle> favoriteArticles = _context.FavoriteeArticles;
+
+            return await favoriteArticles.Include(a => a.Article).Select(x => favoriteArtileToDTo(x)).ToListAsync();
         }
 
         // GET: api/FavoriteArticles/5
@@ -47,15 +49,15 @@ namespace findaDoctor.Controllers
             return favoriteArtileToDTo(favoriteArticle);
         }
 
-      
+
         [HttpPost]
         public async Task<ActionResult<FavoriteArticleDTo>> PostFavoriteArticle(FavoriteArticleDTo favoriteArticleDTo)
         {
             var favoriteArticle = new FavoriteArticle
             {
-                userId = favoriteArticleDTo.userId, 
-                articleId = favoriteArticleDTo.articleId, 
-            }; 
+                userId = favoriteArticleDTo.userId,
+                articleId = favoriteArticleDTo.articleId,
+            };
 
             _context.FavoriteeArticles.Add(favoriteArticle);
             try
@@ -77,7 +79,7 @@ namespace findaDoctor.Controllers
             return CreatedAtAction(nameof(GetFavoriteArticle), new { id = favoriteArticle.Id }, favoriteArtileToDTo(favoriteArticle));
         }
 
-        
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteFavoriteArticle(int id)
         {
@@ -100,12 +102,12 @@ namespace findaDoctor.Controllers
 
         private static FavoriteArticleDTo favoriteArtileToDTo(FavoriteArticle favorite) => new FavoriteArticleDTo
         {
-            Id = favorite.Id, 
-            articleId = favorite.articleId, 
-            userId = favorite.userId, 
+            Id = favorite.Id,
+            articleId = favorite.articleId,
+            userId = favorite.userId,
             Article = favorite.Article,
             UserReader = favorite.UserReader
 
-        }; 
+        };
     }
 }
