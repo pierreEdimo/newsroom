@@ -1,5 +1,6 @@
 ﻿using findaDoctor.Model;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace findaDoctor.DTO
 {
@@ -12,6 +13,7 @@ namespace findaDoctor.DTO
         [Required]
         public int articleId { get; set; }
         public virtual Article Article { get; set; }
+        [JsonIgnore]
         public virtual UserEntity UserReader { get; set; }
     }
 }
