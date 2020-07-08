@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using findaDoctor.Model;
+using newsroom.Model;
 
-namespace findaDoctor.DBContext
+namespace newsroom.DBContext
 {
     public static class BuilderExtensions
     {

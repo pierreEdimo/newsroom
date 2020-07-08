@@ -1,8 +1,8 @@
-﻿using findaDoctor.Model;
+﻿using newsroom.Model;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace findaDoctor.DTO
+namespace newsroom.DTO
 {
     public class FavoriteArticleDTo
     {

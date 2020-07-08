@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using findaDoctor.DBContext;
-using findaDoctor.Model;
-using findaDoctor.DTO;
+using newsroom.DBContext;
+using newsroom.Model;
+using newsroom.DTO;
 using Microsoft.AspNetCore.Authorization;
 
-namespace findaDoctor.Controllers
+namespace newsroom.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

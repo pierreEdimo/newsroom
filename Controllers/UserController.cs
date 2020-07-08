@@ -1,5 +1,5 @@
-﻿using findaDoctor.DTO;
-using findaDoctor.Model;
+﻿using newsroom.DTO;
+using newsroom.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -12,11 +12,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using findaDoctor.DBContext;
+using newsroom.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
-namespace findaDoctor.Controllers
+namespace newsroom.Controllers
 {
     [Authorize]
     [ApiController]

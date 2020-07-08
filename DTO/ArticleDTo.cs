@@ -1,11 +1,11 @@
 using System;
-using findaDoctor.Model;
+using newsroom.Model;
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace findaDoctor.DTO
+namespace newsroom.DTO
 {
     public class ArticleDTo
     {

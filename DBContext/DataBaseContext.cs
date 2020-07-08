@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using findaDoctor.Model;
+using newsroom.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace findaDoctor.DBContext
+namespace newsroom.DBContext
 {
 
 

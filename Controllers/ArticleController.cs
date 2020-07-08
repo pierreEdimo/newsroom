@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
-using findaDoctor.DBContext;
-using findaDoctor.Model;
+using newsroom.DBContext;
+using newsroom.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using findaDoctor.DTO;
-using findaDoctor.QueryClasses;
+using newsroom.DTO;
+using newsroom.QueryClasses;
 using Microsoft.AspNetCore.Authorization;
 
-namespace findaDoctor.Controllers
+namespace newsroom.Controllers
 {
     [Authorize]
     [ApiController]

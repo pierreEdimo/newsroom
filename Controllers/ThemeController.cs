@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using findaDoctor.DBContext;
-using findaDoctor.DTO;
-using findaDoctor.Model;
-using findaDoctor.QueryClasses;
+using newsroom.DBContext;
+using newsroom.DTO;
+using newsroom.Model;
+using newsroom.QueryClasses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace findaDoctor.Controllers
+namespace newsroom.Controllers
 {
     [Authorize]
     [ApiController]

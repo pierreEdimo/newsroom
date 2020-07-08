@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using findaDoctor.DBContext;
+using newsroom.DBContext;
 using Microsoft.EntityFrameworkCore;
-using findaDoctor.Model;
+using newsroom.Model;
 using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,7 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
 
-namespace findaDoctor
+namespace newsroom
 {
     public class Startup
     {

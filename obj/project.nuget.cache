@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uDaUonWmRULn7iWQ4kvHBIIXwcM9x+Ppzde/81Evh+6g0KkG2J9XKfAlFIcwzc0iy0NZpRi1CO1UsKfUdPXGeg==",
+  "dgSpecHash": "cXF+HgQPeeO1QN9j7kVZpLibGJ/LcbRoMfuV94W9eDpKmtFYo0GGjlAJiE9q/x4dy6jDUVc+VhAkHeIUlISRYA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pierr\\source\\repos\\MyPortfolioProject\\findaDoctor\\findaDoctor.csproj",
+  "projectFilePath": "C:\\Users\\pierr\\source\\repos\\MyPortfolioProject\\newsroom\\newsroom.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pierr\\.nuget\\packages\\mailkit\\2.0.1\\mailkit.2.0.1.nupkg.sha512",
     "C:\\Users\\pierr\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.3\\microsoft.aspnetcore.authentication.jwtbearer.3.1.3.nupkg.sha512",

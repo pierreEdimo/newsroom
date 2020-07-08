@@ -1,7 +1,7 @@
 using System;
 
 
-namespace findaDoctor.QueryClasses
+namespace newsroom.QueryClasses
 {
     public class QueryParameters
     {

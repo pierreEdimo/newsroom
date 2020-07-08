@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 
-namespace findaDoctor.Model
+namespace newsroom.Model
 {
     public static class IQueryableExtensions
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace findaDoctor.Model
+namespace newsroom.Model
 {
     public class Theme
     {

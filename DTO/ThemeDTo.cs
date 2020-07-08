@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using findaDoctor.Model;
+using newsroom.Model;
 
-namespace findaDoctor.DTO
+namespace newsroom.DTO
 {
     public class ThemeDTo
     {

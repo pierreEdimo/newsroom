@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 
-namespace findaDoctor.Controllers
+namespace newsroom.Controllers
 {
     [ApiController]
     [Route("/")]

@@ -1,4 +1,4 @@
-namespace findaDoctor.QueryClasses
+namespace newsroom.QueryClasses
 {
     public class DoctorQueryParameter : QueryParameters
     {

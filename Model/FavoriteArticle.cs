@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace findaDoctor.Model
+namespace newsroom.Model
 {
     public class FavoriteArticle { 
     
