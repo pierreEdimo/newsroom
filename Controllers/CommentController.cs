@@ -44,7 +44,8 @@ namespace newsroom.Controllers
                 Id = commentDTo.Id,
                 uid = commentDTo.uid,
                 content = commentDTo.content,
-                userName = commentDTo.userName
+                userName = commentDTo.userName, 
+                articleId = commentDTo.articleId
             };
 
             _context.Comments.Add(comment);
