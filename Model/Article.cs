@@ -42,7 +42,6 @@ namespace newsroom.Model
         [Required]
         [DisplayName("Avatar")]
         public string authorImg { get; set; }
-        [JsonIgnore]
         public virtual List<Comments> Comments { get; set;  }
 
     }

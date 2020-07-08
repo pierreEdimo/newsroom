@@ -156,7 +156,7 @@ namespace newsroom.Controllers
             author = article.author,
             authorImg = article.authorImg,
             biography = article.biography, 
-           
+            Comments = article.Comments
         };
 
 
