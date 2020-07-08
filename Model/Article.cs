@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+
+
+using Newtonsoft.Json; 
 
 namespace newsroom.Model
 {
@@ -41,7 +43,7 @@ namespace newsroom.Model
         [DisplayName("Avatar")]
         public string authorImg { get; set; }
         [JsonIgnore]
-        public virtual List<FavoriteArticle> FavoriteArticleRef { get; set; }
+        public virtual List<Comments> Comments { get; set;  }
 
     }
 }

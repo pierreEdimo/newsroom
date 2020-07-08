@@ -1,9 +1,10 @@
 using System;
 using newsroom.Model;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json; 
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+
 
 namespace newsroom.DTO
 {
@@ -41,7 +42,7 @@ namespace newsroom.DTO
         [Required]
         [DisplayName("Avatar")]
         public string authorImg { get; set; }
-        public virtual List<FavoriteArticle> FavoriteArticleRef { get; set; }
+        public List<Comments> Comments { get; set;  }
 
     }
 }

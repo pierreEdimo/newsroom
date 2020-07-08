@@ -9,7 +9,7 @@ using newsroom.Model;
 using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
@@ -75,7 +75,8 @@ namespace newsroom
                 });
 
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddCors(options => options.AddPolicy("EnableAll", builder =>
             {
