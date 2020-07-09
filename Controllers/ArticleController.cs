@@ -27,7 +27,7 @@ namespace newsroom.Controllers
             _context.Database.EnsureCreated();
         }
 
-         
+
         [AllowAnonymous]
         [HttpGet(Name = nameof(GetArticles))]
         public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticles([FromQuery] DoctorQueryParameter queryParameters)
@@ -41,7 +41,6 @@ namespace newsroom.Controllers
                     articles = articles.OrderByCustom(queryParameters.sortBy, queryParameters.SortOrder);
                 }
             }
-
 
             articles = articles.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
@@ -155,7 +154,7 @@ namespace newsroom.Controllers
             Theme = article.Theme,
             author = article.author,
             authorImg = article.authorImg,
-            biography = article.biography, 
+            biography = article.biography,
             Comments = article.Comments
         };
 

@@ -33,14 +33,12 @@ namespace newsroom.Controllers
         {
             IQueryable<FavoriteArticle> favoriteArticles = _context.FavoriteeArticles;
 
-            if (!string.IsNullOrEmpty(queryParameters.sortBy))
+            if (!string.IsNullOrEmpty(queryParameters.userId))
             {
-                if (typeof(Article).GetProperty(queryParameters.sortBy) != null)
-                {
-                    favoriteArticles = favoriteArticles.OrderByCustom(queryParameters.sortBy, queryParameters.SortOrder);
-                }
+                favoriteArticles = favoriteArticles.Where(
+                    p => p.userId.ToLower().Contains(queryParameters.userId.ToLower())
+                );
             }
-
 
             return await favoriteArticles.Include(a => a.Article).Select(x => favoriteArtileToDTo(x)).ToListAsync();
         }
