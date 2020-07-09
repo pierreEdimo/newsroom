@@ -9,6 +9,7 @@ using newsroom.DBContext;
 using newsroom.Model;
 using newsroom.DTO;
 using Microsoft.AspNetCore.Authorization;
+using newsroom.QueryClasses;
 
 namespace newsroom.Controllers
 {
@@ -28,9 +29,18 @@ namespace newsroom.Controllers
 
         // GET: api/FavoriteArticles
         [HttpGet(Name = nameof(GetFavoriteeArticles))]
-        public async Task<ActionResult<IEnumerable<FavoriteArticleDTo>>> GetFavoriteeArticles()
+        public async Task<ActionResult<IEnumerable<FavoriteArticleDTo>>> GetFavoriteeArticles([FromQuery] DoctorQueryParameter queryParameters)
         {
             IQueryable<FavoriteArticle> favoriteArticles = _context.FavoriteeArticles;
+
+            if (!string.IsNullOrEmpty(queryParameters.sortBy))
+            {
+                if (typeof(Article).GetProperty(queryParameters.sortBy) != null)
+                {
+                    favoriteArticles = favoriteArticles.OrderByCustom(queryParameters.sortBy, queryParameters.SortOrder);
+                }
+            }
+
 
             return await favoriteArticles.Include(a => a.Article).Select(x => favoriteArtileToDTo(x)).ToListAsync();
         }
