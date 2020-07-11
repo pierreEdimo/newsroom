@@ -106,8 +106,6 @@ namespace newsroom.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.PasswordSignInAsync(user, model.passWord, false, false);
-                _context.userEntities.Add(user);
-                await _context.SaveChangesAsync();
                 return GenerateJwtToken(model.Email, user);
             }
 
