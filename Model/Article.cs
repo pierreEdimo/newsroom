@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
-using Newtonsoft.Json; 
+using Newtonsoft.Json;
 
 namespace newsroom.Model
 {
@@ -42,7 +42,8 @@ namespace newsroom.Model
         [Required]
         [DisplayName("Avatar")]
         public string authorImg { get; set; }
-        public virtual List<Comments> Comments { get; set;  }
+        [JsonIgnore]
+        public virtual List<Comments> Comments { get; set; }
 
     }
 }

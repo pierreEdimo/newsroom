@@ -28,6 +28,8 @@ namespace newsroom.Model
         [MaxLength(50)]
         [DisplayName("Postal Box")]
         public string poBox { get; set; }
+        [JsonIgnore]
+        public virtual List<Comments> Comments { get; set; }
 
 
     }
