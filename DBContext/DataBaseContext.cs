@@ -31,9 +31,9 @@ namespace newsroom.DBContext
 
             modelBuilder.Entity<Comments>().HasOne(f => f.article).WithMany(a => a.Comments);
 
-            modelBuilder.Entity<Comments>().HasOne(f => f.author).WithOne(a => a.Comments);
+            modelBuilder.Entity<Comments>().HasKey(f => new { f.articleId, f.uid });
 
-            modelBuilder.Entity<UserEntity>().HasOne(f => f.Comments).WithOne(a => a.author);
+            modelBuilder.Entity<Comments>().HasOne(f => f.author);
 
             modelBuilder.Seed();
         }

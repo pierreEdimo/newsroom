@@ -44,8 +44,6 @@ namespace newsroom.DTO
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [JsonIgnore]
-        public virtual Comments comments { get; set; }
 
     }
 }
