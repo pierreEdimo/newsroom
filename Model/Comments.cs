@@ -10,16 +10,16 @@ namespace newsroom.Model
     public class Comments
     {
         [Key]
-        public int Id { get; set;  }
+        public int Id { get; set; }
         [Required]
-        public String uid { get; set;  }
+        public String uid { get; set; }
         [Required]
-        public int articleId { get; set;  }
+        public int articleId { get; set; }
         [Required]
-        public String userName { get; set; }
-        [Required]
-        public String content { get; set;  }
+        public String content { get; set; }
         [JsonIgnore]
         public virtual Article article { get; set; }
+        [JsonIgnore]
+        public virtual UserEntity author { get; set; }
     }
 }

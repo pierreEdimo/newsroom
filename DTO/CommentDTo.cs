@@ -17,10 +17,9 @@ namespace newsroom.DTO
         [Required]
         public int articleId { get; set; }
         [Required]
-        public String userName { get; set; }
-        [Required]
         public String content { get; set; }
         [JsonIgnore]
         public virtual Article article { get; set; }
+        public virtual UserEntity author { get; set; }
     }
 }

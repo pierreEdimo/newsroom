@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
 using newsroom.DTO;
 using newsroom.Model;
+using newsroom.QueryClasses;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,13 +19,13 @@ namespace newsroom.Controllers
     [Route("api/[controller]")]
     public class CommentController : ControllerBase
     {
-        private DatabaseContext _context; 
+        private DatabaseContext _context;
 
         public CommentController(DatabaseContext context)
         {
             _context = context;
 
-            _context.Database.EnsureCreated(); 
+            _context.Database.EnsureCreated();
         }
 
         [HttpGet(Name = nameof(GetComments))]
@@ -32,7 +33,7 @@ namespace newsroom.Controllers
         {
             IQueryable<Comments> comments = _context.Comments;
 
-            return await comments.Include(a => a.article).Select(x => commentToDTo(x)).ToArrayAsync(); 
+            return await comments.Include(a => a.article).Include(a => a.author).Select(x => commentToDTo(x)).ToArrayAsync();
         }
 
 
@@ -44,70 +45,69 @@ namespace newsroom.Controllers
                 Id = commentDTo.Id,
                 uid = commentDTo.uid,
                 content = commentDTo.content,
-                userName = commentDTo.userName, 
                 articleId = commentDTo.articleId
             };
 
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, commentToDTo(comment)); 
+            return CreatedAtAction(nameof(GetComment), new { id = comment.Id }, commentToDTo(comment));
         }
 
 
         public async Task<IActionResult> UpdateComment(int Id, CommentDTo commentDTo)
         {
-            if(Id != commentDTo.Id)
+            if (Id != commentDTo.Id)
             {
-                return BadRequest(); 
+                return BadRequest();
             }
 
             var comment = await _context.Comments.FindAsync(Id);
             if (comment == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
-            
+
             comment.content = commentDTo.content;
 
             try
             {
-                await _context.SaveChangesAsync(); 
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException) when (!CommentExists(Id))
             {
-                return NotFound(); 
+                return NotFound();
             }
-            return NoContent(); 
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteComment(int id)
         {
-            var comment = await _context.Comments.FindAsync(id); 
-            if(comment == null)
+            var comment = await _context.Comments.FindAsync(id);
+            if (comment == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
 
-            return NoContent(); 
+            return NoContent();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<CommentDTo>> GetComment(int Id)
         {
-            var comment = await _context.Comments.FindAsync(Id); 
+            var comment = await _context.Comments.FindAsync(Id);
 
-            if(comment == null)
+            if (comment == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
-            return commentToDTo(comment); 
+            return commentToDTo(comment);
         }
 
         private bool CommentExists(int Id) => _context.Comments.Any(e => e.Id == Id);
@@ -117,10 +117,10 @@ namespace newsroom.Controllers
         {
             Id = comment.Id,
             uid = comment.uid,
-            userName = comment.userName,
             content = comment.content,
             articleId = comment.articleId,
-            article = comment.article
-        }; 
+            article = comment.article,
+            author = comment.author
+        };
     }
 }

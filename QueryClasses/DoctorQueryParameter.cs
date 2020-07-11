@@ -8,5 +8,6 @@ namespace newsroom.QueryClasses
         public string name { get; set; }
         public string title { get; set; }
         public string userId { get; set; }
+        public int articleId { get; set; }
     }
 }

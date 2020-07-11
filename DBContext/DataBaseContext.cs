@@ -21,7 +21,7 @@ namespace newsroom.DBContext
 
             modelBuilder.Entity<Theme>().HasMany(c => c.Articles).WithOne(a => a.Theme).HasForeignKey(a => a.themeId);
 
-            modelBuilder.Entity<Article>().HasMany(c => c.Comments).WithOne(a => a.article).HasForeignKey(a => a.articleId); 
+            modelBuilder.Entity<Article>().HasMany(c => c.Comments).WithOne(a => a.article).HasForeignKey(a => a.articleId);
 
             modelBuilder.Entity<FavoriteArticle>().HasKey(f => new { f.articleId, f.userId });
 
@@ -29,7 +29,11 @@ namespace newsroom.DBContext
 
             modelBuilder.Entity<Article>().HasOne(f => f.Theme).WithMany(a => a.Articles);
 
-            modelBuilder.Entity<Comments>().HasOne(f => f.article).WithMany(a => a.Comments); 
+            modelBuilder.Entity<Comments>().HasOne(f => f.article).WithMany(a => a.Comments);
+
+            modelBuilder.Entity<Comments>().HasOne(f => f.author).WithOne(a => a.Comments);
+
+            modelBuilder.Entity<UserEntity>().HasOne(f => f.Comments).WithOne(a => a.author);
 
             modelBuilder.Seed();
         }
@@ -38,7 +42,7 @@ namespace newsroom.DBContext
         public DbSet<Article> Articles { get; set; }
         public DbSet<Theme> Themes { get; set; }
         public DbSet<FavoriteArticle> FavoriteeArticles { get; set; }
-        public DbSet<Comments> Comments { get; set;  }
+        public DbSet<Comments> Comments { get; set; }
 
     }
 }
