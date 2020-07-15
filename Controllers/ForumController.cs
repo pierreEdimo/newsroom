@@ -25,13 +25,13 @@ namespace newsroom.Controllers
         }
 
         // GET: api/Forum
-     
+
         [HttpGet(Name = nameof(GetForums))]
         public async Task<ActionResult<IEnumerable<ForumDTo>>> GetForums()
         {
             IQueryable<Forum> forums = _context.Forums;
 
-            return await forums.Include(a => a.Comments).Include(a =>a.Author).Select(x => forumToDTo(x)).ToListAsync();
+            return await forums.Include(a => a.Author).Select(x => forumToDTo(x)).ToListAsync();
         }
 
         // GET: api/Forum/5
@@ -59,14 +59,14 @@ namespace newsroom.Controllers
                 return BadRequest();
             }
 
-            var forum = await _context.Forums.FindAsync(id); 
+            var forum = await _context.Forums.FindAsync(id);
 
-            if(forum == null)
+            if (forum == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
-            forum.title = forumDTo.title; 
+            forum.title = forumDTo.title;
 
             try
             {
@@ -97,7 +97,7 @@ namespace newsroom.Controllers
             {
                 uid = forumDTo.uid,
                 title = forumDTo.title
-            }; 
+            };
 
             _context.Forums.Add(forum);
             await _context.SaveChangesAsync();
@@ -126,13 +126,13 @@ namespace newsroom.Controllers
             return _context.Forums.Any(e => e.Id == id);
         }
 
-        private static ForumDTo forumToDTo(Forum forum) => new ForumDTo {
-            Author = forum.Author ,
-            Comments = forum.Comments, 
-            createdAt = forum.createdAt, 
-            Id  = forum.Id, 
-            title = forum.title, 
+        private static ForumDTo forumToDTo(Forum forum) => new ForumDTo
+        {
+            Author = forum.Author,
+            createdAt = forum.createdAt,
+            Id = forum.Id,
+            title = forum.title,
             uid = forum.uid
-        }; 
+        };
     }
 }

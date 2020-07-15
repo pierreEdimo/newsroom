@@ -13,7 +13,6 @@ namespace newsroom.DTO
         public string uid { get; set; }
         [Required]
         public String title { get; set; }
-        public virtual List<Comments> Comments { get; set; }
         public virtual UserEntity Author { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
 

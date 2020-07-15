@@ -44,7 +44,7 @@ namespace newsroom.Controllers
 
             articles = articles.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
-            return await articles.Include(a => a.Comments).Include(a => a.Theme).Select(x => ArticleToDTo(x)).ToListAsync();
+            return await articles.Include(a => a.Theme).Select(x => ArticleToDTo(x)).ToListAsync();
         }
 
 

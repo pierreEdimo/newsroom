@@ -13,8 +13,6 @@ namespace newsroom.Model
         [Required]
         public String title { get; set; }
         [JsonIgnore]
-        public virtual List<Comments> Comments { get; set; }
-        [JsonIgnore]
         public virtual UserEntity Author { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
 

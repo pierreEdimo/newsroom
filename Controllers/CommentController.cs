@@ -42,10 +42,11 @@ namespace newsroom.Controllers
         {
             var comment = new Comments
             {
-               
+
                 uid = commentDTo.uid,
                 content = commentDTo.content,
-                articleId = commentDTo.articleId
+                articleId = commentDTo.articleId,
+                forumId = commentDTo.forumId
             };
 
             _context.Comments.Add(comment);
