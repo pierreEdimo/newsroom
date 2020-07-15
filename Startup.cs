@@ -33,9 +33,9 @@ namespace newsroom
             services.AddDbContext<DatabaseContext>(options =>
             options.UseInMemoryDatabase("Doctor"));
 
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); 
-          
-            
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+
 
             services.AddIdentity<UserEntity, IdentityRole>(config =>
             {
@@ -63,10 +63,10 @@ namespace newsroom
                     config.SaveToken = true;
                     config.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidateIssuer=true, 
-                        ValidateAudience=true,
-                        ValidateIssuerSigningKey=true,
-                        RequireExpirationTime=true,
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateIssuerSigningKey = true,
+                        RequireExpirationTime = true,
                         ValidIssuer = Configuration["JwtIssuer"],
                         ValidAudience = Configuration["JwtIssuer"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
@@ -75,8 +75,7 @@ namespace newsroom
                 });
 
 
-            services.AddControllers().AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddControllers();
 
             services.AddCors(options => options.AddPolicy("EnableAll", builder =>
             {
@@ -86,7 +85,7 @@ namespace newsroom
             }));
         }
 
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -104,7 +103,7 @@ namespace newsroom
 
             app.UseCors("EnableAll");
 
-            app.UseAuthentication(); 
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

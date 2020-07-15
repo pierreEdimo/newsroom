@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace newsroom.Model
@@ -21,5 +22,9 @@ namespace newsroom.Model
         public virtual Article article { get; set; }
         [JsonIgnore]
         public virtual UserEntity author { get; set; }
+        public DateTime createdAt { get; set; } = DateTime.Now;
+        public int forumId { get; set; }
+        [JsonIgnore]
+        public virtual Forum Forum { get; set; }
     }
 }

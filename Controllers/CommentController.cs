@@ -42,7 +42,7 @@ namespace newsroom.Controllers
         {
             var comment = new Comments
             {
-                Id = commentDTo.Id,
+               
                 uid = commentDTo.uid,
                 content = commentDTo.content,
                 articleId = commentDTo.articleId
@@ -120,7 +120,10 @@ namespace newsroom.Controllers
             content = comment.content,
             articleId = comment.articleId,
             article = comment.article,
-            author = comment.author
+            author = comment.author,
+            forumId = comment.forumId,
+            createdAt = comment.createdAt,
+            Forum = comment.Forum
         };
     }
 }

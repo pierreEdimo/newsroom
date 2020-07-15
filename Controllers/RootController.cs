@@ -39,6 +39,10 @@ namespace newsroom.Controllers
                 comments = new
                 {
                     href = Url.Link(nameof(CommentController.GetComments), null)
+                }, 
+                forums = new
+                {
+                    href = Url.Link(nameof(ForumController.GetForums), null)
                 }
 
             };

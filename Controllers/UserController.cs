@@ -90,14 +90,8 @@ namespace newsroom.Controllers
             {
 
                 UserName = model.UserName,
-                PhoneNumber = model.PhoneNumber,
-                location = model.location,
-                city = model.city,
-                country = model.country,
-                poBox = model.poBox,
                 Email = model.Email,
-                firstName = model.firstName,
-                lastName = model.lastName
+                profession = model.profession
 
             };
 
