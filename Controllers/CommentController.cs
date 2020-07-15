@@ -46,7 +46,7 @@ namespace newsroom.Controllers
                 uid = commentDTo.uid,
                 content = commentDTo.content,
                 articleId = commentDTo.articleId,
-                forumId = commentDTo.forumId
+
             };
 
             _context.Comments.Add(comment);
@@ -120,11 +120,9 @@ namespace newsroom.Controllers
             uid = comment.uid,
             content = comment.content,
             articleId = comment.articleId,
-            article = comment.article,
             author = comment.author,
-            forumId = comment.forumId,
             createdAt = comment.createdAt,
-            Forum = comment.Forum
+
         };
     }
 }

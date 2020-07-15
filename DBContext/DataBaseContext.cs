@@ -27,8 +27,6 @@ namespace newsroom.DBContext
 
             modelBuilder.Entity<Article>().HasOne(f => f.Theme).WithMany(a => a.Articles);
 
-            modelBuilder.Entity<Comments>().HasOne(f => f.article).WithMany(a => a.Comments);
-
             modelBuilder.Entity<Comments>().HasOne(f => f.author).WithMany(a => a.Comments);
 
             modelBuilder.Entity<Forum>().HasOne(f => f.Author).WithMany(a => a.Forums);

@@ -18,12 +18,7 @@ namespace newsroom.DTO
         public int articleId { get; set; }
         [Required]
         public String content { get; set; }
-        [JsonIgnore]
-        public virtual Article article { get; set; }
         public virtual UserEntity author { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
-        public int forumId { get; set; }
-        [JsonIgnore]
-        public virtual Forum Forum { get; set; }
     }
 }
