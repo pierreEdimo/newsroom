@@ -1,6 +1,6 @@
 using System;
 using newsroom.Model;
-using Newtonsoft.Json; 
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -42,7 +42,5 @@ namespace newsroom.DTO
         [Required]
         [DisplayName("Avatar")]
         public string authorImg { get; set; }
-        public List<Comments> Comments { get; set;  }
-
     }
 }
