@@ -15,10 +15,7 @@ namespace newsroom.Model
         [Required]
         public String uid { get; set; }
         [Required]
-        public int articleId { get; set; }
-        [Required]
         public String content { get; set; }
-
         [JsonIgnore]
         public virtual UserEntity author { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
