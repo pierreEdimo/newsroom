@@ -35,14 +35,18 @@ namespace newsroom.Controllers
                 favoritesarticles = new
                 {
                     href = Url.Link(nameof(FavoriteArticlesController.GetFavoriteeArticles), null)
-                }, 
+                },
                 comments = new
                 {
                     href = Url.Link(nameof(CommentController.GetComments), null)
-                }, 
+                },
                 forums = new
                 {
                     href = Url.Link(nameof(ForumController.GetForums), null)
+                },
+                forumComments = new
+                {
+                    href = Url.Link(nameof(ForumCommentsController.GetforumComments), null)
                 }
 
             };
