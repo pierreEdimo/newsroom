@@ -135,6 +135,7 @@ namespace newsroom.Controllers
             forumId = comment.forumId,
             author = comment.author,
             createdAt = comment.createdAt,
+            Answers = comment.Answers
 
         };
     }
