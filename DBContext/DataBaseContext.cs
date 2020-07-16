@@ -35,6 +35,13 @@ namespace newsroom.DBContext
 
             modelBuilder.Entity<UserEntity>().HasMany(a => a.Forums).WithOne(a => a.Author).HasForeignKey(a => a.uid);
 
+            modelBuilder.Entity<UserEntity>().HasMany(a => a.Answers).WithOne(a => a.Author).HasForeignKey(a => a.uid); 
+
+            modelBuilder.Entity<Comments>().HasMany(a => a.Answers).WithOne(a => a.Comments).HasForeignKey(a => a.commentId);
+
+            modelBuilder.Entity<Answer>().HasOne(a => a.Comments).WithMany(a => a.Answers);
+
+            modelBuilder.Entity<Answer>().HasOne(a => a.Author).WithMany(a => a.Answers); 
 
 
             modelBuilder.Seed();
@@ -47,6 +54,7 @@ namespace newsroom.DBContext
         public DbSet<ArticleComment> Comments { get; set; }
         public DbSet<Forum> Forums { get; set; }
         public DbSet<ForumComments> forumComments { get; set;  }
+        public DbSet<Answer> Answers { get; set;  }
 
     }
 }

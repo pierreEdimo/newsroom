@@ -8,16 +8,15 @@ using System.Threading.Tasks;
 
 namespace newsroom.DTO
 {
-    public class CommentDTo
+    public class AnswerDTo
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        public int commentId { get; set; }
         public String uid { get; set; }
-        [Required]
+        [JsonIgnore]
+        public virtual Comments Comments { get; set; }
+        public virtual UserEntity Author { get; set; }
         public String content { get; set; }
-        public virtual UserEntity author { get; set; }
-        public virtual List<Answer> Answers { get; set; }
-        public DateTime createdAt { get; set; } = DateTime.Now;
     }
 }

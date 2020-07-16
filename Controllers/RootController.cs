@@ -47,6 +47,10 @@ namespace newsroom.Controllers
                 forumComments = new
                 {
                     href = Url.Link(nameof(ForumCommentsController.GetforumComments), null)
+                }, 
+                answers = new
+                {
+                    href = Url.Link(nameof(AnswersController.GetAnswers), null)
                 }
 
             };

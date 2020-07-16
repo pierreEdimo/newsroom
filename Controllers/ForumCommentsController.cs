@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using newsroom.Model;
 
 namespace newsroom.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ForumCommentsController : ControllerBase
@@ -28,9 +30,9 @@ namespace newsroom.Controllers
         [HttpGet(Name = nameof(GetforumComments))]
         public async Task<ActionResult<IEnumerable<ForumCommentDTo>>> GetforumComments()
         {
-            IQueryable<ForumComments> comments = _context.forumComments; 
+            IQueryable<ForumComments> comments = _context.forumComments;
 
-            return await comments.Include(a => a.author).Select(x => commentToDTo(x)).ToListAsync();
+            return await comments.Include(a => a.Answers).Include(a => a.author).Select(x => commentToDTo(x)).ToListAsync();
         }
 
         // GET: api/ForumComments/5
@@ -58,13 +60,13 @@ namespace newsroom.Controllers
                 return BadRequest();
             }
 
-            var comment = await _context.forumComments.FindAsync(Id); 
-            if(comment == null)
+            var comment = await _context.forumComments.FindAsync(Id);
+            if (comment == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
-            comment.content = forumCommentDTo.content; 
+            comment.content = forumCommentDTo.content;
 
             try
             {
@@ -89,14 +91,14 @@ namespace newsroom.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ForumCommentDTo>> PostForumComments(ForumCommentDTo forumCommentDTo )
+        public async Task<ActionResult<ForumCommentDTo>> PostForumComments(ForumCommentDTo forumCommentDTo)
         {
             var comment = new ForumComments
             {
                 uid = forumCommentDTo.uid,
                 content = forumCommentDTo.content,
-                ForumId = forumCommentDTo.forumId
-            }; 
+                forumId = forumCommentDTo.forumId
+            };
 
             _context.forumComments.Add(comment);
             await _context.SaveChangesAsync();
@@ -130,7 +132,7 @@ namespace newsroom.Controllers
             Id = comment.Id,
             uid = comment.uid,
             content = comment.content,
-            forumId = comment.ForumId,
+            forumId = comment.forumId,
             author = comment.author,
             createdAt = comment.createdAt,
 

@@ -17,6 +17,8 @@ namespace newsroom.Model
         public virtual List<Comments> Comments { get; set; }
         [JsonIgnore]
         public virtual List<Forum> Forums { get; set; }
+        [JsonIgnore]
+        public virtual List<Answer> Answers { get; set;  }
 
 
     }

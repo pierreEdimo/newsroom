@@ -18,6 +18,8 @@ namespace newsroom.Model
         public String content { get; set; }
         [JsonIgnore]
         public virtual UserEntity author { get; set; }
+        [JsonIgnore]
+        public virtual List<Answer> Answers { get; set;  }
         public DateTime createdAt { get; set; } = DateTime.Now;
     }
 }
