@@ -29,18 +29,18 @@ namespace newsroom.Controllers
         }
 
         [HttpGet(Name = nameof(GetComments))]
-        public async Task<ActionResult<IEnumerable<CommentDTo>>> GetComments()
+        public async Task<ActionResult<IEnumerable<ArticleCommentDTo>>> GetComments()
         {
-            IQueryable<Comments> comments = _context.Comments;
+            IQueryable<ArticleComment> comments = _context.Comments;
 
             return await comments.Include(a => a.author).Select(x => commentToDTo(x)).ToArrayAsync();
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<CommentDTo>> commentArticle(CommentDTo commentDTo)
+        public async Task<ActionResult<ArticleCommentDTo>> commentArticle(ArticleCommentDTo commentDTo)
         {
-            var comment = new Comments
+            var comment = new ArticleComment
             {
 
                 uid = commentDTo.uid,
@@ -56,7 +56,8 @@ namespace newsroom.Controllers
         }
 
 
-        public async Task<IActionResult> UpdateComment(int Id, CommentDTo commentDTo)
+        [HttpPut]
+        public async Task<IActionResult> UpdateComment(int Id, ArticleCommentDTo commentDTo)
         {
             if (Id != commentDTo.Id)
             {
@@ -99,7 +100,7 @@ namespace newsroom.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CommentDTo>> GetComment(int Id)
+        public async Task<ActionResult<ArticleCommentDTo>> GetComment(int Id)
         {
             var comment = await _context.Comments.FindAsync(Id);
 
@@ -114,7 +115,7 @@ namespace newsroom.Controllers
         private bool CommentExists(int Id) => _context.Comments.Any(e => e.Id == Id);
 
 
-        public static CommentDTo commentToDTo(Comments comment) => new CommentDTo
+        public static ArticleCommentDTo commentToDTo(ArticleComment comment) => new ArticleCommentDTo
         {
             Id = comment.Id,
             uid = comment.uid,

@@ -44,7 +44,7 @@ namespace newsroom.DBContext
         public DbSet<Article> Articles { get; set; }
         public DbSet<Theme> Themes { get; set; }
         public DbSet<FavoriteArticle> FavoriteeArticles { get; set; }
-        public DbSet<Comments> Comments { get; set; }
+        public DbSet<ArticleComment> Comments { get; set; }
         public DbSet<Forum> Forums { get; set; }
 
     }
