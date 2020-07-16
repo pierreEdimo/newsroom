@@ -123,7 +123,7 @@ namespace newsroom.Controllers
             articleId = comment.articleId,
             author = comment.author,
             createdAt = comment.createdAt,
-
+            Answers = comment.Answers
         };
     }
 }
