@@ -11,8 +11,6 @@ namespace newsroom.Model
         [Key]
         public int Id { get; set; }
         [Required]
-        [MaxLength(50)]
-        [DisplayName("Name")]
         public string name { get; set; }
         [Required]
         public string imageUrl { get; set; }
