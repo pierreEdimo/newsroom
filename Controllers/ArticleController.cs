@@ -44,7 +44,7 @@ namespace newsroom.Controllers
 
             articles = articles.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
-            return await articles.Include(a => a.Theme).Select(x => ArticleToDTo(x)).ToListAsync();
+            return await articles.Include(a => a.Author).Include(a => a.Theme).Select(x => ArticleToDTo(x)).ToListAsync();
         }
 
 
@@ -81,11 +81,6 @@ namespace newsroom.Controllers
             articleItem.imageUrl = articleDTo.imageUrl;
             articleItem.content = articleDTo.content;
             articleItem.createdAt = articleDTo.createdAt;
-            articleItem.themeId = articleDTo.themeId;
-            articleItem.author = articleDTo.author;
-            articleItem.authorImg = articleDTo.authorImg;
-            articleItem.biography = articleDTo.biography;
-
 
             try
             {
@@ -109,11 +104,7 @@ namespace newsroom.Controllers
                 content = articleDTo.content,
                 createdAt = articleDTo.createdAt,
                 themeId = articleDTo.themeId,
-                author = articleDTo.author,
-                authorImg = articleDTo.authorImg,
-                biography = articleDTo.biography
-
-
+                authorId = articleDTo.authorId
 
             };
 
@@ -152,9 +143,8 @@ namespace newsroom.Controllers
             createdAt = article.createdAt,
             themeId = article.themeId,
             Theme = article.Theme,
-            author = article.author,
-            authorImg = article.authorImg,
-            biography = article.biography,
+            authorId = article.authorId,
+            Author = article.Author
 
         };
 

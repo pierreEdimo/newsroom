@@ -75,7 +75,10 @@ namespace newsroom
                 });
 
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                                                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
+
 
             services.AddCors(options => options.AddPolicy("EnableAll", builder =>
             {
