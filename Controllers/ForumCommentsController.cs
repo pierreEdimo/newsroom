@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
 using newsroom.DTO;
 using newsroom.Model;
+using newsroom.QueryClasses;
 
 namespace newsroom.Controllers
 {
@@ -28,9 +29,17 @@ namespace newsroom.Controllers
 
         // GET: api/ForumComments
         [HttpGet(Name = nameof(GetforumComments))]
-        public async Task<ActionResult<IEnumerable<ForumCommentDTo>>> GetforumComments()
+        public async Task<ActionResult<IEnumerable<ForumCommentDTo>>> GetforumComments([FromQuery] DoctorQueryParameter queryParameters)
         {
             IQueryable<ForumComments> comments = _context.forumComments;
+
+            if (!string.IsNullOrEmpty(queryParameters.sortBy))
+            {
+                if (typeof(Article).GetProperty(queryParameters.sortBy) != null)
+                {
+                    comments = comments.OrderByCustom(queryParameters.sortBy, queryParameters.SortOrder);
+                }
+            }
 
             return await comments.Include(a => a.Answers).Include(a => a.author).Select(x => commentToDTo(x)).ToListAsync();
         }
