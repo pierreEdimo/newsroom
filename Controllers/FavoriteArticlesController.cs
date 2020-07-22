@@ -40,7 +40,7 @@ namespace newsroom.Controllers
                 );
             }
 
-            return await favoriteArticles.Include(a => a.Article).Select(x => favoriteArtileToDTo(x)).ToListAsync();
+            return await favoriteArticles.Include(a => a.Article).ThenInclude(a => a.Author).Select(x => favoriteArtileToDTo(x)).ToListAsync();
         }
 
         // GET: api/FavoriteArticles/5
@@ -114,7 +114,7 @@ namespace newsroom.Controllers
             articleId = favorite.articleId,
             userId = favorite.userId,
             Article = favorite.Article,
-            UserReader = favorite.UserReader
+
 
         };
     }
