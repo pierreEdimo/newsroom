@@ -33,7 +33,7 @@ namespace newsroom.Controllers
         {
             IQueryable<Comments> comments = _context.Comments;
 
-            return await comments.Include(a => a.Answers).Include(a => a.author).Select(x => commentToDTo(x)).ToArrayAsync();
+            return await comments.Include(a => a.Answers).Include(a => a.author).Select(x => commentToDTo(x)).ToListAsync();
         }
 
 
