@@ -29,23 +29,24 @@ namespace newsroom.Controllers
         }
 
         [HttpGet(Name = nameof(GetComments))]
-        public async Task<ActionResult<IEnumerable<ArticleCommentDTo>>> GetComments()
+        public async Task<ActionResult<IEnumerable<CommentDTo>>> GetComments()
         {
-            IQueryable<ArticleComment> comments = _context.Comments;
+            IQueryable<Comments> comments = _context.Comments;
 
             return await comments.Include(a => a.Answers).Include(a => a.author).Select(x => commentToDTo(x)).ToArrayAsync();
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<ArticleCommentDTo>> commentArticle(ArticleCommentDTo commentDTo)
+        public async Task<ActionResult<CommentDTo>> commentArticle(CommentDTo commentDTo)
         {
-            var comment = new ArticleComment
+            var comment = new Comments
             {
 
                 uid = commentDTo.uid,
                 content = commentDTo.content,
                 articleId = commentDTo.articleId,
+                forumId = commentDTo.forumId
 
             };
 
@@ -57,7 +58,7 @@ namespace newsroom.Controllers
 
 
         [HttpPut]
-        public async Task<IActionResult> UpdateComment(int Id, ArticleCommentDTo commentDTo)
+        public async Task<IActionResult> UpdateComment(int Id, CommentDTo commentDTo)
         {
             if (Id != commentDTo.Id)
             {
@@ -100,7 +101,7 @@ namespace newsroom.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ArticleCommentDTo>> GetComment(int Id)
+        public async Task<ActionResult<CommentDTo>> GetComment(int Id)
         {
             var comment = await _context.Comments.FindAsync(Id);
 
@@ -115,12 +116,13 @@ namespace newsroom.Controllers
         private bool CommentExists(int Id) => _context.Comments.Any(e => e.Id == Id);
 
 
-        public static ArticleCommentDTo commentToDTo(ArticleComment comment) => new ArticleCommentDTo
+        public static CommentDTo commentToDTo(Comments comment) => new CommentDTo
         {
             Id = comment.Id,
             uid = comment.uid,
             content = comment.content,
             articleId = comment.articleId,
+            forumId = comment.forumId, 
             author = comment.author,
             createdAt = comment.createdAt,
             Answers = comment.Answers
