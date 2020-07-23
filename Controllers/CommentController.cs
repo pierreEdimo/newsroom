@@ -14,7 +14,7 @@ using newsroom.QueryClasses;
 
 namespace newsroom.Controllers
 {
-    [Authorize]
+
     [ApiController]
     [Route("api/[controller]")]
     public class CommentController : ControllerBase
@@ -122,7 +122,7 @@ namespace newsroom.Controllers
             uid = comment.uid,
             content = comment.content,
             articleId = comment.articleId,
-            forumId = comment.forumId, 
+            forumId = comment.forumId,
             author = comment.author,
             createdAt = comment.createdAt,
             Answers = comment.Answers
