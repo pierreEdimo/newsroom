@@ -14,6 +14,8 @@ namespace newsroom.Model
         public int Id { get; set; }
         [Required]
         public String uid { get; set; }
+        public int forumId { get; set;  }
+        public int articleId { get; set;  }
         [Required]
         public String content { get; set; }
         [JsonIgnore]
