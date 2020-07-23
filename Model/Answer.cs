@@ -15,7 +15,6 @@ namespace newsroom.Model
         public String uid { get; set; }
         [JsonIgnore]
         public virtual Comments Comments { get; set;  }
-        [JsonIgnore]
         public virtual UserEntity Author { get; set; }
         public String content { get; set; }
     }
