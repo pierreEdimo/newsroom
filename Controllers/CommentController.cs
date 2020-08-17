@@ -46,7 +46,7 @@ namespace newsroom.Controllers
                 uid = commentDTo.uid,
                 content = commentDTo.content,
                 articleId = commentDTo.articleId,
-                forumId = commentDTo.forumId
+
 
             };
 
@@ -122,7 +122,6 @@ namespace newsroom.Controllers
             uid = comment.uid,
             content = comment.content,
             articleId = comment.articleId,
-            forumId = comment.forumId,
             author = comment.author,
             createdAt = comment.createdAt,
             Answers = comment.Answers
