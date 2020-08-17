@@ -104,7 +104,8 @@ namespace newsroom.Controllers
                 content = articleDTo.content,
                 createdAt = articleDTo.createdAt,
                 themeId = articleDTo.themeId,
-                authorId = articleDTo.authorId
+                authorId = articleDTo.authorId,
+                numberOfComments = _context.Comments.Where(o => o.articleId == articleDTo.Id).Count()
 
             };
 
@@ -145,7 +146,8 @@ namespace newsroom.Controllers
             Theme = article.Theme,
             authorId = article.authorId,
             Author = article.Author,
-            Comments = article.Comments
+            Comments = article.Comments,
+            numberOfComments = article.numberOfComments
 
         };
 
