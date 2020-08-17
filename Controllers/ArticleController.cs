@@ -105,7 +105,7 @@ namespace newsroom.Controllers
                 createdAt = articleDTo.createdAt,
                 themeId = articleDTo.themeId,
                 authorId = articleDTo.authorId,
-                numberOfComments = _context.Comments.Where(o => o.articleId == articleDTo.Id).Count()
+                numberOfComments = _context.Comments.Where(o => o.articleId == '2').Count()
 
             };
 
