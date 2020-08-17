@@ -14,14 +14,15 @@ namespace newsroom.Model
         public int Id { get; set; }
         [Required]
         public String uid { get; set; }
-        public int forumId { get; set;  }
-        public int articleId { get; set;  }
+        [Required]
+        public int articleId { get; set; }
         [Required]
         public String content { get; set; }
         [JsonIgnore]
         public virtual UserEntity author { get; set; }
         [JsonIgnore]
-        public virtual List<Answer> Answers { get; set;  }
+        public virtual List<Answer> Answers { get; set; }
         public DateTime createdAt { get; set; } = DateTime.Now;
+        public virtual Article Article { get; set;}
     }
 }
