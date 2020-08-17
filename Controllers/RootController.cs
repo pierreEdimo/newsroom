@@ -40,10 +40,7 @@ namespace newsroom.Controllers
                 {
                     href = Url.Link(nameof(CommentController.GetComments), null)
                 },
-                forums = new
-                {
-                    href = Url.Link(nameof(ForumController.GetForums), null)
-                },
+              
                 answers = new
                 {
                     href = Url.Link(nameof(AnswersController.GetAnswers), null)
