@@ -27,6 +27,7 @@ namespace newsroom.Model
         public virtual Theme Theme { get; set; }
         public int authorId { get; set; }
         public virtual Author Author { get; set; }
+        public virtual List<Comments> Comments { get; set; }
 
 
     }
