@@ -40,7 +40,11 @@ namespace newsroom.Controllers
                 }
             }
 
-            return await themes.Include(a => a.Articles).ThenInclude(a => (a as Article).Author).Select(x => ThemeToDTo(x)).ToListAsync();
+            return await themes.Include(a => a.Articles)
+                                  .ThenInclude(a => (a as Article).Author)
+                               .Include(a => a.Articles)
+                                  .ThenInclude(a => a.Comments)
+            .Select(x => ThemeToDTo(x)).ToListAsync();
         }
 
 
