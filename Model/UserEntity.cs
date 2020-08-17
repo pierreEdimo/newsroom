@@ -15,10 +15,9 @@ namespace newsroom.Model
         public String profession { get; set; }
         [JsonIgnore]
         public virtual List<Comments> Comments { get; set; }
+
         [JsonIgnore]
-        public virtual List<Forum> Forums { get; set; }
-        [JsonIgnore]
-        public virtual List<Answer> Answers { get; set;  }
+        public virtual List<Answer> Answers { get; set; }
 
 
     }
