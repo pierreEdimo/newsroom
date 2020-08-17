@@ -97,6 +97,8 @@ namespace newsroom.Controllers
         [HttpPost]
         public async Task<ActionResult<ArticleDTo>> CreateAnArticle(ArticleDTo articleDTo)
         {
+
+
             var articleItem = new Article
             {
                 title = articleDTo.title,
@@ -105,7 +107,7 @@ namespace newsroom.Controllers
                 createdAt = articleDTo.createdAt,
                 themeId = articleDTo.themeId,
                 authorId = articleDTo.authorId,
-                numberOfComments = _context.Comments.Where(o => o.articleId == '2').Count()
+                numberOfComments = _context.Comments.Count(a => a.articleId == '2')
 
             };
 
