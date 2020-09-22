@@ -57,7 +57,7 @@ namespace newsroom.Controllers
         }
 
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateComment(int Id, CommentDTo commentDTo)
         {
             if (Id != commentDTo.Id)

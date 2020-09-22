@@ -58,7 +58,7 @@ namespace newsroom.DBContext
         public DbSet<Comments> Comments { get; set; }
 
         public DbSet<Answer> Answers { get; set; }
-        public DbSet<Article> Author { get; set; }
+        public DbSet<Author> Author { get; set; }
 
     }
 }
