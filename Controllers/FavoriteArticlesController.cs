@@ -68,21 +68,8 @@ namespace newsroom.Controllers
             };
 
             _context.FavoriteeArticles.Add(favoriteArticle);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (FavoriteArticleExists(favoriteArticle.articleId))
-                {
-                    return await DeleteFavoriteArticle(favoriteArticle.Id);
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
+
 
             return CreatedAtAction(nameof(GetFavoriteArticle), new { id = favoriteArticle.Id }, favoriteArtileToDTo(favoriteArticle));
         }
