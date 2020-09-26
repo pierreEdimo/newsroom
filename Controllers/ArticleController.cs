@@ -42,6 +42,11 @@ namespace newsroom.Controllers
                 }
             }
 
+            if (!string.IsNullOrEmpty(queryParameters.title))
+            {
+                articles = articles.Where(p => p.title.ToLower().Contains(queryParameters.title.ToLower()));
+            }
+
             articles = articles.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
             return await articles.Include(a => a.Comments).Include(a => a.Author).Include(a => a.Theme).Select(x => ArticleToDTo(x)).ToListAsync();
