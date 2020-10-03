@@ -155,7 +155,7 @@ namespace newsroom.Controllers
             authorId = article.authorId,
             Author = article.Author,
             Comments = article.Comments,
-
+            numberOfComments = article.Comments.Count()
 
         };
 
