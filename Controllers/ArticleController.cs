@@ -49,7 +49,7 @@ namespace newsroom.Controllers
 
             articles = articles.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
 
-            return await articles.Include(a => a.Comments).Include(a => a.Author).Include(a => a.Theme).Select(x => ArticleToDTo(x)).ToListAsync();
+            return await articles.Include(a => a.Comments).Include(a => a.Author).Include(a => a.Theme).Select(x => GetArticleToDTo(x)).ToListAsync();
         }
 
 
@@ -144,6 +144,22 @@ namespace newsroom.Controllers
         private bool ArticleExists(int Id) => _context.Articles.Any(e => e.Id == Id);
 
         public static ArticleDTo ArticleToDTo(Article article) => new ArticleDTo
+        {
+            Id = article.Id,
+            title = article.title,
+            imageUrl = article.imageUrl,
+            content = article.content,
+            createdAt = article.createdAt,
+            themeId = article.themeId,
+            Theme = article.Theme,
+            authorId = article.authorId,
+            Author = article.Author,
+            Comments = article.Comments,
+
+
+        };
+
+        public static ArticleDTo GetArticleToDTo(Article article) => new ArticleDTo
         {
             Id = article.Id,
             title = article.title,

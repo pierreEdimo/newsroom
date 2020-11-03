@@ -17,5 +17,7 @@ namespace newsroom.DTO
         [Required]
         public string imageUrl { get; set; }
         public virtual List<Article> Articles { get; set; }
+
+        public int numberOfArticles { get; set; }
     }
 }

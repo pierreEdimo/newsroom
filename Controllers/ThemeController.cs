@@ -132,5 +132,15 @@ namespace newsroom.Controllers
             Articles = theme.Articles
         };
 
+        public static ThemeDTo GetThemeToDTo(Theme theme) => new ThemeDTo
+        {
+            Id = theme.Id,
+            name = theme.name,
+            imageUrl = theme.imageUrl,
+            Articles = theme.Articles,
+            numberOfArticles = theme.Articles.Count()
+        };
+
+
     }
 }
