@@ -52,6 +52,30 @@ namespace newsroom.Controllers
             return await articles.Include(a => a.Comments).Include(a => a.Author).Include(a => a.Theme).Select(x => GetArticleToDTo(x)).ToListAsync();
         }
 
+        [AllowAnonymous]
+        [HttpGet("[action]", Name = nameof(GetArticleFromAuthor))]
+        public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticleFromAuthor([FromQuery] DoctorQueryParameter queryParameters)
+        {
+            IQueryable<Article> articles = _context.Articles;
+
+            if (!string.IsNullOrEmpty(queryParameters.sortBy))
+            {
+                if (typeof(Article).GetProperty(queryParameters.sortBy) != null)
+                {
+                    articles = articles.OrderByCustom(queryParameters.sortBy, queryParameters.SortOrder);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(queryParameters.authorId.ToString()))
+            {
+                articles = articles.Where(p => p.authorId.ToString().Contains(queryParameters.authorId.ToString()));
+            }
+
+            articles = articles.Skip(queryParameters.Size * (queryParameters.Page - 1)).Take(queryParameters.Size);
+
+            return await articles.Include(a => a.Comments).Include(a => a.Author).Include(a => a.Theme).Select(x => GetArticleToDTo(x)).ToListAsync();
+        }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ArticleDTo>> GetArticle(int Id)
