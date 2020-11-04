@@ -10981,11 +10981,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pierr\\source\\repos\\MyPortfolioProject\\newsroom\\newsroom.csproj",
+      "projectUniqueName": "C:\\Users\\pierr\\source\\repos\\newsroom\\newsroomApi\\newsroom.csproj",
       "projectName": "newsroom",
-      "projectPath": "C:\\Users\\pierr\\source\\repos\\MyPortfolioProject\\newsroom\\newsroom.csproj",
+      "projectPath": "C:\\Users\\pierr\\source\\repos\\newsroom\\newsroomApi\\newsroom.csproj",
       "packagesPath": "C:\\Users\\pierr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pierr\\source\\repos\\MyPortfolioProject\\newsroom\\obj\\",
+      "outputPath": "C:\\Users\\pierr\\source\\repos\\newsroom\\newsroomApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

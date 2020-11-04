@@ -56,15 +56,16 @@ namespace newsroom.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ArticleDTo>> GetArticle(int Id)
         {
+            IQueryable<Article> articles = _context.Articles;
 
-            var article = await _context.Articles.FindAsync(Id);
+            var article = await articles.Include(a => a.Author).Include(a => a.Theme).FirstOrDefaultAsync(x => x.Id == Id) ;
 
             if (article == null)
             {
                 return NotFound();
             }
 
-            return ArticleToDTo(article);
+            return GetArticleToDTo(article);
         }
 
 

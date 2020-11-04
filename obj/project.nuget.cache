@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6hgSGPZ3Wl21hRiBY/fZL1Ua/XOhzhliZcEnYMqvSVn4x7svQtT2GxB6nM6/P/1jnyt6mAPmlmCuOctf9IA6IA==",
+  "dgSpecHash": "e2CKlGRLuNNus/wbF1PtGhwYOo5Sepbr1ZeZVMHahSb77fMb/fcoqxvWgrMBrETxiq92lzhnRTmWdqYmoe6XPg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pierr\\source\\repos\\MyPortfolioProject\\newsroom\\newsroom.csproj",
+  "projectFilePath": "C:\\Users\\pierr\\source\\repos\\newsroom\\newsroomApi\\newsroom.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pierr\\.nuget\\packages\\mailkit\\2.0.1\\mailkit.2.0.1.nupkg.sha512",
     "C:\\Users\\pierr\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.3\\microsoft.aspnetcore.authentication.jwtbearer.3.1.3.nupkg.sha512",
