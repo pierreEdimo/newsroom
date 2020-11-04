@@ -65,7 +65,7 @@ namespace newsroom.Controllers
                 return NotFound();
             }
 
-            return GetArticleToDTo(article);
+            return ArticleToDTo(article);
         }
 
 
