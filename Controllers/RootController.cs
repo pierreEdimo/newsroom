@@ -24,6 +24,9 @@ namespace newsroom.Controllers
                 {
                     href = Url.Link(nameof(ArticleController.GetArticles), null)
                 },
+                articleFromAuthor = new {
+                    href = Url.Link(nameof(ArticleController.GetArticleFromAuthor), null)
+                } ,
                 themes = new
                 {
                     href = Url.Link(nameof(ThemeController.GetThemes), null)
