@@ -44,7 +44,7 @@ namespace newsroom.Controllers
                                   .ThenInclude(a => (a as Article).Author)
                                .Include(a => a.Articles)
                                   .ThenInclude(a => a.Comments)
-            .Select(x => ThemeToDTo(x)).ToListAsync();
+            .Select(x => GetThemeToDTo(x)).ToListAsync();
         }
 
 
@@ -60,7 +60,7 @@ namespace newsroom.Controllers
                 return NotFound();
             }
 
-            return ThemeToDTo(theme);
+            return GetThemeToDTo(theme);
         }
 
         [HttpPut("{Id}")]
