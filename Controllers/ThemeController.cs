@@ -51,7 +51,9 @@ namespace newsroom.Controllers
         [HttpGet("{Id}")]
         public async Task<ActionResult<ThemeDTo>> GetTheme(int Id)
         {
-            var theme = await _context.Themes.FindAsync(Id);
+            IQueryable<Theme> themes = _context.Themes;
+
+            var theme = await themes.Include(a => a.Articles).FirstOrDefaultAsync(x => x.Id == Id);
 
             if (theme == null)
             {
