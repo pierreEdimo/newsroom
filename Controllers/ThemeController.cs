@@ -53,7 +53,10 @@ namespace newsroom.Controllers
         {
             IQueryable<Theme> themes = _context.Themes;
 
-            var theme = await themes.Include(a => a.Articles).FirstOrDefaultAsync(x => x.Id == Id);
+            var theme = await themes.Include(a => a.Articles)
+                                        .ThenInclude(a => (a as Article).Author)
+                                    .Include(a => a.Articles).ThenInclude(a => a.Comments)
+                .FirstOrDefaultAsync(x => x.Id == Id);
 
             if (theme == null)
             {
