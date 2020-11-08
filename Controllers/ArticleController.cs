@@ -82,14 +82,14 @@ namespace newsroom.Controllers
         {
             IQueryable<Article> articles = _context.Articles;
 
-            var article = await articles.Include(a => a.Author).Include(a => a.Theme).FirstOrDefaultAsync(x => x.Id == Id);
+            var article = await articles.Include(a => a.Comments).Include(a => a.Theme).Include(a => a.Author).Include(a => a.Theme).FirstOrDefaultAsync(x => x.Id == Id);
 
             if (article == null)
             {
                 return NotFound();
             }
 
-            return ArticleToDTo(article);
+            return GetArticleToDTo(article);
         }
 
 
@@ -180,7 +180,7 @@ namespace newsroom.Controllers
             authorId = article.authorId,
             Author = article.Author,
             Comments = article.Comments,
-            numberOfComments = article.Comments.Count()
+
 
 
         };
