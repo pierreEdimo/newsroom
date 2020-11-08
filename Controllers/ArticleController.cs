@@ -89,7 +89,7 @@ namespace newsroom.Controllers
                 return NotFound();
             }
 
-            return GetArticleToDTo(article);
+            return ArticleToDTo(article);
         }
 
 
@@ -180,6 +180,7 @@ namespace newsroom.Controllers
             authorId = article.authorId,
             Author = article.Author,
             Comments = article.Comments,
+            numberOfComments = article.Comments.Count()
 
 
         };
