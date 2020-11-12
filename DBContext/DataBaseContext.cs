@@ -29,8 +29,7 @@ namespace newsroom.DBContext
 
             modelBuilder.Entity<UserEntity>().HasMany(a => a.Comments).WithOne(a => a.author).HasForeignKey(a => a.uid);
 
-        
-
+            modelBuilder.Entity<Suggestion>().HasOne(a => a.article);
 
             modelBuilder.Entity<Author>().HasMany(a => a.Articles).WithOne(a => a.Author).HasForeignKey(a => a.authorId);
 
@@ -49,6 +48,7 @@ namespace newsroom.DBContext
         public DbSet<FavoriteArticle> FavoriteeArticles { get; set; }
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Author> Author { get; set; }
+        public DbSet<Suggestion> Suggestions { get; set; }
 
     }
 }

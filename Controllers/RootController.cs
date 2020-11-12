@@ -43,6 +43,10 @@ namespace newsroom.Controllers
                 {
                     href = Url.Link(nameof(CommentController.GetComments), null)
                 },
+                suggestions = new
+                {
+                    href = Url.Link(nameof(SuggestionsController.GetSuggestions), null)
+                }
             
 
             };

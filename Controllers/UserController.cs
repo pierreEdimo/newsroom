@@ -40,6 +40,7 @@ namespace newsroom.Controllers
             _signInManager = signInManager;
             _configuration = configuration;
             _context = context;
+            _context.Database.EnsureCreated();
 
         }
 
