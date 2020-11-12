@@ -175,7 +175,6 @@ C:\Users\pierr\source\repos\MyPortfolioProject\newsroom\obj\Debug\netcoreapp3.1\
 C:\Users\pierr\source\repos\MyPortfolioProject\newsroom\obj\Debug\netcoreapp3.1\newsroom.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\pierr\source\repos\newsroom\newsroomApi\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\pierr\source\repos\newsroom\newsroomApi\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\pierr\source\repos\newsroom\newsroomApi\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\pierr\source\repos\newsroom\newsroomApi\bin\Debug\netcoreapp3.1\newsroom.exe
 C:\Users\pierr\source\repos\newsroom\newsroomApi\bin\Debug\netcoreapp3.1\newsroom.deps.json
 C:\Users\pierr\source\repos\newsroom\newsroomApi\bin\Debug\netcoreapp3.1\newsroom.runtimeconfig.json
@@ -348,3 +347,4 @@ C:\Users\pierr\source\repos\newsroom\newsroomApi\obj\Debug\netcoreapp3.1\staticw
 C:\Users\pierr\source\repos\newsroom\newsroomApi\obj\Debug\netcoreapp3.1\newsroom.dll
 C:\Users\pierr\source\repos\newsroom\newsroomApi\obj\Debug\netcoreapp3.1\newsroom.pdb
 C:\Users\pierr\source\repos\newsroom\newsroomApi\obj\Debug\netcoreapp3.1\newsroom.genruntimeconfig.cache
+C:\Users\pierr\source\repos\newsroom\newsroomApi\obj\Debug\netcoreapp3.1\scopedcss\bundle\newsroom.styles.css

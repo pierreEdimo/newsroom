@@ -19,7 +19,7 @@ namespace newsroom.DTO
         public int forumId { get; set; }
         public int articleId { get; set; }
         public virtual UserEntity author { get; set; }
-        public virtual List<Answer> Answers { get; set; }
+     
         public DateTime createdAt { get; set; } = DateTime.Now;
         public int numberOfAnswers { get; set;  }
 

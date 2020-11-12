@@ -33,7 +33,7 @@ namespace newsroom.Controllers
         {
             IQueryable<Comments> comments = _context.Comments;
 
-            return await comments.Include(a => a.author).Include(a => a.Answers).ThenInclude(x => x.Author).Select(x => GetcommentToDTo(x)).ToListAsync();
+            return await comments.Include(a => a.author).Select(x => commentToDTo(x)).ToListAsync();
         }
 
 
@@ -124,20 +124,9 @@ namespace newsroom.Controllers
             articleId = comment.articleId,
             author = comment.author,
             createdAt = comment.createdAt,
-            Answers = comment.Answers,
+        
 
         };
 
-        public static CommentDTo GetcommentToDTo(Comments comment) => new CommentDTo
-        {
-            Id = comment.Id,
-            uid = comment.uid,
-            content = comment.content,
-            articleId = comment.articleId,
-            author = comment.author,
-            createdAt = comment.createdAt,
-            Answers = comment.Answers,
-            numberOfAnswers = comment.Answers.Count()
-        };
     }
 }

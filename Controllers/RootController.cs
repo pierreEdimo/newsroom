@@ -43,11 +43,7 @@ namespace newsroom.Controllers
                 {
                     href = Url.Link(nameof(CommentController.GetComments), null)
                 },
-              
-                answers = new
-                {
-                    href = Url.Link(nameof(AnswersController.GetAnswers), null)
-                }
+            
 
             };
 
