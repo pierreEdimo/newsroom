@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'findadoc'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e7978c028f4249389ea2ef318b49cff0 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1938e45ad67641e18de6c8049e3da753 }}
         package: ${{env.DOTNET_ROOT}}/myapp 
