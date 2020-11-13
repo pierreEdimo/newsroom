@@ -37,7 +37,7 @@ namespace newsroom.Controllers
                 },
                 favoritesarticles = new
                 {
-                    href = Url.Link(nameof(FavoriteArticlesController.GetFavoriteeArticles), null)
+                    href = Url.Link(nameof(FavoriteController.GetFavoriteeArticles), null)
                 },
                 comments = new
                 {

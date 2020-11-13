@@ -16,11 +16,11 @@ namespace newsroom.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class FavoriteArticlesController : ControllerBase
+    public class FavoriteController : ControllerBase
     {
         private readonly DatabaseContext _context;
 
-        public FavoriteArticlesController(DatabaseContext context)
+        public FavoriteController(DatabaseContext context)
         {
             _context = context;
 
@@ -29,25 +29,35 @@ namespace newsroom.Controllers
 
         // GET: api/FavoriteArticles
         [HttpGet(Name = nameof(GetFavoriteeArticles))]
-        public async Task<ActionResult<IEnumerable<FavoriteArticleDTo>>> GetFavoriteeArticles([FromQuery] DoctorQueryParameter queryParameters)
+        public async Task<ActionResult<IEnumerable<FavoriteDTo>>> GetFavoriteeArticles([FromQuery] DoctorQueryParameter queryParameters)
         {
-            IQueryable<FavoriteArticle> favoriteArticles = _context.FavoriteeArticles;
+            IQueryable<Favorite> favorites = _context.Favorites;
 
             if (!string.IsNullOrEmpty(queryParameters.userId))
             {
-                favoriteArticles = favoriteArticles.Where(
+                favorites = favorites.Where(
                     p => p.userId.ToLower().Contains(queryParameters.userId.ToLower())
                 );
             }
 
-            return await favoriteArticles.Include(a => a.Article).ThenInclude(a => a.Author).Select(x => favoriteArtileToDTo(x)).ToListAsync();
+            return await favorites.Include(a => a.Article)
+                                     .ThenInclude(a => a.Author)
+                                  .Include(a => a.Article )
+                                     .ThenInclude(a => a.Comments)
+                   .Select(x => favoriteArtileToDTo(x)).ToListAsync();
         }
 
         // GET: api/FavoriteArticles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<FavoriteArticleDTo>> GetFavoriteArticle(int id)
+        public async Task<ActionResult<FavoriteDTo>> GetFavoriteArticle(int id)
         {
-            var favoriteArticle = await _context.FavoriteeArticles.FindAsync(id);
+            IQueryable<Favorite> favorites = _context.Favorites;
+
+            var favoriteArticle = await favorites.Include(a => a.Article)
+                                                    .ThenInclude(a => a.Author )
+                                                 .Include(a => a.Article )
+                                                    .ThenInclude(a => a.Comments)
+                     .FirstOrDefaultAsync(x => x.articleId == id) ;
 
             if (favoriteArticle == null)
             {
@@ -59,32 +69,32 @@ namespace newsroom.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<FavoriteArticleDTo>> PostFavoriteArticle(FavoriteArticleDTo favoriteArticleDTo)
+        public async Task<ActionResult<FavoriteDTo>> PostFavoriteArticle(FavoriteDTo favoriteArticleDTo)
         {
-            var favoriteArticle = new FavoriteArticle
+            var favoriteArticle = new Favorite
             {
                 userId = favoriteArticleDTo.userId,
                 articleId = favoriteArticleDTo.articleId,
             };
 
-            _context.FavoriteeArticles.Add(favoriteArticle);
+            _context.Favorites.Add(favoriteArticle);
             await _context.SaveChangesAsync();
 
 
-            return CreatedAtAction(nameof(GetFavoriteArticle), new { id = favoriteArticle.Id }, favoriteArtileToDTo(favoriteArticle));
+            return CreatedAtAction(nameof(GetFavoriteArticle), new { id = favoriteArticle.articleId },  favoriteArtileToDTo(favoriteArticle));
         }
 
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteFavoriteArticle(int id)
         {
-            var favoriteArticle = await _context.FavoriteeArticles.FindAsync(id);
+            var favoriteArticle = await _context.Favorites.FindAsync(id);
             if (favoriteArticle == null)
             {
                 return NotFound();
             }
 
-            _context.FavoriteeArticles.Remove(favoriteArticle);
+            _context.Favorites.Remove(favoriteArticle);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -92,12 +102,12 @@ namespace newsroom.Controllers
 
         private bool FavoriteArticleExists(int id)
         {
-            return _context.FavoriteeArticles.Any(e => e.articleId == id);
+            return _context.Favorites.Any(e => e.articleId == id);
         }
 
-        private static FavoriteArticleDTo favoriteArtileToDTo(FavoriteArticle favorite) => new FavoriteArticleDTo
+        private static FavoriteDTo favoriteArtileToDTo(Favorite favorite) => new FavoriteDTo
         {
-            Id = favorite.Id,
+
             articleId = favorite.articleId,
             userId = favorite.userId,
             Article = favorite.Article,
