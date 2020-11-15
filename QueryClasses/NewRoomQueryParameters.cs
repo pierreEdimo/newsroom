@@ -1,6 +1,6 @@
 namespace newsroom.QueryClasses
 {
-    public class DoctorQueryParameter : QueryParameters
+    public class NewRoomQueryParameters : QueryParameters
     {
         public string title { get; set; }
         public string userId { get; set; }

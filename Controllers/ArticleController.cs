@@ -30,7 +30,7 @@ namespace newsroom.Controllers
 
         [AllowAnonymous]
         [HttpGet(Name = nameof(GetArticles))]
-        public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticles([FromQuery] DoctorQueryParameter queryParameters)
+        public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticles([FromQuery] NewRoomQueryParameters queryParameters)
         {
             IQueryable<Article> articles = _context.Articles;
 
@@ -54,7 +54,7 @@ namespace newsroom.Controllers
 
         [AllowAnonymous]
         [HttpGet("[action]", Name = nameof(GetArticleFromAuthor))]
-        public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticleFromAuthor([FromQuery] DoctorQueryParameter queryParameters)
+        public async Task<ActionResult<IEnumerable<ArticleDTo>>> GetArticleFromAuthor([FromQuery] NewRoomQueryParameters queryParameters)
         {
             IQueryable<Article> articles = _context.Articles;
 

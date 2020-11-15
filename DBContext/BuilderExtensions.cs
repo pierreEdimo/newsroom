@@ -16,9 +16,7 @@ namespace newsroom.DBContext
                 new Theme { Id = 4, name = "Schlaf", imageUrl = "https://images.unsplash.com/photo-1531353826977-0941b4779a1c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" }
             );
 
-            modelBuilder.Entity<Suggestion>().HasData(
-               new Suggestion { Id = 1, articleId = 2 }
-               );
+           
 
 
             modelBuilder.Entity<Author>().HasData(

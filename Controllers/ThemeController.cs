@@ -28,7 +28,7 @@ namespace newsroom.Controllers
 
         [AllowAnonymous]
         [HttpGet(Name = nameof(GetThemes))]
-        public async Task<ActionResult<IEnumerable<ThemeDTo>>> GetThemes([FromQuery] DoctorQueryParameter queryParameter)
+        public async Task<ActionResult<IEnumerable<ThemeDTo>>> GetThemes([FromQuery] NewRoomQueryParameters queryParameter)
         {
             IQueryable<Theme> themes = _context.Themes;
 
