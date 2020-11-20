@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-
+using newsroom.OnlyDate;
 
 namespace newsroom.DTO
 {
@@ -18,6 +18,7 @@ namespace newsroom.DTO
         public string imageUrl { get; set; }
         [Required]
         public string content { get; set; }
+        [JsonConverter(typeof(OnlyDateConverter))]
         public DateTime createdAt { get; set; } = DateTime.Now;
         [JsonIgnore]
         [Required]

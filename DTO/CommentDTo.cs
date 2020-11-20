@@ -1,4 +1,5 @@
 ﻿using newsroom.Model;
+using newsroom.OnlyDate;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,7 +20,7 @@ namespace newsroom.DTO
         public int forumId { get; set; }
         public int articleId { get; set; }
         public virtual UserEntity author { get; set; }
-     
+        [JsonConverter(typeof(OnlyDateConverter))]
         public DateTime createdAt { get; set; } = DateTime.Now;
         public int numberOfAnswers { get; set;  }
 
