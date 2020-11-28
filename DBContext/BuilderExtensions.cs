@@ -46,7 +46,7 @@ namespace newsroom.DBContext
                             "                                                                                                                                                  " +
                             "                                                                                                                                                  " +
 
-                            " for interested you can [contact me](pedimonkoe@yahoo.com)  " + "\" Test "
+                            " for interested you can [contact me](pedimonkoe@yahoo.com)  " + "\n" + " Test "
 
                             
 
