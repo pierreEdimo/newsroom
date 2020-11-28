@@ -33,13 +33,22 @@ namespace newsroom.DBContext
                   themeId = 2,
                   content = "**2020 has been a difficult year , both mentaly and financialy, but as it is nearing its end, i have decided to share my experience to the world**     "+
                             "                                                                                                                                                  " +
+                            "                                                                                                                                                  " +
+                            "                                                                                                                                                  " +
                             "my name is Pierre Patrice Emmanuel Edimo Nkoe , i study Computer Science in Germany , where i live since the last 8 years. I came here i was 18 years old" +
                             "from Cameroon. It has been a humbling experience for me. There were good moments , there were bas moments , i learn a lot from this Country. It is an experience" +
                             "i want to share with people all around the world.      " +
                             "                                                                                                                                                  " +
-                            "i look forward to share more of my experience and my Interest with have a nice day , and a nice fun reading my articles      " +
+                            "                                                                                                                                                  " +
+                            "                                                                                                                                                  " +
+                            "i look forward to share more of my experience and my Interest with have a nice day , and a nice fun reading my articles" +
+                            "                                                                                                                                                  " +
+                            "                                                                                                                                                  " +
+                            "                                                                                                                                                  " +
 
-                            " for interested you can [contact me](pedimonkoe@yahoo.com) "
+                            " for interested you can [contact me](pedimonkoe@yahoo.com)  " + "\" Test "
+
+                            
 
               }
             );
