@@ -29,9 +29,22 @@ namespace newsroom.Controllers
         }
 
         [HttpGet(Name = nameof(GetComments))]
-        public async Task<ActionResult<IEnumerable<CommentDTo>>> GetComments()
+        public async Task<ActionResult<IEnumerable<CommentDTo>>> GetComments( [FromQuery] NewRoomQueryParameters queryParameter )
         {
             IQueryable<Comments> comments = _context.Comments;
+
+            if (!string.IsNullOrEmpty(queryParameter.sortBy))
+            {
+                if (typeof(Comments).GetProperty(queryParameter.sortBy) != null)
+                {
+                    comments = comments.OrderByCustom(queryParameter.sortBy, queryParameter.SortOrder);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(queryParameter.articleId.ToString()))
+            {
+                comments = comments.Where(p => p.articleId.ToString().Contains(queryParameter.articleId.ToString()));
+            }
 
             return await comments.Include(a => a.author).Select(x => commentToDTo(x)).ToListAsync();
         }

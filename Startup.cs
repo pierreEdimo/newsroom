@@ -31,7 +31,7 @@ namespace newsroom
             services.AddSwaggerDocument();
 
             services.AddDbContext<DatabaseContext>(options =>
-            options.UseInMemoryDatabase("Doctor"));
+            options.UseInMemoryDatabase("Newsroom"));
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
@@ -41,7 +41,7 @@ namespace newsroom
             {
                 config.Password.RequireDigit = true;
                 config.Password.RequireLowercase = true;
-                config.Password.RequiredLength = 8;
+                config.Password.RequiredLength = 6;
                 config.Password.RequireNonAlphanumeric = true;
                 config.User.RequireUniqueEmail = true;
             })

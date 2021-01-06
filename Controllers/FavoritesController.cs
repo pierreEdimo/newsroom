@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
 using newsroom.DTO;
 using newsroom.Model;
+using newsroom.QueryClasses;
 
 namespace newsroom.Controllers
 {
@@ -26,11 +27,28 @@ namespace newsroom.Controllers
 
         // GET: api/Favorites
         [HttpGet(Name = nameof(GetAllFavorites))]
-        public async Task<ActionResult<IEnumerable<FavoriteDTo>>> GetAllFavorites()
+        public async Task<ActionResult<IEnumerable<FavoriteDTo>>> GetAllFavorites( [FromBody] NewRoomQueryParameters queryParameter )
         {
             IQueryable<Favorites> favs = _context.Favorites;
 
-            return await favs.Include(a => a.Article).Select(x => favoriteToDTo(x)).ToListAsync(); 
+            if (!string.IsNullOrEmpty(queryParameter.sortBy))
+            {
+                if (typeof(Favorites).GetProperty(queryParameter.sortBy) != null)
+                {
+                    favs = favs.OrderByCustom(queryParameter.sortBy, queryParameter.SortOrder);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(queryParameter.userId.ToString()))
+            {
+                favs = favs.Where(p => p.userId.ToString().Contains(queryParameter.userId.ToString()));
+            }
+
+            return await favs.Include(a => a.Article)
+                               .ThenInclude(a => a.Author)
+                              .Include(a => a.Article)
+                                .ThenInclude(a => a.Comments)
+                             .Select(x => favoriteToDTo(x)).ToListAsync(); 
         }
 
         // GET: api/Favorites/5
