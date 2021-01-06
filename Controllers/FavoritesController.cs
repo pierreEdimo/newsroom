@@ -27,7 +27,7 @@ namespace newsroom.Controllers
 
         // GET: api/Favorites
         [HttpGet(Name = nameof(GetAllFavorites))]
-        public async Task<ActionResult<IEnumerable<FavoriteDTo>>> GetAllFavorites()
+        public async Task<ActionResult<IEnumerable<FavoriteDTo>>> GetAllFavorites( [FromQuery] NewRoomQueryParameters queryParameter)
         {
             IQueryable<Favorites> favs = _context.Favorites;
 
