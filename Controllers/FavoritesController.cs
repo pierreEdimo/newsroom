@@ -39,10 +39,10 @@ namespace newsroom.Controllers
                 }
             }
 
-            if (!string.IsNullOrEmpty(queryParameter.userId.ToString()))
+           if (!string.IsNullOrEmpty(queryParameter.userId))
             {
-                favs = favs.Where(p => p.userId.ToString().Contains(queryParameter.userId.ToString()));
-            } 
+                favs = favs.Where(p => p.userId == queryParameter.userId);
+            }
 
             return await favs.Include(a => a.Article)
                                .ThenInclude(a => a.Author)
