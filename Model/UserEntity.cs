@@ -11,12 +11,13 @@ namespace newsroom.Model
     {
 
 
-        [Required]
-        public String profession { get; set; }
+     
         [JsonIgnore]
         public virtual List<Comments> Comments { get; set; }
+        [JsonIgnore]
+        public virtual List<Favorites> Favorites { get; set; }
 
-  
+
 
 
     }

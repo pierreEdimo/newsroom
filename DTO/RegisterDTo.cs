@@ -23,8 +23,5 @@ namespace newsroom.DTO
         [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required]
-        public string profession { get; set; }
-
     }
 }

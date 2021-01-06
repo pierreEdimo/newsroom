@@ -29,5 +29,8 @@ namespace newsroom.DTO
         public virtual Author Author { get; set; }
         public virtual List<Comments> Comments { get; set; }
         public int numberOfComments { get; set; }
+        [JsonIgnore]
+        public virtual List<Favorites> Favorites { get; set; }
+
     }
 }

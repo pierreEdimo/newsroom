@@ -35,7 +35,11 @@ namespace newsroom.DBContext
 
             modelBuilder.Entity<Comments>().HasOne(a => a.Article).WithMany(a => a.Comments);
 
-            
+            modelBuilder.Entity<Favorites>().HasKey(a => new { a.articleId, a.userId });
+
+            modelBuilder.Entity<Favorites>().HasOne(a => a.Article).WithMany(a => a.Favorites).HasForeignKey(a => a.articleId);
+
+            modelBuilder.Entity<Favorites>().HasOne(a => a.User).WithMany(a => a.Favorites).HasForeignKey(a => a.userId); 
                                                      
             modelBuilder.Seed();
         }
@@ -45,6 +49,7 @@ namespace newsroom.DBContext
         public DbSet<Theme> Themes { get; set; }
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Author> Author { get; set; }
+        public DbSet<Favorites> Favorites { get; set;  }
         
 
     }

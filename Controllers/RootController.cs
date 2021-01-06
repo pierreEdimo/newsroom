@@ -38,6 +38,10 @@ namespace newsroom.Controllers
                 comments = new
                 {
                     href = Url.Link(nameof(CommentController.GetComments), null)
+                }, 
+                favorites = new
+                {
+                    href = Url.Link(nameof(FavoritesController.GetAllFavorites), null )
                 }
               
 

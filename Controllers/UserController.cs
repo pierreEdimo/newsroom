@@ -92,7 +92,7 @@ namespace newsroom.Controllers
 
                 UserName = model.UserName,
                 Email = model.Email,
-                profession = model.profession
+                
 
             };
 
@@ -118,13 +118,10 @@ namespace newsroom.Controllers
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddHours(Convert.ToDouble(24));
-
             var token = new JwtSecurityToken(
                  _configuration["JwtIssuer"],
                  _configuration["JwtIssuer"],
                  claims,
-                 expires: expires,
                  signingCredentials: credentials
                  );
 

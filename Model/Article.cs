@@ -28,6 +28,8 @@ namespace newsroom.Model
         public int authorId { get; set; }
         public virtual Author Author { get; set; }
         public virtual List<Comments> Comments { get; set; }
+        [JsonIgnore]
+        public virtual List<Favorites> Favorites { get; set;  }
        
 
 
