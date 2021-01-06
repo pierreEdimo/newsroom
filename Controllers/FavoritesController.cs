@@ -31,7 +31,7 @@ namespace newsroom.Controllers
         {
             IQueryable<Favorites> favs = _context.Favorites;
 
-            /**if (!string.IsNullOrEmpty(queryParameter.sortBy))
+            if (!string.IsNullOrEmpty(queryParameter.sortBy))
             {
                 if (typeof(Favorites).GetProperty(queryParameter.sortBy) != null)
                 {
@@ -42,7 +42,7 @@ namespace newsroom.Controllers
             if (!string.IsNullOrEmpty(queryParameter.userId.ToString()))
             {
                 favs = favs.Where(p => p.userId.ToString().Contains(queryParameter.userId.ToString()));
-            } **/
+            } 
 
             return await favs.Include(a => a.Article)
                                .ThenInclude(a => a.Author)
