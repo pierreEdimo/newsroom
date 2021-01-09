@@ -42,8 +42,11 @@ namespace newsroom.Controllers
                 favorites = new
                 {
                     href = Url.Link(nameof(FavoritesController.GetAllFavorites), null )
+                }, 
+                searchWords = new
+                {
+                    href = Url.Link(nameof(SearchWordsController.GetSearchWords ),null )
                 }
-              
 
             };
 
