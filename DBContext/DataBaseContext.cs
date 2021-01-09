@@ -50,6 +50,7 @@ namespace newsroom.DBContext
         public DbSet<Comments> Comments { get; set; }
         public DbSet<Author> Author { get; set; }
         public DbSet<Favorites> Favorites { get; set;  }
+        public DbSet<SearchWord> SearchWords { get; set;  }
         
 
     }
