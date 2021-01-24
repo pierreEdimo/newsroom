@@ -103,7 +103,10 @@ namespace newsroom.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFavorites(int id)
         {
-            var favorites = await _context.Favorites.FindAsync(id);
+            IQueryable<Favorites> favs = _context.Favorites; 
+
+             var favorites = await favs.Include(x => x.Article).FirstOrDefaultAsync(x => x.articleId == id ) ;
+        
             if (favorites == null)
             {
                 return NotFound();
