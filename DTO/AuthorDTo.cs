@@ -15,8 +15,6 @@ namespace newsroom.DTO
         public String name { get; set; }
         [Required]
         public String biography { get; set; }
-        [Required]
-        public String imageUrl { get; set; }
         public virtual List<Article> Articles { get; set; }
     }
 }
