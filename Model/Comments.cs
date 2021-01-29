@@ -1,11 +1,9 @@
 ﻿
 using newsroom.OnlyDate;
 using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+
 
 namespace newsroom.Model
 {
