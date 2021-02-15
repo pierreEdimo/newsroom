@@ -13,6 +13,10 @@ using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
+using newsroom.Services;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
 
 namespace newsroom
 {
@@ -28,10 +32,16 @@ namespace newsroom
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSwaggerDocument();
+           
 
             services.AddDbContext<DatabaseContext>(options =>
             options.UseInMemoryDatabase("Newsroom"));
+
+            services.AddTransient<IFileStorageService, InAppStorageService>(); 
+
+            services.AddHttpContextAccessor();
+
+            services.AddAutoMapper(typeof(Startup)); 
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
@@ -75,9 +85,29 @@ namespace newsroom
                 });
 
 
-            services.AddControllers().AddNewtonsoftJson(options =>
-                                                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-                );
+            services.AddControllers().AddNewtonsoftJson();
+
+
+            services.AddSwaggerGen( config =>
+            {
+                config.SwaggerDoc("v1", new OpenApiInfo
+                {
+                   Version = "v1", 
+                   Title = "NewsplaceApi", 
+                   Description = "This is a blog api", 
+                   License = new OpenApiLicense()
+                   {
+                       Name= "MIT"
+                   }, 
+
+                   Contact = new OpenApiContact()
+                   {
+                       Name = "Pierre Patrice Edimo", 
+                       Email = "pierredimo@live.com"
+                   }
+                });
+
+            }); 
 
 
             services.AddCors(options => options.AddPolicy("EnableAll", builder =>
@@ -89,8 +119,16 @@ namespace newsroom
         }
 
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DatabaseContext context )
         {
+            context.Database.EnsureCreated(); 
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI( config => {
+                config.SwaggerEndpoint("/swagger/v1/swagger.json","newsplaceApi"); 
+            } ); 
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -98,11 +136,15 @@ namespace newsroom
 
             app.UseHttpsRedirection();
 
-            app.UseOpenApi();
+           
 
-            app.UseSwaggerUi3();
+            app.UseStaticFiles(); 
+
+           
 
             app.UseRouting();
+
+            app.UseResponseCaching(); 
 
             app.UseCors("EnableAll");
 

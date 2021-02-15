@@ -12,10 +12,8 @@ namespace newsroom.Model
         [Key]
         public int Id { get; set;  }
         [Required]
-        public String name { get; set;  }
-        [Required]
-        public String biography { get; set; }
+        public String Name { get; set;  }
         [JsonIgnore]
-        public virtual List<Article> Articles { get; set;  }
+        public List<Article> Articles { get; set;  }
     }
 }

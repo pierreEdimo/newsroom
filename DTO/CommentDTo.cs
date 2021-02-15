@@ -1,28 +1,16 @@
-﻿using newsroom.Model;
-using newsroom.OnlyDate;
-using System;
-
-using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json; 
-
-
+﻿using System;
+using newsroom.Model;
+using Newtonsoft.Json;
 
 namespace newsroom.DTO
 {
-    public class CommentDTo
+    public class CommentDTO
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public String uid { get; set; }
-        [Required]
-        public String content { get; set; }
-        public int forumId { get; set; }
-        public int articleId { get; set; }
-        public virtual UserEntity author { get; set; }
-        [JsonConverter(typeof(OnlyDateConverter))]
-        public DateTime createdAt { get; set; } = DateTime.Now;
-        public int numberOfAnswers { get; set;  }
-
+        public int Id { get; set;  }
+        public UserEntity Author { get; set;  }
+        public String Content { get; set;  }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        [JsonIgnore]
+        public int ArticleId { get; set; }
     }
 }

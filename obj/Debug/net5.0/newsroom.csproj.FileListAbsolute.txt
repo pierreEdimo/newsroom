@@ -36,7 +36,6 @@ C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.Extens
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
-C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.Extensions.PlatformAbstractions.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.Identity.Client.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
@@ -52,16 +51,9 @@ C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.Visual
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\MimeKit.dll
-C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Namotion.Reflection.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\NETCore.MailKit.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
-C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\NJsonSchema.dll
-C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\NSwag.Annotations.dll
-C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\NSwag.AspNetCore.dll
-C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\NSwag.Core.dll
-C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\NSwag.Generation.dll
-C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\NSwag.Generation.AspNetCore.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\BouncyCastle.Crypto.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\SQLitePCLRaw.batteries_v2.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\SQLitePCLRaw.nativelibrary.dll
@@ -171,3 +163,11 @@ C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\newsroom.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\ref\newsroom.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\newsroom.pdb
 C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\newsroom.genruntimeconfig.cache
+C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\System.Linq.Dynamic.Core.dll
+C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -9,16 +9,6 @@ namespace newsroom.Model
 {
     public class UserEntity : IdentityUser
     {
-
-
-     
-        [JsonIgnore]
-        public virtual List<Comments> Comments { get; set; }
-        [JsonIgnore]
-        public virtual List<Favorites> Favorites { get; set; }
-
-
-
-
+        public List<Comment> Comments; 
     }
 }

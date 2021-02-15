@@ -8,53 +8,125 @@ namespace newsroom.DBContext
         public static void Seed(this ModelBuilder modelBuilder)
 
         {
-
-            modelBuilder.Entity<Theme>().HasData(
-                new Theme { Id = 1, name = "sport", imageUrl = "https://images.unsplash.com/photo-1483721310020-03333e577078?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" },
-                new Theme { Id = 2, name = "Lifestyle", imageUrl = "https://images.unsplash.com/photo-1546548970-71785318a17b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60" },
-                new Theme { Id = 3, name="Tech & It", imageUrl = "https://images.unsplash.com/photo-1504610926078-a1611febcad3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" }
+            modelBuilder.Entity<Author>().HasData(
+                new Author
+                {
+                    Id = 1,
+                    Name =" Pierre Edimo "
+                }
             );
 
-           
+            modelBuilder.Entity<Topic>().HasData(
+                new Topic
+                {
+                    Id = 1,
+                    Name = "Sport",
+                    ImageUrl = "https://images.unsplash.com/photo-1483721310020-03333e577078?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"
+                },
+
+                new Topic
+                {
+                    Id = 2,
+                    Name = "Tech/It",
+                    ImageUrl = "https://images.unsplash.com/photo-1518770660439-4636190af475?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                },
+
+                new Topic
+                {
+                    Id = 3,
+                    Name = "Health",
+                    ImageUrl = "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"
+                },
+                new Topic
+                {
+                    Id = 4,
+                    Name = "Entertainment",
+                    ImageUrl = "https://images.unsplash.com/photo-1470076892663-af684e5e15af?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1217&q=80"
+                },
+                new Topic
+                {
+                    Id = 5,
+                    Name = "Business",
+                    ImageUrl = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                },
+                new Topic
+                {
+                    Id = 6,
+                    Name = "Lifestyle",
+                    ImageUrl = "https://images.unsplash.com/photo-1501747315-124a0eaca060?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                },
+                new Topic
+                {
+                    Id = 7,
+                    Name = "Religion",
+                    ImageUrl = "https://images.unsplash.com/photo-1520187044487-b2efb58f0cba?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                },
+                new Topic
+                {
+                    Id = 8,
+                    Name = "Travel",
+                    ImageUrl = "https://images.unsplash.com/photo-1476900543704-4312b78632f8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                },
+                new Topic
+                {
+                    Id = 9, 
+                    Name = "Science", 
+                    ImageUrl = "https://images.unsplash.com/photo-1564325724739-bae0bd08762c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                }, 
+                new Topic
+                {
+                    Id = 10, 
+                    Name ="Politic", 
+                    ImageUrl = "https://images.unsplash.com/photo-1535903021127-d50417eae4a3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                }
 
 
-            modelBuilder.Entity<Author>().HasData(
-                new Author { Id = 1, name = "Pierre Edimo", biography = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr," }
-              
-                );
-
+            );
 
             modelBuilder.Entity<Article>().HasData(
-            
-                 new Article
-                 {
-                     Id = 2,
-                     authorId = 1,
-                     imageUrl = "https://images.unsplash.com/photo-1571987502227-9231b837d92a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
-                     title = "Tesla is the highest publicly valuated car manufacturer, what does it mean for the germans car manufacturers",
-                     themeId = 3,
-                     content = "**2020 has been a difficult year , both mentaly and financialy, but as it is nearing its end, i have decided to share my experience to the world**     " +
-                            "\n" +
-                            "\n" +
-                            "\n" +
-                            "my name is Pierre Patrice Emmanuel Edimo Nkoe , i study Computer Science in Germany , where i live since the last 8 years. I came here i was 18 years old" +
-                            "from Cameroon. It has been a humbling experience for me. There were good moments , there were bas moments , i learn a lot from this Country. It is an experience" +
-                            "i want to share with people all around the world." +
-                            "\n" +
-                            "\n" +
-                            "\n" +
-                            "i look forward to share more of my experience and my Interest with have a nice day , and a nice fun reading my articles" +
-                            "\n" +
-                            "\n" +
-                            "\n" +
-                            " for interested you can [contact me](pedimonkoe@yahoo.com)"
+                new Article
+                {
+                    Id = 1,
+                    AuthorId = 1 , 
+                    ImageUrl = "https://images.unsplash.com/photo-1571987502227-9231b837d92a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80", 
+                    TopicId = 2, 
+                    Title = "Tesla is the highest publicly valuated car manufacturer, what does it mean for Germany", 
+                    Content = "**At the end of 2019, everyone announced Tesla's death. But today"+
+                              "Tesla is more valuable than Volswagen, Daimler and Toyota put "+
+                              "together, I'll explain why and what it means for German brands.**"+
+                              "\n"+
+                              "\n" +
+                              "\n" +
+                              "At first glance, you should know that the market for electric cars is growing " +
+                              "thanks to the aid proposed by the European Union, but due to the crisis caused by" +
+                              " Covid, the traditional German brands are facing a huge crisis. In addition to " +
+                              "facing their production bases, they have to invest even more capital to electrify " +
+                              "their fleets. The result ? Mercedes Benz, for example, has launched a vast savings " +
+                              "programme, which consists in cutting unnecessary expenses, delocalising the production " +
+                              "of its engines for China, and thanking its workers. Indeed, Mercedes Benz has thanked " +
+                              "more than 10,000 employees in 2020, and it's not over yet. "+
+                              "\n" +
+                              "\n" +
+                              "\n" +
+                              "It is not only Daimler that has to restructure. Even Volkswagen Ag and the BMW group are " +
+                              "facing the same problems. Volkswagen, on the other hand, is a little ahead of the game. " +
+                              "While the Mercedes EQC (the first fully electric model of Mercedes) was a flop, the electric " +
+                              "cars produced by vw have been a huge success in Europe."+
+                              "\n" +
+                              "\n" +
+                              "\n" +
+                              "Now let's talk about Tesla. Tesla was created in 2003 by Elon Musk and was the first to create an" +
+                              " entire fleet of 100% electric vehicles. In the beginning nobody took them seriously. But today it" +
+                              " is a completely different story. The Tesla Model 3 is the cheapest model offered by Tesla and is " +
+                              "the most popular and best-selling electric car in the world. That said, Tesla is not yet a profitable " +
+                              "business. But that can change very quickly."+
+                              "\n" +
+                              "\n" +
+                              "\n" +
+                              "In conclusion, Tesla is changing the world whether we like it or not, and German brands have reason to be afraid."
 
-
-
-                 }
-            );
-
-
+                }
+             );  ; 
         }
     }
 }

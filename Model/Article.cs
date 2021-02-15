@@ -13,23 +13,27 @@ namespace newsroom.Model
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]
-        public string title { get; set; }
+        public string Title { get; set; }
         [Required]
-
-        public string imageUrl { get; set; }
+        public string ImageUrl { get; set; }
         [Required]
-        public string content { get; set; }
+        public string Content { get; set; }
         [JsonConverter(typeof(OnlyDateConverter))]
-        public DateTime createdAt { get; set; } = DateTime.Now;
-        [Required]
-        public int themeId { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         [JsonIgnore]
-        public virtual Theme Theme { get; set; }
-        public int authorId { get; set; }
-        public virtual Author Author { get; set; }
-        public virtual List<Comments> Comments { get; set; }
+        public int TopicId { get; set;  }
         [JsonIgnore]
-        public virtual List<Favorites> Favorites { get; set;  }
+        public int AuthorId { get; set;  }
+        [JsonIgnore]
+        public Topic Topic { get; set;  }
+        [JsonIgnore]
+        public Author Author { get; set;  }
+        [JsonIgnore]
+        public List<Comment> Comments { get; set;  }
+        public int CommentCount { get; set;  }
+
+
+      
        
 
 
