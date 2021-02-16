@@ -76,8 +76,7 @@ namespace newsroom.Controllers
 
             await HttpContext.InsertPaginationParametersInResponse(articleQueryable, filterDTO.RecordsPerPage);
 
-            var articles = await articleQueryable.Include(a => a.Author)
-                                                 .Paginate(filterDTO.Pagination).ToListAsync();
+            var articles = await articleQueryable.Paginate(filterDTO.Pagination).ToListAsync();
 
             return _mapper.Map<List<ArticleDTO>>(articles); 
         }
