@@ -74,9 +74,10 @@ namespace newsroom.Controllers
                 articleQueryable = articleQueryable.OrderBy($"{filterDTO.OrderingField} {(filterDTO.AscendingOrder ? "ascending" : "descending")} "); 
             }
 
-            await HttpContext.InsertPaginationParametersInResponse(articleQueryable, filterDTO.RecordsPerPage);
 
-            var articles = await articleQueryable.Paginate(filterDTO.Pagination).ToListAsync();
+            var articles = await articleQueryable.Include(x => x.Author)
+                                                 .Include(x => x.Topic)
+                                                 .ToListAsync();
 
             return _mapper.Map<List<ArticleDTO>>(articles); 
         }
