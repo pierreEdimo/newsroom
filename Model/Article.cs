@@ -12,7 +12,7 @@ namespace newsroom.Model
         [Key]
         public int Id { get; set; }
         [Required]
-        [MaxLength(50)]
+        [MaxLength(80)]
         public string Title { get; set; }
         [Required]
         public string ImageUrl { get; set; }

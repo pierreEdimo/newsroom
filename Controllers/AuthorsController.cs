@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
 using newsroom.Model;
 using AutoMapper;
-using newsroom.DTO; 
+using newsroom.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthorsController : ControllerBase

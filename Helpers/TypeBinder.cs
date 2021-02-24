@@ -26,7 +26,7 @@ namespace newsroom.Helpers
             }
             catch
             {
-                bindingContext.ModelState.TryAddModelError(propertyName, "value is invalid for type int ");  
+                bindingContext.ModelState.TryAddModelError(propertyName, "value is invalid ");  
             }
 
             return Task.CompletedTask; 

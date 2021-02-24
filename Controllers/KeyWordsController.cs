@@ -9,10 +9,12 @@ using newsroom.DBContext;
 using newsroom.Model;
 using newsroom.DTO; 
 using AutoMapper;
-using System.Linq.Dynamic.Core; 
+using System.Linq.Dynamic.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class KeyWordsController : ControllerBase
@@ -38,18 +40,13 @@ namespace newsroom.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<List<KeyWordDTO>>> FilterWord( [FromQuery] FilterDTO filterDTO)
+        public async Task<ActionResult<List<KeyWordDTO>>> FilterWord( [FromQuery] FilterFromUserDTO filterDTO)
         {
             var queryable = _context.KeyWords.AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(filterDTO.UserId))
             {
                 queryable = queryable.Where(x => x.UserId.Contains(filterDTO.UserId)); 
-            }
-
-            if (!String.IsNullOrWhiteSpace(filterDTO.OrderingField))
-            {
-                queryable = queryable.OrderBy($" {filterDTO.OrderingField} {(filterDTO.AscendingOrder ? "ascending" : "descending")} "); 
             }
 
             var words = await queryable.ToListAsync();

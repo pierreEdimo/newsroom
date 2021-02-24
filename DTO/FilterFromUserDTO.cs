@@ -5,12 +5,8 @@ using System.Threading.Tasks;
 
 namespace newsroom.DTO
 {
-    public class FilterDTO
+    public class FilterFromUserDTO
     {
-      
-       
-      
-        public int ArticleId { get; set;  }
-       
+        public String UserId { get; set; }
     }
 }

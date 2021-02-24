@@ -12,10 +12,12 @@ using newsroom.Model;
 using newsroom.Helpers;
 using System.IO;
 using newsroom.Services;
-using System.Linq.Dynamic.Core; 
+using System.Linq.Dynamic.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ArticlesController : ControllerBase
@@ -37,14 +39,13 @@ namespace newsroom.Controllers
 
         // GET: api/Articles
         [HttpGet]
-        public async Task<ActionResult<List<ArticleDTO>>> GetArticles([FromQuery] PaginationDTO pagination )
+        public async Task<ActionResult<List<ArticleDTO>>> GetArticles( )
         {
             var queryable = _context.Articles.AsQueryable();
 
-            await HttpContext.InsertPaginationParametersInResponse(queryable, pagination.RecordsPerPage);
+           
 
-            var articles = await queryable.Paginate(pagination)
-                                          .Include(x => x.Author)
+            var articles = await queryable.Include(x => x.Author)
                                           .Include(x => x.Topic)
                                           .ToListAsync();
 
@@ -54,26 +55,27 @@ namespace newsroom.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<List<ArticleDTO>>> Filter([FromQuery] FilterDTO filterDTO)
+        public async Task<ActionResult<List<ArticleDTO>>> Filter([FromQuery] FilterArticleDTO filterDTO)
         {
             var articleQueryable = _context.Articles.AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(filterDTO.Title))
             {
-                articleQueryable = articleQueryable.Where(x => x.Title.Contains(filterDTO.Title)); 
+                articleQueryable = articleQueryable.Where(x => x.Title.ToLower().Contains(filterDTO.Title.ToLower())); 
             }
 
             if(filterDTO.TopicId != 0)
             {
                 articleQueryable = articleQueryable
-                          .Where(x => x.Topic.Id.ToString().Contains(filterDTO.TopicId.ToString())); 
+                          .Where(x => x.Topic.Id.ToString().ToLower().Contains(filterDTO.TopicId.ToString().ToLower())); 
             }
 
-            if (!String.IsNullOrWhiteSpace(filterDTO.OrderingField))
+            if (!String.IsNullOrWhiteSpace(filterDTO.Author))
             {
-                articleQueryable = articleQueryable.OrderBy($"{filterDTO.OrderingField} {(filterDTO.AscendingOrder ? "ascending" : "descending")} "); 
+                articleQueryable = articleQueryable.Where(x => x.Author.Name.ToLower().Contains(filterDTO.Author.ToLower())); 
             }
 
+           
 
             var articles = await articleQueryable.Include(x => x.Author)
                                                  .Include(x => x.Topic)
@@ -106,7 +108,7 @@ namespace newsroom.Controllers
         // PUT: api/Articles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutArticle(int Id, CreateArticleDTO updateArticle )
+        public async Task<IActionResult> PutArticle(int Id, [FromForm] CreateArticleDTO updateArticle )
         {
             var articleDB = await _context.Articles.FirstOrDefaultAsync(x => x.Id == Id); 
 
@@ -172,6 +174,7 @@ namespace newsroom.Controllers
             }
 
             _context.Remove(new Article() { Id = Id });
+            
             await _context.SaveChangesAsync(); 
 
             return NoContent();

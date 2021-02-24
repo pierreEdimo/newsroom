@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using newsroom.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper; 
+
 
 namespace newsroom.Controllers
 {
@@ -26,13 +28,14 @@ namespace newsroom.Controllers
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
         private readonly IConfiguration _configuration;
-
+        private readonly IMapper _mapper; 
         private readonly DatabaseContext _context;
 
 
         public UserController(UserManager<UserEntity> userManager,
                               SignInManager<UserEntity> signInManager,
                               IConfiguration configuration,
+                              IMapper mapper,
                               DatabaseContext context
                               )
         {
@@ -40,25 +43,27 @@ namespace newsroom.Controllers
             _signInManager = signInManager;
             _configuration = configuration;
             _context = context;
-            _context.Database.EnsureCreated();
+            _mapper = mapper; 
 
         }
 
         [HttpGet]
-        public async Task<ActionResult<UserEntity>> GetUser()
+        public async Task<ActionResult<UserDTO>> GetUser()
         {
             var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
             var user = await _userManager.FindByEmailAsync(email);
-            return user;
+            return _mapper.Map<UserDTO>(user);
         }
 
         [AllowAnonymous]
         [HttpGet(Name = nameof(GetAllUsers))]
-        public async Task<List<UserEntity>> GetAllUsers()
+        public async Task<List<UserDTO>> GetAllUsers()
         {
             using (var Context = new DatabaseContext())
             {
-                return await _userManager.Users.ToListAsync();
+               var users = await _userManager.Users.ToListAsync();
+
+                return _mapper.Map<List<UserDTO>>(users); 
             }
         }
 
@@ -104,7 +109,7 @@ namespace newsroom.Controllers
                 return GenerateJwtToken(model.Email, user);
             }
 
-            throw new ApplicationException("UNKNOWN_ERROR");
+            return BadRequest(result.Errors);
         }
 
 

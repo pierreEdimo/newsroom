@@ -35,7 +35,7 @@ namespace newsroom
            
 
             services.AddDbContext<DatabaseContext>(options =>
-            options.UseInMemoryDatabase("Newsroom"));
+            options.UseSqlite("Data Source = newsroomDB"));
 
             services.AddTransient<IFileStorageService, InAppStorageService>(); 
 

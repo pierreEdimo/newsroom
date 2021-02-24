@@ -9,10 +9,12 @@ using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
 using newsroom.Model;
 using newsroom.DTO;
-using System.Linq.Dynamic.Core; 
+using System.Linq.Dynamic.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CommentsController : ControllerBase
@@ -62,10 +64,7 @@ namespace newsroom.Controllers
                 commentQueryable = commentQueryable.Where(x => x.Article.Id.ToString().Contains(filterDTO.ArticleId.ToString())); 
             }
 
-            if( !String.IsNullOrWhiteSpace(filterDTO.OrderingField))
-            {
-                commentQueryable = commentQueryable.OrderBy($"{ filterDTO.OrderingField } {(filterDTO.AscendingOrder ? "ascending" : "descending")}"); 
-            } 
+           
 
             var comments = await commentQueryable.ToListAsync();
 

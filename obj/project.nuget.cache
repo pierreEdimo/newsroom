@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hKGnFswbvUgrUPJLRTIm0rYW/rQ0VE2AeCnK3BTLmO6qxKmX5TrDbXlRsNPqPJxWlNMf+8wHCTWliHv78waVmg==",
+  "dgSpecHash": "P7UrqeqBhwcDllUPoR3x2LaQqCeA9d4F6rBdHhIlOD+qNB0bt983mXSvuL49w0uwwb/FJHSZx25EzUH298Gi+A==",
   "success": true,
   "projectFilePath": "C:\\Users\\pierre\\source\\repos\\newsroom\\newsroom\\newsroom.csproj",
   "expectedPackageFiles": [
@@ -98,10 +98,10 @@
     "C:\\Users\\pierre\\.nuget\\packages\\sqlitepclraw.core\\2.0.4\\sqlitepclraw.core.2.0.4.nupkg.sha512",
     "C:\\Users\\pierre\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.4\\sqlitepclraw.lib.e_sqlite3.2.0.4.nupkg.sha512",
     "C:\\Users\\pierre\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.4\\sqlitepclraw.provider.dynamic_cdecl.2.0.4.nupkg.sha512",
-    "C:\\Users\\pierre\\.nuget\\packages\\swashbuckle.aspnetcore\\6.0.5\\swashbuckle.aspnetcore.6.0.5.nupkg.sha512",
-    "C:\\Users\\pierre\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.0.5\\swashbuckle.aspnetcore.swagger.6.0.5.nupkg.sha512",
-    "C:\\Users\\pierre\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.0.5\\swashbuckle.aspnetcore.swaggergen.6.0.5.nupkg.sha512",
-    "C:\\Users\\pierre\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.0.5\\swashbuckle.aspnetcore.swaggerui.6.0.5.nupkg.sha512",
+    "C:\\Users\\pierre\\.nuget\\packages\\swashbuckle.aspnetcore\\6.0.7\\swashbuckle.aspnetcore.6.0.7.nupkg.sha512",
+    "C:\\Users\\pierre\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.0.7\\swashbuckle.aspnetcore.swagger.6.0.7.nupkg.sha512",
+    "C:\\Users\\pierre\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.0.7\\swashbuckle.aspnetcore.swaggergen.6.0.7.nupkg.sha512",
+    "C:\\Users\\pierre\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.0.7\\swashbuckle.aspnetcore.swaggerui.6.0.7.nupkg.sha512",
     "C:\\Users\\pierre\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\pierre\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
     "C:\\Users\\pierre\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",

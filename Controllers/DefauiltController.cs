@@ -16,5 +16,5 @@ namespace newsroom.Controllers
         {
             return new RedirectResult("~/swagger");
         }
-    }
+    }  
 }

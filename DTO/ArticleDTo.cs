@@ -14,7 +14,7 @@ namespace newsroom.DTO
         public string Content { get; set; }
         [JsonConverter(typeof(OnlyDateConverter))]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public Author Author { get; set;  }
+        public AuthorDTO Author { get; set;  }
         public Topic Topic { get; set;  }
 
   

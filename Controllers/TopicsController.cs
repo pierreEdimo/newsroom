@@ -11,9 +11,11 @@ using AutoMapper;
 using newsroom.Services;
 using newsroom.DTO;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TopicsController : ControllerBase

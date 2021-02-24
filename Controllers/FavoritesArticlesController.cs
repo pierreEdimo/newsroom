@@ -9,10 +9,12 @@ using newsroom.DBContext;
 using newsroom.Model;
 using newsroom.DTO;
 using AutoMapper;
-using System.Linq.Dynamic.Core; 
+using System.Linq.Dynamic.Core;
+using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FavoritesArticlesController : ControllerBase
@@ -54,18 +56,13 @@ namespace newsroom.Controllers
 
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<List<FavoriteDTO>>> FilterFavorites([FromQuery] FilterDTO filter)
+        public async Task<ActionResult<List<FavoriteDTO>>> FilterFavorites([FromQuery] FilterFromUserDTO filter)
         {
             var queryable = _context.Favorites.AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(filter.UserId))
             {
                 queryable = queryable.Where(x => x.OwnerId.Contains(filter.UserId)); 
-            }
-
-            if (!String.IsNullOrWhiteSpace(filter.OrderingField))
-            {
-                queryable = queryable.OrderBy($"{ filter.OrderingField } {( filter.AscendingOrder ? "ascending" : "descending" )} " ); 
             }
 
             var favorites = await queryable.ToListAsync();
