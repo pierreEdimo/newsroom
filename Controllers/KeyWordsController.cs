@@ -49,6 +49,16 @@ namespace newsroom.Controllers
                 queryable = queryable.Where(x => x.UserId.Contains(filterDTO.UserId)); 
             }
 
+            if (!String.IsNullOrWhiteSpace(filterDTO.sortBy))
+            {
+                if (typeof(KeyWord).GetProperty(filterDTO.sortBy) != null)
+                {
+                   queryable = queryable.OrderByCustom(filterDTO.sortBy, filterDTO.SortOrder);
+                }
+            }
+
+            queryable = queryable.Take(filterDTO.Size);
+
             var words = await queryable.ToListAsync();
 
             return _mapper.Map <List<KeyWordDTO>>(words); 

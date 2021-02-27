@@ -59,6 +59,15 @@ namespace newsroom.Controllers
         {
             var articleQueryable = _context.Articles.AsQueryable();
 
+
+            if (!String.IsNullOrWhiteSpace(filterDTO.sortBy))
+            {
+                if(typeof(Article).GetProperty(filterDTO.sortBy) != null)
+                {
+                    articleQueryable = articleQueryable.OrderByCustom(filterDTO.sortBy, filterDTO.SortOrder); 
+                }
+            }
+
             if (!String.IsNullOrWhiteSpace(filterDTO.Title))
             {
                 articleQueryable = articleQueryable.Where(x => x.Title.ToLower().Contains(filterDTO.Title.ToLower())); 
@@ -75,7 +84,7 @@ namespace newsroom.Controllers
                 articleQueryable = articleQueryable.Where(x => x.Author.Name.ToLower().Contains(filterDTO.Author.ToLower())); 
             }
 
-           
+            articleQueryable = articleQueryable.Take(filterDTO.Size); 
 
             var articles = await articleQueryable.Include(x => x.Author)
                                                  .Include(x => x.Topic)

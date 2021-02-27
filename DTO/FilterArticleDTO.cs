@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace newsroom.DTO
 {
-    public class FilterArticleDTO
+    public class FilterArticleDTO : FilterDTO
     {
         public int TopicId { get; set; }
 

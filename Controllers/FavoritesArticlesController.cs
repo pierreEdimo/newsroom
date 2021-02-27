@@ -65,6 +65,16 @@ namespace newsroom.Controllers
                 queryable = queryable.Where(x => x.OwnerId.Contains(filter.UserId)); 
             }
 
+            if (!String.IsNullOrWhiteSpace(filter.sortBy))
+            {
+                if (typeof(FavoritesArticles).GetProperty(filter.sortBy) != null)
+                {
+                    queryable = queryable.OrderByCustom(filter.sortBy, filter.SortOrder);
+                }
+            }
+
+            queryable = queryable.Take(filter.Size);
+
             var favorites = await queryable.ToListAsync();
 
             return _mappper.Map<List<FavoriteDTO>>(favorites); 

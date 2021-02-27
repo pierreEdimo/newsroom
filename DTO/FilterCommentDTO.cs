@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace newsroom.DTO
 {
-    public class FilterFromUserDTO : FilterDTO
+    public class FilterCommentDTO : FilterDTO
     {
-        public String UserId { get; set; }
+      
+        public int ArticleId { get; set;  }
+       
     }
 }

@@ -55,7 +55,7 @@ namespace newsroom.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<List<CommentDTO>>> FilterComments([FromQuery] FilterDTO filterDTO)
+        public async Task<ActionResult<List<CommentDTO>>> FilterComments([FromQuery] FilterCommentDTO filterDTO)
         {
             var commentQueryable = _context.Comments.AsQueryable(); 
 
@@ -64,7 +64,15 @@ namespace newsroom.Controllers
                 commentQueryable = commentQueryable.Where(x => x.Article.Id.ToString().Contains(filterDTO.ArticleId.ToString())); 
             }
 
-           
+            if (!String.IsNullOrWhiteSpace(filterDTO.sortBy))
+            {
+                if(typeof(Comment).GetProperty(filterDTO.sortBy) != null)
+                {
+                    commentQueryable = commentQueryable.OrderByCustom(filterDTO.sortBy, filterDTO.SortOrder); 
+                }
+            }
+
+            commentQueryable = commentQueryable.Take(filterDTO.Size); 
 
             var comments = await commentQueryable.ToListAsync();
 

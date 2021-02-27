@@ -7,10 +7,37 @@ namespace newsroom.DTO
 {
     public class FilterDTO
     {
-      
-       
-      
-        public int ArticleId { get; set;  }
-       
+        const int _maxSize = 100;
+
+        private int _size = 50; 
+
+        public int Size
+        {
+            get
+            {
+                return _size; 
+            }
+            set
+            {
+                _size = Math.Min(_maxSize, value); 
+            }
+        }
+
+        public String sortBy { get; set; } = "Id";
+        private String _sortOrder = "desc"; 
+        public String SortOrder
+        {
+            get
+            {
+                return _sortOrder;
+            }
+            set
+            {
+                if(value == "asc" || value == "desc")
+                {
+                    _sortOrder = value; 
+                }
+            }
+        }
     }
 }
