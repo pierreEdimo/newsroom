@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     [ApiController]
     public class AuthorsController : ControllerBase
