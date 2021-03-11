@@ -88,7 +88,7 @@ namespace newsroom.DBContext
                 {
                     Id = 1,
                     AuthorId = 1 , 
-                    ImageUrl = "https://images.unsplash.com/photo-1571987502227-9231b837d92a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80", 
+                    ImageUrl = "https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80", 
                     TopicId = 2, 
                     Title = "Getting started with Programming", 
                     Content = "**Programming is a very hard and demanding task. I dont# t want "+
@@ -130,7 +130,7 @@ namespace newsroom.DBContext
                   {
                       Id = 2,
                       AuthorId = 1,
-                      ImageUrl = "https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
+                      ImageUrl = "https://images.unsplash.com/photo-1571987502227-9231b837d92a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
                       TopicId = 2,
                       Title = "Tesla is the highest publicly valuated car manufacturer, what does it mean for Germany",
                       Content = "**At the end of 2019, everyone announced Tesla's death. But today" +
