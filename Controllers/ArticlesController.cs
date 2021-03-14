@@ -76,7 +76,7 @@ namespace newsroom.Controllers
             if(filterDTO.TopicId != 0)
             {
                 articleQueryable = articleQueryable
-                          .Where(x => x.Topic.Id.ToString().ToLower().Contains(filterDTO.TopicId.ToString().ToLower())); 
+                          .Where(x => x.Topic.Id == filterDTO.TopicId ); 
             }
 
             if (!String.IsNullOrWhiteSpace(filterDTO.Author))
