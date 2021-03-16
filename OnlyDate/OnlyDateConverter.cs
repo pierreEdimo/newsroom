@@ -10,7 +10,7 @@ namespace newsroom.OnlyDate
     {
         public OnlyDateConverter()
         {
-            DateTimeFormat = "dd.MM.yyyy, HH:mm";
+            DateTimeFormat = "dd.MM.yyyy";
         }
     }
 }
