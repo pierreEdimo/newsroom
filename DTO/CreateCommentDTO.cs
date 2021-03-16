@@ -11,12 +11,11 @@ namespace newsroom.DTO
     public class CreateCommentDTO
     {
         [Required]
-        [ModelBinder(BinderType = typeof(TypeBinder<String>))]
-        public String AuthorId { get; set;  }
+        [ModelBinder(BinderType = typeof(TypeBinder<string>))]
+        public string AuthorId { get; set;  }
         [Required]
         public String Content { get; set;  }
         [Required]
-        [ModelBinder(BinderType = typeof(TypeBinder<int>))]
         public int ArticleId { get; set;  }
     }
 }

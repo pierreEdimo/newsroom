@@ -7,7 +7,7 @@ namespace newsroom.DTO
     public class CommentDTO
     {
         public int Id { get; set;  }
-        public UserEntity Author { get; set;  }
+        public UserDTO Author { get; set;  }
         public String Content { get; set;  }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         [JsonIgnore]

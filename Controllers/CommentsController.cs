@@ -74,7 +74,7 @@ namespace newsroom.Controllers
 
             commentQueryable = commentQueryable.Take(filterDTO.Size); 
 
-            var comments = await commentQueryable.ToListAsync();
+            var comments = await commentQueryable.Include(x => x.Author).ToListAsync();
 
             return _mapper.Map<List<CommentDTO>>(comments); 
         }
