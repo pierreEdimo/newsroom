@@ -61,7 +61,7 @@ namespace newsroom.Controllers
 
             if( filterDTO.ArticleId != 0)
             {
-                commentQueryable = commentQueryable.Where(x => x.Article.Id.ToString().Contains(filterDTO.ArticleId.ToString())); 
+                commentQueryable = commentQueryable.Where(x => x.Article.Id == filterDTO.ArticleId); 
             }
 
             if (!String.IsNullOrWhiteSpace(filterDTO.sortBy))
