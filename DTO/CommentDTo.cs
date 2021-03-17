@@ -14,5 +14,6 @@ namespace newsroom.DTO
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         [JsonIgnore]
         public int ArticleId { get; set; }
+        public String AuthorId { get; set; }
     }
 }
