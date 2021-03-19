@@ -33,9 +33,7 @@ namespace newsroom.Controllers
         [HttpGet]
         public async Task<ActionResult<List<FavoriteDTO>>> GetFavorites()
         {
-            var favorites = await _context.Favorites.Include(x => x.Article)
-                 .ThenInclude(x => x.Author)
-                 .ToListAsync();
+            var favorites = await _context.Favorites.Include(x => x.Article).ToListAsync();
 
             return _mappper.Map<List<FavoriteDTO>>(favorites); 
         }
