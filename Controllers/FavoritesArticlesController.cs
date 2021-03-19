@@ -75,7 +75,7 @@ namespace newsroom.Controllers
 
             queryable = queryable.Take(filter.Size);
 
-            var favorites = await queryable.ToListAsync();
+            var favorites = await queryable.Include(x => x.Article).ToListAsync();
 
             return _mappper.Map<List<FavoriteDTO>>(favorites); 
         }
