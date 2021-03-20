@@ -55,6 +55,23 @@ namespace newsroom.Controllers
             return _mapper.Map<UserDTO>(user);
         }
 
+        [HttpPut("id")]
+        public async Task<IActionResult> updateEmail(String Id , [FromBody] String email)
+        {
+            var user = await _userManager.FindByIdAsync(Id);
+
+            if(user == null)
+            {
+                return NotFound(); 
+            }
+
+            user.Email = email;
+
+            await _userManager.UpdateAsync(user); 
+
+            return NoContent(); 
+        }
+
         [AllowAnonymous]
         [HttpGet(Name = nameof(GetAllUsers))]
         public async Task<List<UserDTO>> GetAllUsers()
