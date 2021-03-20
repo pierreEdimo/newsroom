@@ -55,8 +55,8 @@ namespace newsroom.Controllers
             return _mapper.Map<UserDTO>(user);
         }
 
-        [HttpPut("id")]
-        public async Task<IActionResult> updateEmail(String Id , [FromBody] UpdateEmailDTO emailDTO )
+        [HttpPost]
+        public async Task<IActionResult> updateEmail([FromBody] UpdateEmailDTO emailDTO )
         {
             var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;;
 
