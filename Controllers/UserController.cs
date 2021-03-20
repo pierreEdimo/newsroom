@@ -56,7 +56,7 @@ namespace newsroom.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> updateEmail([FromBody] UpdateEmailDTO emailDTO )
+        public async Task<object> updateEmail([FromBody] UpdateEmailDTO emailDTO )
         {
             var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;;
 
@@ -69,7 +69,16 @@ namespace newsroom.Controllers
 
             user.Email = emailDTO.Email;
 
-            await _userManager.UpdateAsync(user); 
+            var result = await _userManager.UpdateAsync(user);
+
+            if (result.Succeeded)
+            {
+                var newEmail = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+
+                var loggedUser = await _userManager.FindByEmailAsync(newEmail);
+
+                return GenerateJwtToken(newEmail, loggedUser);
+            }
 
             return NoContent(); 
         }
