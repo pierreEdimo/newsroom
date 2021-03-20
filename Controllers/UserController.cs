@@ -58,7 +58,9 @@ namespace newsroom.Controllers
         [HttpPut("id")]
         public async Task<IActionResult> updateEmail(String Id , [FromBody] UpdateEmailDTO emailDTO )
         {
-            var user = await _userManager.FindByIdAsync(Id);
+            var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;;
+
+            var user = await _userManager.FindByEmailAsync(email); 
 
             if(user == null)
             {
