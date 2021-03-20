@@ -56,7 +56,7 @@ namespace newsroom.Controllers
         }
 
         [HttpPut("id")]
-        public async Task<IActionResult> updateEmail(String Id , [FromBody] String email)
+        public async Task<IActionResult> updateEmail(String Id , [FromBody] UpdateEmailDTO emailDTO )
         {
             var user = await _userManager.FindByIdAsync(Id);
 
@@ -65,7 +65,7 @@ namespace newsroom.Controllers
                 return NotFound(); 
             }
 
-            user.Email = email;
+            user.Email = emailDTO.Email;
 
             await _userManager.UpdateAsync(user); 
 
