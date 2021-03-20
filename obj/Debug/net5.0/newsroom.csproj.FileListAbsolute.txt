@@ -155,7 +155,6 @@ C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\newsroom.csproj.
 C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\newsroom.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\newsroom.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\staticwebassets\newsroom.StaticWebAssets.Manifest.cache
-C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\staticwebassets\newsroom.StaticWebAssets.xml
 C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\scopedcss\bundle\newsroom.styles.css
 C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\newsroom.RazorTargetAssemblyInfo.cache
 C:\Users\pierre\source\repos\newsroom\newsroom\obj\Debug\net5.0\newsroom.csproj.CopyComplete

@@ -73,14 +73,13 @@ namespace newsroom.Controllers
 
             if (result.Succeeded)
             {
-                var newEmail = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+                
+                var loggedUser = await _userManager.FindByEmailAsync(emailDTO.Email);
 
-                var loggedUser = await _userManager.FindByEmailAsync(newEmail);
-
-                return GenerateJwtToken(newEmail, loggedUser);
+                return GenerateJwtToken(loggedUser.Email, loggedUser);
             }
 
-            return NoContent(); 
+            return BadRequest(result.Errors);
         }
 
         [AllowAnonymous]
