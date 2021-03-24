@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uztHkqmQTdvP6qlLJXLCapNecKxwegyDGqdQoVV1p/Xs54UO7Dxi54OLmBff40fDkkR6fY8FvdrAG4stxt6gUQ==",
+  "dgSpecHash": "1MCWV+/ST0f42CMptT1tUTH5WaXLJ+OHeU9qqd/yj3wODopZikEvgGJWaRrmclyNGB1zgEuXVVlZ0tgjs6XpfA==",
   "success": true,
   "projectFilePath": "C:\\Users\\pierre\\source\\repos\\newsroom\\newsroom\\newsroom.csproj",
   "expectedPackageFiles": [
@@ -187,8 +187,7 @@
     "C:\\Users\\pierre\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\pierre\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\pierre\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\pierre\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\pierre\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.3\\microsoft.netcore.app.host.win-x64.5.0.3.nupkg.sha512"
+    "C:\\Users\\pierre\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

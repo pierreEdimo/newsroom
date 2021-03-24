@@ -115,14 +115,14 @@ namespace newsroom.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFavoritesArticles(int Id)
         {
-            var exists = _context.Favorites.AnyAsync(x => x.ArticleId == Id); 
+            var article = await  _context.Favorites.FirstOrDefaultAsync(x => x.ArticleId == Id); 
 
-            if(!await exists)
+            if(article == null)
             {
                 return NotFound(); 
             }
 
-            _context.Remove(new FavoritesArticles() { ArticleId = Id });
+            _context.Favorites.RemoveRange(article);
             await _context.SaveChangesAsync(); 
 
             return NoContent();
