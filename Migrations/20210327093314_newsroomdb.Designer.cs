@@ -9,8 +9,8 @@ using newsroom.DBContext;
 namespace newsroom.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210312000452_newsroom")]
-    partial class newsroom
+    [Migration("20210327093314_newsroomdb")]
+    partial class newsroomdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -262,7 +262,7 @@ namespace newsroom.Migrations
                             AuthorId = 1,
                             CommentCount = 0,
                             Content = "**Programming is a very hard and demanding task. I dont# t want to say i am some sort expert or anything like that , but i havebeen learning programming since 2 years and i want to share my experience so far**\n\n\nAt first glance, you should know that the market for electric cars is growing thanks to the aid proposed by the European Union, but due to the crisis caused by Covid, the traditional German brands are facing a huge crisis. In addition to facing their production bases, they have to invest even more capital to electrify their fleets. The result ? Mercedes Benz, for example, has launched a vast savings programme, which consists in cutting unnecessary expenses, delocalising the production of its engines for China, and thanking its workers. Indeed, Mercedes Benz has thanked more than 10,000 employees in 2020, and it's not over yet. \n\n\nIt is not only Daimler that has to restructure. Even Volkswagen Ag and the BMW group are facing the same problems. Volkswagen, on the other hand, is a little ahead of the game. While the Mercedes EQC (the first fully electric model of Mercedes) was a flop, the electric cars produced by vw have been a huge success in Europe.\n\n\nNow let's talk about Tesla. Tesla was created in 2003 by Elon Musk and was the first to create an entire fleet of 100% electric vehicles. In the beginning nobody took them seriously. But today it is a completely different story. The Tesla Model 3 is the cheapest model offered by Tesla and is the most popular and best-selling electric car in the world. That said, Tesla is not yet a profitable business. But that can change very quickly.\n\n\nIn conclusion, Tesla is changing the world whether we like it or not, and German brands have reason to be afraid.",
-                            CreatedAt = new DateTime(2021, 3, 12, 1, 4, 51, 483, DateTimeKind.Local).AddTicks(2262),
+                            CreatedAt = new DateTime(2021, 3, 27, 10, 33, 13, 621, DateTimeKind.Local).AddTicks(9953),
                             ImageUrl = "https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80",
                             Title = "Getting started with Programming",
                             TopicId = 2
@@ -273,7 +273,7 @@ namespace newsroom.Migrations
                             AuthorId = 1,
                             CommentCount = 0,
                             Content = "**At the end of 2019, everyone announced Tesla's death. But todayTesla is more valuable than Volswagen, Daimler and Toyota put together, I'll explain why and what it means for German brands.**\n\n\nAt first glance, you should know that the market for electric cars is growing thanks to the aid proposed by the European Union, but due to the crisis caused by Covid, the traditional German brands are facing a huge crisis. In addition to facing their production bases, they have to invest even more capital to electrify their fleets. The result ? Mercedes Benz, for example, has launched a vast savings programme, which consists in cutting unnecessary expenses, delocalising the production of its engines for China, and thanking its workers. Indeed, Mercedes Benz has thanked more than 10,000 employees in 2020, and it's not over yet. \n\n\nIt is not only Daimler that has to restructure. Even Volkswagen Ag and the BMW group are facing the same problems. Volkswagen, on the other hand, is a little ahead of the game. While the Mercedes EQC (the first fully electric model of Mercedes) was a flop, the electric cars produced by vw have been a huge success in Europe.\n\n\nNow let's talk about Tesla. Tesla was created in 2003 by Elon Musk and was the first to create an entire fleet of 100% electric vehicles. In the beginning nobody took them seriously. But today it is a completely different story. The Tesla Model 3 is the cheapest model offered by Tesla and is the most popular and best-selling electric car in the world. That said, Tesla is not yet a profitable business. But that can change very quickly.\n\n\nIn conclusion, Tesla is changing the world whether we like it or not, and German brands have reason to be afraid.",
-                            CreatedAt = new DateTime(2021, 3, 12, 1, 4, 51, 490, DateTimeKind.Local).AddTicks(6793),
+                            CreatedAt = new DateTime(2021, 3, 27, 10, 33, 13, 628, DateTimeKind.Local).AddTicks(7704),
                             ImageUrl = "https://images.unsplash.com/photo-1571987502227-9231b837d92a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
                             Title = "Tesla is the highest publicly valuated car manufacturer, what does it mean for Germany",
                             TopicId = 2
@@ -548,7 +548,7 @@ namespace newsroom.Migrations
             modelBuilder.Entity("newsroom.Model.FavoritesArticles", b =>
                 {
                     b.HasOne("newsroom.Model.Article", "Article")
-                        .WithMany()
+                        .WithMany("HasFavorites")
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -565,6 +565,8 @@ namespace newsroom.Migrations
             modelBuilder.Entity("newsroom.Model.Article", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("HasFavorites");
                 });
 
             modelBuilder.Entity("newsroom.Model.Author", b =>

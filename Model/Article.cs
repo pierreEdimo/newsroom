@@ -31,6 +31,7 @@ namespace newsroom.Model
         [JsonIgnore]
         public List<Comment> Comments { get; set;  }
         public int CommentCount { get; set;  }
+        [JsonIgnore]
         public List<FavoritesArticles> HasFavorites { get; set;  }
 
 
