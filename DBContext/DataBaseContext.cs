@@ -29,7 +29,9 @@ namespace newsroom.DBContext
 
             modelBuilder.Entity<UserEntity>().HasMany(x => x.Comments).WithOne(x => x.Author).HasForeignKey(x => x.AuthorId); 
 
-            modelBuilder.Entity<FavoritesArticles>().HasKey(x => new { x.ArticleId, x.OwnerId }); 
+            modelBuilder.Entity<FavoritesArticles>().HasKey(x => new { x.ArticleId, x.OwnerId });
+
+            modelBuilder.Entity<Article>().HasMany(x => x.HasFavorites).WithOne(x => x.Article).HasForeignKey(x => x.ArticleId); 
                                                      
             modelBuilder.Seed();
         }

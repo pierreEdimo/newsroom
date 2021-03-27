@@ -100,6 +100,7 @@ namespace newsroom.Controllers
             var article = await _context.Articles.Include(x => x.Author)
                                                  .Include(x => x.Topic)
                                                  .Include(x => x.Comments)
+                                                 .Include(x => x.HasFavorites)
                                                  .FirstOrDefaultAsync(x => x.Id == Id);
 
             article.CommentCount = article.Comments.Count(); 

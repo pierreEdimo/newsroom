@@ -170,3 +170,4 @@ C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Microsoft.OpenAp
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\pierre\source\repos\newsroom\newsroom\bin\Debug\net5.0\newsroom.StaticWebAssets.xml

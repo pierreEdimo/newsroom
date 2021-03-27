@@ -11,6 +11,7 @@ namespace newsroom.DTO
     {
         public List<CommentDTO> Comments { get; set; }
         public int CommentCount { get; set;  }
+        public List<FavoriteDTO> HasFavorites { get; set;  }
        
            
     }
