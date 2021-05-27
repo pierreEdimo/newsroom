@@ -15,6 +15,8 @@ namespace newsroom.Model
         [MaxLength(80)]
         public string Title { get; set; }
         [Required]
+        public string ImageCredits { get; set;  }
+        [Required]
         public string ImageUrl { get; set; }
         [Required]
         public string Content { get; set; }

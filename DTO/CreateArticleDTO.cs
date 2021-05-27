@@ -25,6 +25,8 @@ namespace newsroom.DTO
         [Required]
         [ModelBinder(BinderType = typeof(TypeBinder<int>))]
         public int AuthorId { get; set;  }
-     
+        [Required]
+        public string ImageCredits { get; set; }
+
     }
 }

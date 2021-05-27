@@ -12,7 +12,7 @@ using newsroom.Model;
 using newsroom.Helpers;
 using System.IO;
 using newsroom.Services;
-using System.Linq.Dynamic.Core;
+
 using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
