@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pierre\\source\\repos\\newsroom\\newsroom\\newsroom.csproj": {}
+    "C:\\Users\\pierr\\Source\\Repos\\newsroom\\newsroom.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pierre\\source\\repos\\newsroom\\newsroom\\newsroom.csproj": {
+    "C:\\Users\\pierr\\Source\\Repos\\newsroom\\newsroom.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pierre\\source\\repos\\newsroom\\newsroom\\newsroom.csproj",
+        "projectUniqueName": "C:\\Users\\pierr\\Source\\Repos\\newsroom\\newsroom.csproj",
         "projectName": "newsroom",
-        "projectPath": "C:\\Users\\pierre\\source\\repos\\newsroom\\newsroom\\newsroom.csproj",
-        "packagesPath": "C:\\Users\\pierre\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pierre\\source\\repos\\newsroom\\newsroom\\obj\\",
+        "projectPath": "C:\\Users\\pierr\\Source\\Repos\\newsroom\\newsroom.csproj",
+        "packagesPath": "C:\\Users\\pierr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pierr\\Source\\Repos\\newsroom\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\pierre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pierr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -121,7 +121,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
