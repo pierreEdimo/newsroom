@@ -88,6 +88,23 @@ namespace newsroom.Controllers
 
             var articles = await articleQueryable.Include(x => x.Author)
                                                  .Include(x => x.Topic)
+                                                 .Include(x => x.Comments)
+                                                 .Select(x => new Article()
+                                                 {
+                                                     Id = x.Id, 
+                                                     Author = x.Author ,
+                                                     AuthorId = x.AuthorId, 
+                                                     Comments = x.Comments, 
+                                                     Content = x.Content, 
+                                                     CreatedAt = x.CreatedAt, 
+                                                     ImageCredits = x.ImageCredits, 
+                                                     ImageUrl = x.ImageUrl, 
+                                                     HasFavorites = x.HasFavorites, 
+                                                     Title = x.Title,
+                                                     CommentCount = x.Comments.Count() != 0 ? x.Comments.Count() : 0,
+                                                     Topic = x.Topic,
+                                                     TopicId = x.TopicId
+                                                 })
                                                  .ToListAsync();
 
             return _mapper.Map<List<ArticleDTO>>(articles); 
@@ -95,7 +112,7 @@ namespace newsroom.Controllers
 
         // GET: api/Articles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ArticleDetailsDTO>> GetArticle(int Id)
+        public async Task<ActionResult<ArticleDTO>> GetArticle(int Id)
         {
             var article = await _context.Articles.Include(x => x.Author)
                                                  .Include(x => x.Topic)
@@ -110,7 +127,7 @@ namespace newsroom.Controllers
                 return NotFound();
             }
 
-            var articleDTO = _mapper.Map<ArticleDetailsDTO>(article); 
+            var articleDTO = _mapper.Map<ArticleDTO>(article); 
 
             return articleDTO;
         }

@@ -9,10 +9,7 @@ namespace newsroom.DTO
 {
     public class ArticleDetailsDTO : ArticleDTO
     {
-        public List<CommentDTO> Comments { get; set; }
-        public int CommentCount { get; set;  }
-        public List<FavoriteDTO> HasFavorites { get; set;  }
-        public string ImageCredits { get; set; }
+        
 
 
     }

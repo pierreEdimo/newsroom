@@ -2,6 +2,7 @@
 using newsroom.Model;
 using Newtonsoft.Json;
 using newsroom.OnlyDate;
+using System.Collections.Generic;
 
 namespace newsroom.DTO
 {
@@ -16,6 +17,10 @@ namespace newsroom.DTO
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public AuthorDTO Author { get; set;  }
         public Topic Topic { get; set;  }
+         public int CommentCount { get; set;  }
+        public List<CommentDTO> Comments { get; set; }
+        public List<FavoriteDTO> HasFavorites { get; set;  }
+        public string ImageCredits { get; set; }
 
   
     }
