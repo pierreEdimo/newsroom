@@ -148,7 +148,7 @@ namespace newsroom.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult<UserToken>> ForgotPassWord(LoginDTo login)
+        public async Task<ActionResult<UserToken>> ForgotPassWord([FromBody] LoginDTo login)
         {
             var user = await _userManager.FindByEmailAsync(login.email);
 
