@@ -47,6 +47,7 @@ namespace newsroom.Controllers
 
             var articles = await queryable.Include(x => x.Author)
                                           .Include(x => x.Topic)
+                                          .Include(x => x.HasFavorites)
                                           .ToListAsync();
 
             var articleDTO = _mapper.Map<List<ArticleDTO>>(articles);
