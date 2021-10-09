@@ -19,7 +19,7 @@ namespace newsroom.DTO
         public Topic Topic { get; set;  }
          public int CommentCount { get; set;  }
         public List<CommentDTO> Comments { get; set; }
-        public List<FavoriteDTO> HasFavorites { get; set;  }
+        public List<FavoritesArticles> HasFavorites { get; set;  }
         public string ImageCredits { get; set; }
 
   

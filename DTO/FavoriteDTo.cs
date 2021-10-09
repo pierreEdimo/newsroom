@@ -11,7 +11,7 @@ namespace newsroom.DTO
     {
         public String OwnerId { get; set; }
         public int ArticleId { get; set;  }
-        [JsonIgnore]
+    
         public Article Article { get; set;  }
     }
 }
