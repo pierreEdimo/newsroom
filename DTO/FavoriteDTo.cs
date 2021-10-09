@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using newsroom.Model; 
- 
+using newsroom.Model;
+using Newtonsoft.Json;
 
 namespace newsroom.DTO
 {
@@ -11,6 +11,7 @@ namespace newsroom.DTO
     {
         public String OwnerId { get; set; }
         public int ArticleId { get; set;  }
+        [JsonIgnore]
         public Article Article { get; set;  }
     }
 }
