@@ -38,6 +38,10 @@ namespace newsroom.Helpers
 
             CreateMap<CreateCommentDTO, Comment>().ReverseMap();
 
+            CreateMap<Report, ReportDTO>().ReverseMap(); 
+
+            CreateMap<CreateReportDTO, Report>().ReverseMap(); 
+
             CreateMap<UserEntity, UserDTO>()
                 .ForMember(x => x.Email, options => options.MapFrom(x => x.Email))
                 .ForMember(x => x.Id, options => options.MapFrom(x => x.Id))

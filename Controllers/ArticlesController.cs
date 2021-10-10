@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
 using newsroom.DTO;
 using newsroom.Model;
-using newsroom.Helpers;
 using System.IO;
 using newsroom.Services;
 
@@ -123,11 +121,8 @@ namespace newsroom.Controllers
 
             article.CommentCount = article.Comments.Count(); 
 
-            if (article == null)
-            {
-                return NotFound();
-            }
-
+            if (article == null) return NotFound();
+          
             var articleDTO = _mapper.Map<ArticleDTO>(article); 
 
             return articleDTO;

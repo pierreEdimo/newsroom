@@ -23,5 +23,7 @@ namespace newsroom.Model
         [JsonIgnore]
         public Article Article { get; set;  }
         public DateTime CreatedAt { get; set; } = DateTime.Now; 
+        [JsonIgnore]
+        public virtual List<Report> Reports {get; set; }
     }
 }
