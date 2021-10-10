@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
 using newsroom.DTO;
+using newsroom.Model; 
 
 namespace  newsroom.Controllers
 {
@@ -34,7 +36,7 @@ namespace  newsroom.Controllers
 
             return reportDTOs; 
         }
-
+      
         [HttpGet("{id}")]
         public async Task<ActionResult<ReportDTO>> GetReport(int Id)
         {

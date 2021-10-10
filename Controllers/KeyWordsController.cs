@@ -34,7 +34,9 @@ namespace newsroom.Controllers
         [HttpGet]
         public async Task<ActionResult<List<KeyWordDTO>>> GetKeyWords()
         {
-            var words = await _context.KeyWords.ToListAsync();
+            var words = await _context.KeyWords.Select(x => x.Word)
+                                               .Distinct()
+                                               .ToListAsync();
 
             return _mapper.Map<List<KeyWordDTO>>(words); 
         }
