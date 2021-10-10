@@ -34,37 +34,39 @@ namespace newsroom.Controllers
         [HttpGet]
         public async Task<ActionResult<List<KeyWordDTO>>> GetKeyWords()
         {
-            var words = await _context.KeyWords.Select(x => x.Word)
-                                               .Distinct()
-                                               .ToListAsync();
+            var words = await _context.KeyWords.ToListAsync();
 
             return _mapper.Map<List<KeyWordDTO>>(words); 
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<List<KeyWordDTO>>> FilterWord( [FromQuery] FilterFromUserDTO filterDTO)
+        public async Task<ActionResult<List<String>>> QueryWord([FromQuery] FilterFromUserDTO filter )
         {
-            var queryable = _context.KeyWords.AsQueryable();
+            var queryable = _context.KeyWords.AsQueryable(); 
 
-            if (!String.IsNullOrWhiteSpace(filterDTO.UserId))
+             if (!String.IsNullOrWhiteSpace(filter.UserId))
             {
-                queryable = queryable.Where(x => x.UserId.Contains(filterDTO.UserId)); 
+                queryable = queryable.Where(x => x.UserId.Contains(filter.UserId)); 
             }
 
-            if (!String.IsNullOrWhiteSpace(filterDTO.sortBy))
+              if (!String.IsNullOrWhiteSpace(filter.sortBy))
             {
-                if (typeof(KeyWord).GetProperty(filterDTO.sortBy) != null)
+                if (typeof(KeyWord).GetProperty(filter.sortBy) != null)
                 {
-                   queryable = queryable.OrderByCustom(filterDTO.sortBy, filterDTO.SortOrder);
+                   queryable = queryable.OrderByCustom(filter.sortBy, filter.SortOrder);
                 }
             }
 
-            queryable = queryable.Take(filterDTO.Size);
+            queryable = queryable.Take(filter.Size);
 
-            var words = await queryable.ToListAsync();
+            var words = await queryable.Select(x => x.Word)
+                                       .Distinct()
+                                       .ToListAsync();
 
-            return _mapper.Map <List<KeyWordDTO>>(words); 
+            return words; 
+            
         }
+ 
 
         // GET: api/KeyWords/5
         [HttpGet("{id}")]
