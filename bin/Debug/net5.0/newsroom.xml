@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>newsroom</name>
+    </assembly>
+    <members>
+        <member name="M:newsroom.Controllers.ArticlesController.GetArticles">
+            <summary>
+            Get all the artciles 
+            </summary>  
+        </member>
+    </members>
+</doc>
