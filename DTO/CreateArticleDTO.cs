@@ -21,10 +21,10 @@ namespace newsroom.DTO
         public IFormFile ImageUrl { get; set;  }
         [Required]
         [ModelBinder(BinderType =typeof(TypeBinder<int>))]
-        public int TopicId { get; set;  }
+        public int? TopicId { get; set;  }
         [Required]
         [ModelBinder(BinderType = typeof(TypeBinder<int>))]
-        public int AuthorId { get; set;  }
+        public int? AuthorId { get; set;  }
         [Required]
         public string ImageCredits { get; set; }
 
