@@ -46,7 +46,7 @@ namespace newsroom.Services
         public async Task<string> SaveFile(byte[] content, string extension, string containerName, string contentType)
         {
             var fileName = $"{Guid.NewGuid()}{extension}";
-            String folder = Path.Combine(env.WebRootPath, containerName);
+            String folder = Path.Combine("Image", containerName);
 
             if (!Directory.Exists(folder))
             {
