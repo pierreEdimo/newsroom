@@ -46,7 +46,7 @@ namespace newsroom.Services
         public async Task<string> SaveFile(byte[] content, string extension, string containerName, string contentType)
         {
             var fileName = $"{Guid.NewGuid()}{extension}";
-            String folder = Path.Combine("Image", containerName);
+            String folder = Path.Combine(env.WebRootPath, containerName);
 
             if (!Directory.Exists(folder))
             {
@@ -57,7 +57,7 @@ namespace newsroom.Services
             await File.WriteAllBytesAsync(savingPath, content);
 
             var currentUrl = $"{httpContextAccessor.HttpContext.Request.Scheme}:\\{httpContextAccessor.HttpContext.Request.Host}";
-            var pathForDatabase = Path.Combine(currentUrl, containerName, fileName).Replace("\\", "/");
+            var pathForDatabase = Path.Combine(currentUrl , containerName, fileName).Replace("\\", "/");
             return pathForDatabase;
         }
 
