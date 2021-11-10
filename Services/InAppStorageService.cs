@@ -56,8 +56,8 @@ namespace newsroom.Services
             String savingPath = Path.Combine(folder, fileName);
             await File.WriteAllBytesAsync(savingPath, content);
 
-            var currentUrl = $"{httpContextAccessor.HttpContext.Request.Scheme}:\\{httpContextAccessor.HttpContext.Request.Host}";
-            var pathForDatabase = Path.Combine(currentUrl , containerName, fileName).Replace("\\", "/");
+            var currentUrl = $"{httpContextAccessor.HttpContext.Request.Scheme}://{httpContextAccessor.HttpContext.Request.Host}";
+            var pathForDatabase = Path.Combine(currentUrl , containerName, fileName).Replace("\\" ,"/" );
             return pathForDatabase;
         }
 
