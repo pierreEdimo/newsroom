@@ -41,6 +41,7 @@ namespace newsroom.Controllers
         /// <returns> a list of all the topics from the database </returns>
         /// <response code="200"> ok </response>
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List<TopicDTO>>> GetTopics()
         {
             var topic = await _context.Topics.ToListAsync();

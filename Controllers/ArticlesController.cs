@@ -43,6 +43,7 @@ namespace newsroom.Controllers
         /// </summary>
         /// <returns>A List of Articles</returns>
         /// <response code="200"> ok </response>
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<List<ArticleDTO>>> GetArticles( )
         {
@@ -67,6 +68,7 @@ namespace newsroom.Controllers
         /// <param name="filterDTO"></param>
         /// <response code="200"> ok </response>
         [HttpGet("[action]")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<ArticleDTO>>> Filter([FromQuery] FilterArticleDTO filterDTO)
         {
             var articleQueryable = _context.Articles.AsQueryable();
@@ -129,6 +131,7 @@ namespace newsroom.Controllers
         /// <returns>return a single Article based on the given Id</returns>
         // GET: api/Articles/5
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<ArticleDTO>> GetArticle(int Id)
         {
             var article = await _context.Articles.Include(x => x.Author)
