@@ -42,9 +42,9 @@ namespace newsroom.Controllers
         /// all the Articles
         /// </summary>
         /// <returns>A List of Articles</returns>
-        /// <response code="200"> ok </response>
-        [AllowAnonymous]
+        /// <response code="200"> ok </response>     
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List<ArticleDTO>>> GetArticles( )
         {
             var queryable = _context.Articles.AsQueryable();
