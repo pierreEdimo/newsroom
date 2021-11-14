@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
@@ -10,12 +7,14 @@ using newsroom.Model;
 using AutoMapper;
 using newsroom.DTO;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace newsroom.Controllers
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class AuthorsController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -29,7 +28,11 @@ namespace newsroom.Controllers
             _mapper = mapper; 
         }
 
-        // GET: api/Authors
+        /// <summary>
+        /// all the Authors
+        /// </summary>
+        /// <returns>A List of Authors</returns>
+        /// <response code="200"> ok </response>
         [HttpGet]
         public async Task<ActionResult<List<AuthorDTO>>> GetAuthors()
         {
@@ -38,7 +41,13 @@ namespace newsroom.Controllers
             return _mapper.Map<List<AuthorDTO>>(author); 
         }
 
-        // GET: api/Authors/5
+
+        /// <summary>
+        /// a single Author
+        /// </summary>
+        /// <returns>a single Author based on the given Id</returns>
+        /// <param name="Id"></param>
+        /// <response code="200"> ok </response>
         [HttpGet("{id}")]
         public async Task<ActionResult<AuthorDTO>> GetAuthor(int Id)
         {
@@ -54,8 +63,13 @@ namespace newsroom.Controllers
             return authorDTO;
         }
 
-        // PUT: api/Authors/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// update an Author
+        /// </summary>
+        /// <returns>an Author with the modified informations</returns>
+        /// <param name="updateAuthor"></param>
+        /// <param name="Id"></param>
+        /// <response code="204"> no content </response>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAuthor(int Id, [FromBody] CreateAuthorDTO updateAuthor)
         {
@@ -73,8 +87,12 @@ namespace newsroom.Controllers
             return NoContent();
         }
 
-        // POST: api/Authors
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// create a new Author
+        /// </summary>
+        /// <returns>return a newly created Author</returns>
+        /// <param name="createAuthor"></param>
+        /// <response code="201"> Author has been successfully created </response>
         [HttpPost]
         public async Task<ActionResult> PostAuthor( [FromBody] CreateAuthorDTO createAuthor)
         {
@@ -89,7 +107,12 @@ namespace newsroom.Controllers
             return CreatedAtAction("GetAuthor", new { id = authorDTO.Id }, authorDTO);
         }
 
-        // DELETE: api/Authors/5
+        /// <summary>
+        /// delete an Author
+        /// </summary>
+        /// <returns>An empty object </returns>
+        /// <param name="Id"></param>
+        /// <response code="204"> Author has been deleted </response>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAuthor(int Id)
         {

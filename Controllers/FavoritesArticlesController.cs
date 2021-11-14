@@ -14,9 +14,10 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class FavoritesArticlesController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -29,7 +30,11 @@ namespace newsroom.Controllers
             _mappper = mapper; 
         }
 
-        // GET: api/FavoritesArticles
+        /// <summary>
+        /// all the Favorites Articles
+        /// </summary>
+        /// <returns>A List of the user's favorites Articles</returns>
+        /// <response code="200"> ok </response>
         [HttpGet]
         public async Task<ActionResult<List<FavoriteDTO>>> GetFavorites()
         {
@@ -38,7 +43,12 @@ namespace newsroom.Controllers
             return _mappper.Map<List<FavoriteDTO>>(favorites); 
         }
 
-        // GET: api/FavoritesArticles/5
+        /// <summary>
+        /// a single Favorite article
+        /// </summary>
+        /// <returns> a single Article based on the given Id </returns>
+        /// <param name="Id"></param>
+        /// <response code="200"> ok </response>
         [HttpGet("{id}")]
         public async Task<ActionResult<FavoriteDTO>> GetFavoritesArticles(int Id)
         {
@@ -54,7 +64,11 @@ namespace newsroom.Controllers
             return favorite;
         }
 
-
+        /// <summary>
+        /// a filtered list of favorites articles
+        /// </summary>
+        /// <returns>a filtered list of favorites articles based on the given parameters</returns>
+        /// <response code="200"> ok </response>
         [HttpGet("[action]")]
         public async Task<ActionResult<List<FavoriteDTO>>> FilterFavorites([FromQuery] FilterFromUserDTO filter)
         {
@@ -80,9 +94,13 @@ namespace newsroom.Controllers
             return _mappper.Map<List<FavoriteDTO>>(favorites); 
         }
 
-     
-        // POST: api/FavoritesArticles
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        /// <summary>
+        /// add an article in thier favorites
+        /// </summary>
+        /// <param name="addFavoriteDTO"></param>
+        /// <returns>a newly added article in favorites</returns>
+        /// <response code="201"> created </response>
         [HttpPost]
         public async Task<ActionResult> PostFavoritesArticles(AddFavoriteDTO addFavoriteDTO)
         {
@@ -111,7 +129,11 @@ namespace newsroom.Controllers
             return CreatedAtAction("GetFavoritesArticles", new { id = favoriteDTO.ArticleId }, favoriteDTO );
         }
 
-        // DELETE: api/FavoritesArticles/5
+        /// <summary>
+        /// remove an Article
+        /// </summary>
+        /// <returns>an empty object</returns>
+        /// <response code="204"> No Content </response>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFavoritesArticles(int Id)
         {

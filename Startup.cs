@@ -9,7 +9,6 @@ using newsroom.Model;
 using Microsoft.AspNetCore.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
@@ -94,7 +93,10 @@ namespace newsroom
                 {
                    Version = "v1", 
                    Title = "NewsplaceApi", 
-                   Description = "This is a blog api", 
+                   Description = "NewsplaceApi is a mobile application for independant blogging. " +
+                   "it has been created with the goal to educate and share the actuality around the world!" +
+                   "you can  read, and comment multiple thematised Articles from independant Authors from Africa " +
+                   "and around the world. Those Themes are Science, Theology, IT, Sport, etc...", 
                    License = new OpenApiLicense()
                    {
                        Name= "MIT"
@@ -106,7 +108,8 @@ namespace newsroom
                        Email = "pierredimo@live.com"
                    }
                 });
-
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                config.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             }); 
 
 
@@ -134,13 +137,9 @@ namespace newsroom
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
-           
+            app.UseHttpsRedirection();    
 
             app.UseStaticFiles(); 
-
-           
 
             app.UseRouting();
 

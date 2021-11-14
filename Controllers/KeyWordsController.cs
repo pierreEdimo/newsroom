@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
@@ -14,9 +13,10 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class KeyWordsController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -30,7 +30,11 @@ namespace newsroom.Controllers
             _mapper = mapper; 
         }
 
-        // GET: api/KeyWords
+        /// <summary>
+        /// all the savedwords from the search
+        /// </summary>
+        /// <returns> A list of all the savedwords from the search </returns>
+        /// <response code="200"> ok </response>
         [HttpGet]
         public async Task<ActionResult<List<KeyWordDTO>>> GetKeyWords()
         {
@@ -39,6 +43,11 @@ namespace newsroom.Controllers
             return _mapper.Map<List<KeyWordDTO>>(words); 
         }
 
+        /// <summary>
+        /// a filtered list of the savedword from the userId
+        /// </summary>
+        /// <returns> A list of all the filtered savedwords from the user's search </returns>
+        /// <response code="200"> ok </response>
         [HttpGet("[action]")]
         public async Task<ActionResult<List<String>>> QueryWord([FromQuery] FilterFromUserDTO filter )
         {
@@ -66,9 +75,14 @@ namespace newsroom.Controllers
             return words; 
             
         }
- 
 
-        // GET: api/KeyWords/5
+
+        /// <summary>
+        /// a single savedword
+        /// </summary>
+        /// <returns> a single Savedword based on the Id </returns>
+        /// <param name="Id"></param>
+        /// <response code="200"> ok </response>
         [HttpGet("{id}")]
         public async Task<ActionResult<KeyWordDTO>> GetKeyWord(int Id)
         {
@@ -85,8 +99,12 @@ namespace newsroom.Controllers
         }
 
 
-        // POST: api/KeyWords
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// add a new word in the savedword table
+        /// </summary>
+        /// <param name="addkeyWord"></param>
+        /// <returns> a newly created savedword in the database </returns>
+        /// <response code="201"> created </response>
         [HttpPost]
         public async Task<ActionResult> PostKeyWord(AddWordDTO addkeyWord)
         {
@@ -101,7 +119,12 @@ namespace newsroom.Controllers
             return CreatedAtAction("GetKeyWord", new { id = wordDTO.Id }, wordDTO);
         }
 
-        // DELETE: api/KeyWords/5
+        /// <summary>
+        /// delete a single savedword 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns> an empty object </returns>
+        /// <response code="204"> no content </response>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteKeyWord(int Id)
         {

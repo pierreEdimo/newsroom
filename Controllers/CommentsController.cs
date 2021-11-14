@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
@@ -14,9 +13,10 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
-    
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class CommentsController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -29,7 +29,11 @@ namespace newsroom.Controllers
             _mapper = mapper; 
         }
 
-        // GET: api/Comments
+        /// <summary>
+        /// all the Comments
+        /// </summary>
+        /// <returns>A List of Comments</returns>
+        /// <response code="200"> ok </response>
         [HttpGet]
         public async Task<ActionResult<List<CommentDTO>>> GetComments()
         {
@@ -38,7 +42,12 @@ namespace newsroom.Controllers
             return _mapper.Map<List<CommentDTO>>(comments); 
         }
 
-        // GET: api/Comments/5
+        /// <summary>
+        /// a single Comment
+        /// </summary>
+        /// <returns>A single comment based on the given Id </returns>
+        /// <param name="Id"></param>
+        /// <response code="200"> ok </response>
         [HttpGet("{id}")]
         public async Task<ActionResult<CommentDTO>> GetComment(int Id)
         {
@@ -54,6 +63,12 @@ namespace newsroom.Controllers
             return commentDTO;
         }
 
+        /// <summary>
+        /// a filtered list of comments
+        /// </summary>
+        /// <returns>A filtered list of comments based on the given parameters </returns>
+        /// <param name="filterDTO"></param>
+        /// <response code="200"> ok </response>
         [HttpGet("[action]")]
         public async Task<ActionResult<List<CommentDTO>>> FilterComments([FromQuery] FilterCommentDTO filterDTO)
         {
@@ -79,8 +94,14 @@ namespace newsroom.Controllers
             return _mapper.Map<List<CommentDTO>>(comments); 
         }
 
-        // PUT: api/Comments/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        /// <summary>
+        /// update Comment
+        /// </summary>
+        /// <returns>An updated comment based on the given parameters </returns>
+        /// <param name="updateCommentDTO"></param>
+        /// <param name="Id"></param>
+        /// <response code="204"> no content </response>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutComment(int Id, CreateCommentDTO updateCommentDTO)
         {
@@ -98,8 +119,12 @@ namespace newsroom.Controllers
             return NoContent();
         }
 
-        // POST: api/Comments
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// a new Comment
+        /// </summary>
+        /// <returns>A newly created comment </returns>
+        /// <param name="createComment"></param>
+        /// <response code="201"> created </response>
         [HttpPost]
         public async Task<ActionResult> PostComment([FromBody] CreateCommentDTO createComment)
         {
@@ -114,7 +139,12 @@ namespace newsroom.Controllers
             return CreatedAtAction("GetComment", new { id = commentDTO.Id }, commentDTO);
         }
 
-        // DELETE: api/Comments/5
+        /// <summary>
+        /// delete comment
+        /// </summary>
+        /// <returns>An empty object </returns>
+        /// <param name="Id"></param>
+        /// <response code="204"> Comment has been deleted </response>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteComment(int Id)
         {

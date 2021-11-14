@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
@@ -15,9 +13,10 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace newsroom.Controllers
 {
-   
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class TopicsController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -36,7 +35,11 @@ namespace newsroom.Controllers
             _fileStorageService = fileStorageService; 
         }
 
-        // GET: api/Topics
+        /// <summary>
+        /// list of all the topics
+        /// </summary>
+        /// <returns> a list of all the topics from the database </returns>
+        /// <response code="200"> ok </response>
         [HttpGet]
         public async Task<ActionResult<List<TopicDTO>>> GetTopics()
         {
@@ -45,7 +48,12 @@ namespace newsroom.Controllers
             return _mapper.Map<List<TopicDTO>>(topic); 
         }
 
-        // GET: api/Topics/5
+        /// <summary>
+        /// a single topic
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns> a single topic based on the given Id </returns>
+        /// <response code="200"> ok </response>
         [HttpGet("{id}")]
         public async Task<ActionResult<TopicDTO>> GetTopic(int Id)
         {
@@ -61,8 +69,13 @@ namespace newsroom.Controllers
             return topicDTO;
         }
 
-        // PUT: api/Topics/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// update a topic
+        /// </summary>
+        /// <param name="updateTopic"></param>
+        /// <param name="Id"></param>
+        /// <returns> modified topic based on the given Id </returns>
+        /// <response code="204"> no content </response>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTopic(int Id, [FromForm] CreateTopicDTO  updateTopic )
         {

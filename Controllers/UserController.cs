@@ -22,6 +22,7 @@ namespace newsroom.Controllers
     [Authorize]
     [ApiController]
     [Route("api/[controller]/[action]")]
+    [Produces("application/json")]
     public class UserController : ControllerBase
     {
         private readonly UserManager<UserEntity> _userManager;
@@ -46,6 +47,11 @@ namespace newsroom.Controllers
 
         }
 
+        /// <summary>
+        /// a single user
+        /// </summary>
+        /// <returns> informations of the currently connected user </returns>
+        /// <response code="200"> ok </response>
         [HttpGet]
         public async Task<ActionResult<UserDTO>> GetUser()
         {
@@ -54,6 +60,12 @@ namespace newsroom.Controllers
             return _mapper.Map<UserDTO>(user);
         }
 
+        /// <summary>
+        /// change the email of an user
+        /// </summary>
+        /// <param name="emailDTO"></param>
+        /// <returns> tokens that allows the user to access his datas </returns>
+        /// <response code="200"> ok </response>
         [HttpPost]
         public async Task<ActionResult<UserToken>> updateEmail([FromBody] UpdateEmailDTO emailDTO )
         {
@@ -74,7 +86,12 @@ namespace newsroom.Controllers
             return GenerateJwtToken(loggedUser.Email, loggedUser); 
          }
 
-        [AllowAnonymous]
+        /// <summary>
+        /// list of all the users
+        /// </summary>
+        /// <returns> a list of all the registered users </returns>
+        /// <response code="200"> ok </response>
+        [Authorize("admin")]
         [HttpGet(Name = nameof(GetAllUsers))]
         public async Task<List<UserDTO>> GetAllUsers()
         {
@@ -86,6 +103,12 @@ namespace newsroom.Controllers
             }
         }
 
+        /// <summary>
+        /// login to the user in to the  api
+        /// </summary>
+        /// <param name="modelLogin"></param>
+        /// <returns> tokens to access the api </returns>
+        /// <response code="200"> ok </response>
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<UserToken>> Login([FromBody] LoginDTo modelLogin)
@@ -101,6 +124,12 @@ namespace newsroom.Controllers
             return GenerateJwtToken(modelLogin.email, user); 
         }
 
+        /// <summary>
+        /// logup to the user in to the  api
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns> tokens to access the api </returns>
+        /// <response code="200"> ok </response>
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<UserToken>> Register([FromBody] RegisterDTo model)
@@ -118,6 +147,30 @@ namespace newsroom.Controllers
             return GenerateJwtToken(model.Email, user); 
         }
 
+        /// <summary>
+        /// create a new password
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns> tokens to access the api </returns>
+        /// <response code="200"> ok </response>
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult<UserToken>> ForgotPassWord([FromBody] LoginDTo login)
+        {
+            var user = await _userManager.FindByEmailAsync(login.email);
+
+            if (user == null) return NotFound();
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var result = await _userManager.ResetPasswordAsync(user, token, login.password);
+
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            await _signInManager.PasswordSignInAsync(user, login.password, false, false);
+
+            return GenerateJwtToken(login.email, user);
+        }
 
         private UserToken GenerateJwtToken(string email, UserEntity user)
         {
@@ -145,25 +198,5 @@ namespace newsroom.Controllers
             }; 
 
         }
-
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<ActionResult<UserToken>> ForgotPassWord([FromBody] LoginDTo login)
-        {
-            var user = await _userManager.FindByEmailAsync(login.email);
-
-            if (user == null) return NotFound();
-
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-
-            var result = await _userManager.ResetPasswordAsync(user, token, login.password);
-
-            if (!result.Succeeded) return BadRequest(result.Errors);
-
-            await _signInManager.PasswordSignInAsync(user, login.password, false, false);
-
-            return GenerateJwtToken(login.email, user); 
-        }
-
     }
 }

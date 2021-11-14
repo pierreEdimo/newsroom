@@ -6,8 +6,314 @@
     <members>
         <member name="M:newsroom.Controllers.ArticlesController.GetArticles">
             <summary>
-            Get all the artciles 
-            </summary>  
+            all the Articles
+            </summary>
+            <returns>A List of Articles</returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.ArticlesController.Filter(newsroom.DTO.FilterArticleDTO)">
+            <summary>
+            filtered list of Articles, based on the given parameters
+            </summary>
+            <returns>A Filtered List of Articles</returns>
+            <param name="filterDTO"></param>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.ArticlesController.GetArticle(System.Int32)">
+            <summary>
+            single Article
+            </summary>
+            <param name="Id"></param>
+            <returns>return a single Article based on the given Id</returns>
+        </member>
+        <member name="M:newsroom.Controllers.ArticlesController.PutArticle(System.Int32,newsroom.DTO.CreateArticleDTO)">
+            <summary>
+            update an Article 
+            </summary>
+            <returns>An Article with the modified informations</returns>
+            <param name="updateArticle"></param>
+            <param name="Id"></param>
+            <response code="204"> no content </response>
+        </member>
+        <member name="M:newsroom.Controllers.ArticlesController.PostArticle(newsroom.DTO.CreateArticleDTO)">
+            <summary>
+            create a new Article 
+            </summary>
+            <returns>A newly created Article</returns>
+            <param name="createArticleDTO"></param>
+            <response code="201"> Article has been successfully created </response>
+        </member>
+        <member name="M:newsroom.Controllers.ArticlesController.DeleteArticle(System.Int32)">
+            <summary>
+            Delete an Article
+            </summary>
+            <returns>An emoty object</returns>
+            <param name="Id"></param>
+            <response code="204"> Article has been deleted </response>
+        </member>
+        <member name="M:newsroom.Controllers.AuthorsController.GetAuthors">
+            <summary>
+            all the Authors
+            </summary>
+            <returns>A List of Authors</returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.AuthorsController.GetAuthor(System.Int32)">
+            <summary>
+            a single Author
+            </summary>
+            <returns>a single Author based on the given Id</returns>
+            <param name="Id"></param>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.AuthorsController.PutAuthor(System.Int32,newsroom.DTO.CreateAuthorDTO)">
+            <summary>
+            update an Author
+            </summary>
+            <returns>an Author with the modified informations</returns>
+            <param name="updateAuthor"></param>
+            <param name="Id"></param>
+            <response code="204"> no content </response>
+        </member>
+        <member name="M:newsroom.Controllers.AuthorsController.PostAuthor(newsroom.DTO.CreateAuthorDTO)">
+            <summary>
+            create a new Author
+            </summary>
+            <returns>return a newly created Author</returns>
+            <param name="createAuthor"></param>
+            <response code="201"> Author has been successfully created </response>
+        </member>
+        <member name="M:newsroom.Controllers.AuthorsController.DeleteAuthor(System.Int32)">
+            <summary>
+            delete an Author
+            </summary>
+            <returns>An empty object </returns>
+            <param name="Id"></param>
+            <response code="204"> Author has been deleted </response>
+        </member>
+        <member name="M:newsroom.Controllers.CommentsController.GetComments">
+            <summary>
+            all the Comments
+            </summary>
+            <returns>A List of Comments</returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.CommentsController.GetComment(System.Int32)">
+            <summary>
+            a single Comment
+            </summary>
+            <returns>A single comment based on the given Id </returns>
+            <param name="Id"></param>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.CommentsController.FilterComments(newsroom.DTO.FilterCommentDTO)">
+            <summary>
+            a filtered list of comments
+            </summary>
+            <returns>A filtered list of comments based on the given parameters </returns>
+            <param name="filterDTO"></param>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.CommentsController.PutComment(System.Int32,newsroom.DTO.CreateCommentDTO)">
+            <summary>
+            update Comment
+            </summary>
+            <returns>An updated comment based on the given parameters </returns>
+            <param name="updateCommentDTO"></param>
+            <param name="Id"></param>
+            <response code="204"> no content </response>
+        </member>
+        <member name="M:newsroom.Controllers.CommentsController.PostComment(newsroom.DTO.CreateCommentDTO)">
+            <summary>
+            a new Comment
+            </summary>
+            <returns>A newly created comment </returns>
+            <param name="createComment"></param>
+            <response code="201"> created </response>
+        </member>
+        <member name="M:newsroom.Controllers.CommentsController.DeleteComment(System.Int32)">
+            <summary>
+            delete comment
+            </summary>
+            <returns>An empty object </returns>
+            <param name="Id"></param>
+            <response code="204"> Comment has been deleted </response>
+        </member>
+        <member name="M:newsroom.Controllers.FavoritesArticlesController.GetFavorites">
+            <summary>
+            all the Favorites Articles
+            </summary>
+            <returns>A List of the user's favorites Articles</returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.FavoritesArticlesController.GetFavoritesArticles(System.Int32)">
+            <summary>
+            a single Favorite article
+            </summary>
+            <returns> a single Article based on the given Id </returns>
+            <param name="Id"></param>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.FavoritesArticlesController.FilterFavorites(newsroom.DTO.FilterFromUserDTO)">
+            <summary>
+            a filtered list of favorites articles
+            </summary>
+            <returns>a filtered list of favorites articles based on the given parameters</returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.FavoritesArticlesController.PostFavoritesArticles(newsroom.DTO.AddFavoriteDTO)">
+            <summary>
+            add an article in thier favorites
+            </summary>
+            <param name="addFavoriteDTO"></param>
+            <returns>a newly added article in favorites</returns>
+            <response code="201"> created </response>
+        </member>
+        <member name="M:newsroom.Controllers.FavoritesArticlesController.DeleteFavoritesArticles(System.Int32)">
+            <summary>
+            remove an Article
+            </summary>
+            <returns>an empty object</returns>
+            <response code="204"> No Content </response>
+        </member>
+        <member name="M:newsroom.Controllers.KeyWordsController.GetKeyWords">
+            <summary>
+            all the savedwords from the search
+            </summary>
+            <returns> A list of all the savedwords from the search </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.KeyWordsController.QueryWord(newsroom.DTO.FilterFromUserDTO)">
+            <summary>
+            a filtered list of the savedword from the userId
+            </summary>
+            <returns> A list of all the filtered savedwords from the user's search </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.KeyWordsController.GetKeyWord(System.Int32)">
+            <summary>
+            a single savedword
+            </summary>
+            <returns> a single Savedword based on the Id </returns>
+            <param name="Id"></param>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.KeyWordsController.PostKeyWord(newsroom.DTO.AddWordDTO)">
+            <summary>
+            add a new word in the savedword table
+            </summary>
+            <param name="addkeyWord"></param>
+            <returns> a newly created savedword in the database </returns>
+            <response code="201"> created </response>
+        </member>
+        <member name="M:newsroom.Controllers.KeyWordsController.DeleteKeyWord(System.Int32)">
+            <summary>
+            delete a single savedword 
+            </summary>
+            <param name="Id"></param>
+            <returns> an empty object </returns>
+            <response code="204"> no content </response>
+        </member>
+        <member name="M:newsroom.Controllers.ReportController.GetReports">
+            <summary>
+            a list of all the reported comments
+            </summary>
+            <returns> a list of all the reported comments from the frontend </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.ReportController.GetReport(System.Int32)">
+            <summary>
+            a single Report
+            </summary>
+            <param name="Id"></param>
+            <returns> A single Report based on the given Id </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.ReportController.PostReport(newsroom.DTO.CreateReportDTO)">
+            <summary>
+            create a new Report
+            </summary>
+            <param name="createReportDTO"></param>
+            <returns> a newly created report in the database </returns>
+            <response code="201"> created </response>
+        </member>
+        <member name="M:newsroom.Controllers.ReportController.DeleteReport(System.Int32)">
+            <summary>
+            delete a single Report
+            </summary>
+            <param name="Id"></param>
+            <returns> an empty object </returns>
+            <response code="204"> no content </response>
+        </member>
+        <member name="M:newsroom.Controllers.TopicsController.GetTopics">
+            <summary>
+            list of all the topics
+            </summary>
+            <returns> a list of all the topics from the database </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.TopicsController.GetTopic(System.Int32)">
+            <summary>
+            a single topic
+            </summary>
+            <param name="Id"></param>
+            <returns> a single topic based on the given Id </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.TopicsController.PutTopic(System.Int32,newsroom.DTO.CreateTopicDTO)">
+            <summary>
+            update a topic
+            </summary>
+            <param name="updateTopic"></param>
+            <param name="Id"></param>
+            <returns> modified topic based on the given Id </returns>
+            <response code="204"> no content </response>
+        </member>
+        <member name="M:newsroom.Controllers.UserController.GetUser">
+            <summary>
+            a single user
+            </summary>
+            <returns> informations of the currently connected user </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.UserController.updateEmail(newsroom.DTO.UpdateEmailDTO)">
+            <summary>
+            change the email of an user
+            </summary>
+            <param name="emailDTO"></param>
+            <returns> tokens that allows the user to access his datas </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.UserController.GetAllUsers">
+            <summary>
+            list of all the users
+            </summary>
+            <returns> a list of all the registered users </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.UserController.Login(newsroom.DTO.LoginDTo)">
+            <summary>
+            login to the user in to the  api
+            </summary>
+            <param name="modelLogin"></param>
+            <returns> tokens to access the api </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.UserController.Register(newsroom.DTO.RegisterDTo)">
+            <summary>
+            logup to the user in to the  api
+            </summary>
+            <param name="model"></param>
+            <returns> tokens to access the api </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.UserController.ForgotPassWord(newsroom.DTO.LoginDTo)">
+            <summary>
+            create a new password
+            </summary>
+            <param name="login"></param>
+            <returns> tokens to access the api </returns>
+            <response code="200"> ok </response>
         </member>
     </members>
 </doc>

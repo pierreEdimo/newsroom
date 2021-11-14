@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "E6ZVFZTDJIhdjbuG0rvS0nvVrO2wdjdOmmlvsQk0yzQi0MZ1LtzdCNT1IU/yz+P9e0hT5fx3L9CZ8+GKXTELNA==",
+  "dgSpecHash": "PQDa0/WXR1ANBn8wOQhByHes+7kArA0cvirQ+CkKDEnnf0AkaG9P0/vWEylcG8QJUMYLjZ0Cgux6H9Wn+kf+gg==",
   "success": true,
   "projectFilePath": "C:\\Users\\pierr\\Desktop\\source\\newsroom\\newsroom\\newsroom.csproj",
   "expectedPackageFiles": [
@@ -188,7 +188,7 @@
     "C:\\Users\\pierr\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\pierr\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\pierr\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\pierr\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.9\\microsoft.netcore.app.host.win-x64.5.0.9.nupkg.sha512"
+    "C:\\Users\\pierr\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.12\\microsoft.netcore.app.host.win-x64.5.0.12.nupkg.sha512"
   ],
   "logs": []
 }

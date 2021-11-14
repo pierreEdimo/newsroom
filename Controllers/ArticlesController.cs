@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,12 +12,15 @@ using System.IO;
 using newsroom.Services;
 
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace newsroom.Controllers
 {
-  
+
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class ArticlesController : ControllerBase
     {
         private readonly DatabaseContext _context;
@@ -35,7 +38,11 @@ namespace newsroom.Controllers
             _fileStorageService = fileStorageService; 
         }
 
-        // GET: api/Articles
+        /// <summary>
+        /// all the Articles
+        /// </summary>
+        /// <returns>A List of Articles</returns>
+        /// <response code="200"> ok </response>
         [HttpGet]
         public async Task<ActionResult<List<ArticleDTO>>> GetArticles( )
         {
@@ -53,6 +60,12 @@ namespace newsroom.Controllers
             return articleDTO; 
         }
 
+        /// <summary>
+        /// filtered list of Articles, based on the given parameters
+        /// </summary>
+        /// <returns>A Filtered List of Articles</returns>
+        /// <param name="filterDTO"></param>
+        /// <response code="200"> ok </response>
         [HttpGet("[action]")]
         public async Task<ActionResult<List<ArticleDTO>>> Filter([FromQuery] FilterArticleDTO filterDTO)
         {
@@ -109,6 +122,11 @@ namespace newsroom.Controllers
             return _mapper.Map<List<ArticleDTO>>(articles); 
         }
 
+        /// <summary>
+        /// single Article
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>return a single Article based on the given Id</returns>
         // GET: api/Articles/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ArticleDTO>> GetArticle(int Id)
@@ -128,8 +146,13 @@ namespace newsroom.Controllers
             return articleDTO;
         }
 
-        // PUT: api/Articles/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// update an Article 
+        /// </summary>
+        /// <returns>An Article with the modified informations</returns>
+        /// <param name="updateArticle"></param>
+        /// <param name="Id"></param>
+        /// <response code="204"> no content </response>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutArticle(int Id, [FromForm] CreateArticleDTO updateArticle )
         {
@@ -158,8 +181,12 @@ namespace newsroom.Controllers
             return NoContent();
         }
 
-        // POST: api/Articles
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// create a new Article 
+        /// </summary>
+        /// <returns>A newly created Article</returns>
+        /// <param name="createArticleDTO"></param>
+        /// <response code="201"> Article has been successfully created </response>
         [HttpPost]
         public async Task<ActionResult> PostArticle([FromForm] CreateArticleDTO createArticleDTO )
         {
@@ -185,7 +212,12 @@ namespace newsroom.Controllers
             return CreatedAtAction("GetArticle", new { id = articleDTO.Id }, article);
         }
 
-        // DELETE: api/Articles/5
+        /// <summary>
+        /// Delete an Article
+        /// </summary>
+        /// <returns>An emoty object</returns>
+        /// <param name="Id"></param>
+        /// <response code="204"> Article has been deleted </response>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteArticle(int Id)
         {
