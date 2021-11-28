@@ -35,7 +35,6 @@ namespace newsroom.Controllers
         /// <returns>A List of Comments</returns>
         /// <response code="200"> ok </response>
         [HttpGet]
-        [AllowAnonymous]
         public async Task<ActionResult<List<CommentDTO>>> GetComments()
         {
             var comments = await _context.Comments.Include(x => x.Author).ToListAsync();
@@ -71,6 +70,7 @@ namespace newsroom.Controllers
         /// <param name="filterDTO"></param>
         /// <response code="200"> ok </response>
         [HttpGet("[action]")]
+        [AllowAnonymous]
         public async Task<ActionResult<List<CommentDTO>>> FilterComments([FromQuery] FilterCommentDTO filterDTO)
         {
             var commentQueryable = _context.Comments.AsQueryable(); 
