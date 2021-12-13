@@ -49,7 +49,7 @@ namespace newsroom.Controllers
         /// <returns> A list of all the filtered savedwords from the user's search </returns>
         /// <response code="200"> ok </response>
         [HttpGet("[action]")]
-        public async Task<ActionResult<List<String>>> QueryWord([FromQuery] FilterFromUserDTO filter )
+        public async Task<ActionResult<List<string>>> QueryWord([FromQuery] FilterFromUserDTO filter )
         {
             var queryable = _context.KeyWords.AsQueryable(); 
 
@@ -75,8 +75,7 @@ namespace newsroom.Controllers
             return words; 
             
         }
-
-
+               
         /// <summary>
         /// a single savedword
         /// </summary>

@@ -96,6 +96,30 @@ namespace newsroom.Controllers
 
 
         /// <summary>
+        /// a filtered list of favorites articles
+        /// </summary>
+        /// <returns>a filtered list of favorites articles based on the given parameters</returns>
+        /// <response code="200"> ok </response>
+        [HttpGet("[action]")]
+        public async Task<ActionResult<bool>> IsFavorite([FromQuery] IsFavoriteCheckerDTo favChecker)
+        {
+            var favs = await _context.Favorites.ToListAsync(); 
+
+            bool isFavorite = false;
+
+            foreach(FavoritesArticles fav in favs)
+            {
+                if(favChecker.articleId == fav.ArticleId && favChecker.userId.Equals(fav.OwnerId))
+                {
+                    isFavorite = true; 
+                }
+            }
+
+            return isFavorite; 
+        }
+
+
+        /// <summary>
         /// add an article in thier favorites
         /// </summary>
         /// <param name="addFavoriteDTO"></param>
