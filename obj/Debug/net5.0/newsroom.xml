@@ -19,11 +19,12 @@
             <param name="filterDTO"></param>
             <response code="200"> ok </response>
         </member>
-        <member name="M:newsroom.Controllers.ArticlesController.GetArticle(System.Int32)">
+        <member name="M:newsroom.Controllers.ArticlesController.GetArticle(System.Int32,System.String)">
             <summary>
             single Article
             </summary>
             <param name="Id"></param>
+            <param name="UserId"></param>
             <returns>return a single Article based on the given Id</returns>
         </member>
         <member name="M:newsroom.Controllers.ArticlesController.PutArticle(System.Int32,newsroom.DTO.CreateArticleDTO)">
@@ -155,13 +156,6 @@
             <response code="200"> ok </response>
         </member>
         <member name="M:newsroom.Controllers.FavoritesArticlesController.FilterFavorites(newsroom.DTO.FilterFromUserDTO)">
-            <summary>
-            a filtered list of favorites articles
-            </summary>
-            <returns>a filtered list of favorites articles based on the given parameters</returns>
-            <response code="200"> ok </response>
-        </member>
-        <member name="M:newsroom.Controllers.FavoritesArticlesController.IsFavorite(newsroom.DTO.IsFavoriteCheckerDTo)">
             <summary>
             a filtered list of favorites articles
             </summary>

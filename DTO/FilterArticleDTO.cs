@@ -8,7 +8,6 @@ namespace newsroom.DTO
     public class FilterArticleDTO : FilterDTO
     {
         public int TopicId { get; set; }
-
         public String Title { get; set; }
         public String Author { get; set;  }
     }

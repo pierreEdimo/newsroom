@@ -117,7 +117,7 @@ namespace newsroom.Controllers
                                                      Title = x.Title,
                                                      CommentCount = x.Comments.Count() != 0 ? x.Comments.Count() : 0,
                                                      Topic = x.Topic,
-                                                     TopicId = x.TopicId
+                                                     TopicId = x.TopicId, 
                                                  })
                                                  .ToListAsync();
 
@@ -128,11 +128,12 @@ namespace newsroom.Controllers
         /// single Article
         /// </summary>
         /// <param name="Id"></param>
+        /// <param name="UserId"></param>
         /// <returns>return a single Article based on the given Id</returns>
         // GET: api/Articles/5
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<ArticleDTO>> GetArticle(int Id)
+        public async Task<ActionResult<ArticleDTO>> GetArticle(int Id , [FromQuery] string UserId)
         {
             var article = await _context.Articles.Include(x => x.Author)
                                                  .Include(x => x.Topic)
@@ -140,7 +141,8 @@ namespace newsroom.Controllers
                                                  .Include(x => x.HasFavorites)
                                                  .FirstOrDefaultAsync(x => x.Id == Id);
 
-            article.CommentCount = article.Comments.Count(); 
+            article.CommentCount = article.Comments.Count();
+            article.IsFavorite = CheckIsFavorite(Id, UserId); 
 
             if (article == null) return NotFound();
           
@@ -236,6 +238,23 @@ namespace newsroom.Controllers
             await _context.SaveChangesAsync(); 
 
             return NoContent();
+        }
+
+        private  bool CheckIsFavorite(int ArticleId , string UserId)
+        {
+            var favs = _context.Favorites.ToList();
+
+            bool isFavorite = false;
+
+            foreach (FavoritesArticles fav in favs)
+            {
+                if (ArticleId == fav.ArticleId && UserId.Equals(fav.OwnerId))
+                {
+                    isFavorite = true;
+                }
+            }
+
+            return isFavorite;
         }
 
     }
