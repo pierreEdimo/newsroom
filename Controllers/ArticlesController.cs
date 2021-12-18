@@ -142,7 +142,7 @@ namespace newsroom.Controllers
                                                  .FirstOrDefaultAsync(x => x.Id == Id);
 
             article.CommentCount = article.Comments.Count();
-            article.IsFavorite = CheckIsFavorite(Id, UserId); 
+            article.IsFavorite = UserId == null ? false : CheckIsFavorite(Id, UserId); 
 
             if (article == null) return NotFound();
           
