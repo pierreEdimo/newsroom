@@ -1,6 +1,6 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using newsroom.Model;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace newsroom.DBContext
 {
@@ -45,7 +45,7 @@ namespace newsroom.DBContext
         public DbSet<Topic> Topics { get; set;  }
         public DbSet<Author> Authors { get; set;  }
         public DbSet<Comment> Comments { get; set;  }
-        public DbSet<KeyWord> KeyWords { get; set;  }
+        public DbSet<SavedWord> SavedWords { get; set;  }
         public DbSet<Report> Reports {get; set;}
         public DbSet<FavoritesArticles> Favorites { get; set;  }
     }

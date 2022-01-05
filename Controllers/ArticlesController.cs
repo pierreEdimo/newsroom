@@ -10,9 +10,8 @@ using newsroom.DTO;
 using newsroom.Model;
 using System.IO;
 using newsroom.Services;
-
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+
 
 namespace newsroom.Controllers
 {
@@ -53,7 +52,6 @@ namespace newsroom.Controllers
 
             var articles = await queryable.Include(x => x.Author)
                                           .Include(x => x.Topic)
-                                          .Include(x => x.HasFavorites)
                                           .ToListAsync();
 
             var articleDTO = _mapper.Map<List<ArticleDTO>>(articles);
@@ -138,7 +136,6 @@ namespace newsroom.Controllers
             var article = await _context.Articles.Include(x => x.Author)
                                                  .Include(x => x.Topic)
                                                  .Include(x => x.Comments)
-                                                 .Include(x => x.HasFavorites)
                                                  .FirstOrDefaultAsync(x => x.Id == Id);
 
             article.CommentCount = article.Comments.Count();
@@ -240,6 +237,7 @@ namespace newsroom.Controllers
             return NoContent();
         }
 
+        //Verify if an Article is registered as A favorite 
         private  bool CheckIsFavorite(int ArticleId , string UserId)
         {
             var favs = _context.Favorites.ToList();

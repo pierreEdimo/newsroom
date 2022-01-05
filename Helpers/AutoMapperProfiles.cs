@@ -13,9 +13,9 @@ namespace newsroom.Helpers
             CreateMap<CreateArticleDTO, Article>()
                 .ForMember(x => x.ImageUrl, options => options.Ignore());
 
-            CreateMap<KeyWord, KeyWordDTO>().ReverseMap();
+            CreateMap<SavedWord, SavedWordDTo>().ReverseMap();
 
-            CreateMap<AddWordDTO, KeyWord>().ReverseMap();
+            CreateMap<AddWordDTO, SavedWord>().ReverseMap();
 
             CreateMap<FavoritesArticles, FavoriteDTO>().ReverseMap();
 

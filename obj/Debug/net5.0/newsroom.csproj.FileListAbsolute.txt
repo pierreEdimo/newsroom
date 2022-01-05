@@ -519,3 +519,4 @@ C:\Users\pierr\Desktop\source\newsroom\newsroom\obj\Debug\net5.0\newsroom.genrun
 C:\Users\pierr\Desktop\source\newsroom\newsroom\obj\Debug\net5.0\newsroom.csproj.CopyComplete
 C:\Users\pierr\Desktop\source\newsroom\newsroom\bin\Debug\net5.0\newsroom.xml
 C:\Users\pierr\Desktop\source\newsroom\newsroom\obj\Debug\net5.0\newsroom.xml
+C:\Users\pierr\Desktop\source\newsroom\newsroom\bin\Debug\net5.0\CorePush.dll

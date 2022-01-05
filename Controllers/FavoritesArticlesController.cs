@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using newsroom.DBContext;
@@ -89,7 +88,9 @@ namespace newsroom.Controllers
 
             queryable = queryable.Take(filter.Size);
 
-            var favorites = await queryable.Include(x => x.Article).ToListAsync();
+            var favorites = await queryable.Include(x => x.Article)
+                                              .ThenInclude(x => x.Author)
+                                           .ToListAsync();
 
             return _mappper.Map<List<FavoriteDTO>>(favorites); 
         }

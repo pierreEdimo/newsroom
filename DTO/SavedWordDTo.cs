@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace newsroom.DTO
 {
-    public class KeyWordDTO
+    public class SavedWordDTo
     {
        
         public int Id { get; set;  }

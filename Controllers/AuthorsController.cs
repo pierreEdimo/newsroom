@@ -7,7 +7,7 @@ using newsroom.Model;
 using AutoMapper;
 using newsroom.DTO;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+
 
 namespace newsroom.Controllers
 {

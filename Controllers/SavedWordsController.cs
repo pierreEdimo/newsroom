@@ -17,12 +17,12 @@ namespace newsroom.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class KeyWordsController : ControllerBase
+    public class SavedWordsController : ControllerBase
     {
         private readonly DatabaseContext _context;
         private readonly IMapper _mapper; 
 
-        public KeyWordsController(DatabaseContext context,  
+        public SavedWordsController(DatabaseContext context,  
                                   IMapper mapper
                                  )
         {
@@ -36,11 +36,11 @@ namespace newsroom.Controllers
         /// <returns> A list of all the savedwords from the search </returns>
         /// <response code="200"> ok </response>
         [HttpGet]
-        public async Task<ActionResult<List<KeyWordDTO>>> GetKeyWords()
+        public async Task<ActionResult<List<SavedWordDTo>>> GetKeyWords()
         {
-            var words = await _context.KeyWords.ToListAsync();
+            var words = await _context.SavedWords.ToListAsync();
 
-            return _mapper.Map<List<KeyWordDTO>>(words); 
+            return _mapper.Map<List<SavedWordDTo>>(words); 
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace newsroom.Controllers
         [HttpGet("[action]")]
         public async Task<ActionResult<List<string>>> QueryWord([FromQuery] FilterFromUserDTO filter )
         {
-            var queryable = _context.KeyWords.AsQueryable(); 
+            var queryable = _context.SavedWords.AsQueryable(); 
 
              if (!String.IsNullOrWhiteSpace(filter.UserId))
             {
@@ -60,7 +60,7 @@ namespace newsroom.Controllers
 
               if (!String.IsNullOrWhiteSpace(filter.sortBy))
             {
-                if (typeof(KeyWord).GetProperty(filter.sortBy) != null)
+                if (typeof(SavedWord).GetProperty(filter.sortBy) != null)
                 {
                    queryable = queryable.OrderByCustom(filter.sortBy, filter.SortOrder);
                 }
@@ -83,16 +83,16 @@ namespace newsroom.Controllers
         /// <param name="Id"></param>
         /// <response code="200"> ok </response>
         [HttpGet("{id}")]
-        public async Task<ActionResult<KeyWordDTO>> GetKeyWord(int Id)
+        public async Task<ActionResult<SavedWordDTo>> GetKeyWord(int Id)
         {
-            var keyWord = await _context.KeyWords.FirstOrDefaultAsync( x => x.Id == Id );
+            var keyWord = await _context.SavedWords.FirstOrDefaultAsync( x => x.Id == Id );
 
             if (keyWord == null)
             {
                 return NotFound();
             }
 
-            var wordDTO = _mapper.Map<KeyWordDTO>(keyWord); 
+            var wordDTO = _mapper.Map<SavedWordDTo>(keyWord); 
 
             return wordDTO;
         }
@@ -107,13 +107,13 @@ namespace newsroom.Controllers
         [HttpPost]
         public async Task<ActionResult> PostKeyWord(AddWordDTO addkeyWord)
         {
-            var word = _mapper.Map<KeyWord>(addkeyWord);
+            var word = _mapper.Map<SavedWord>(addkeyWord);
 
             _context.Add(word);
 
             await _context.SaveChangesAsync();
 
-            var wordDTO = _mapper.Map<KeyWordDTO>(word); 
+            var wordDTO = _mapper.Map<SavedWordDTo>(word); 
 
             return CreatedAtAction("GetKeyWord", new { id = wordDTO.Id }, wordDTO);
         }
@@ -127,14 +127,14 @@ namespace newsroom.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteKeyWord(int Id)
         {
-            var exists = _context.KeyWords.AnyAsync(x => x.Id == Id); 
+            var exists = _context.SavedWords.AnyAsync(x => x.Id == Id); 
 
             if(! await exists)
             {
                 return NotFound(); 
             }
 
-            _context.Remove(new KeyWord() { Id = Id });
+            _context.Remove(new SavedWord() { Id = Id });
             await _context.SaveChangesAsync(); 
 
             return NoContent();

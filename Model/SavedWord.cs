@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace newsroom.Model
 {
-    public class KeyWord
+    public class SavedWord
     {
        [Key]
         public int Id { get; set;  }

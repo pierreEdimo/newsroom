@@ -177,44 +177,6 @@
             <returns>an empty object</returns>
             <response code="204"> No Content </response>
         </member>
-        <member name="M:newsroom.Controllers.KeyWordsController.GetKeyWords">
-            <summary>
-            all the savedwords from the search
-            </summary>
-            <returns> A list of all the savedwords from the search </returns>
-            <response code="200"> ok </response>
-        </member>
-        <member name="M:newsroom.Controllers.KeyWordsController.QueryWord(newsroom.DTO.FilterFromUserDTO)">
-            <summary>
-            a filtered list of the savedword from the userId
-            </summary>
-            <returns> A list of all the filtered savedwords from the user's search </returns>
-            <response code="200"> ok </response>
-        </member>
-        <member name="M:newsroom.Controllers.KeyWordsController.GetKeyWord(System.Int32)">
-            <summary>
-            a single savedword
-            </summary>
-            <returns> a single Savedword based on the Id </returns>
-            <param name="Id"></param>
-            <response code="200"> ok </response>
-        </member>
-        <member name="M:newsroom.Controllers.KeyWordsController.PostKeyWord(newsroom.DTO.AddWordDTO)">
-            <summary>
-            add a new word in the savedword table
-            </summary>
-            <param name="addkeyWord"></param>
-            <returns> a newly created savedword in the database </returns>
-            <response code="201"> created </response>
-        </member>
-        <member name="M:newsroom.Controllers.KeyWordsController.DeleteKeyWord(System.Int32)">
-            <summary>
-            delete a single savedword 
-            </summary>
-            <param name="Id"></param>
-            <returns> an empty object </returns>
-            <response code="204"> no content </response>
-        </member>
         <member name="M:newsroom.Controllers.ReportController.GetReports">
             <summary>
             a list of all the reported comments
@@ -241,6 +203,44 @@
         <member name="M:newsroom.Controllers.ReportController.DeleteReport(System.Int32)">
             <summary>
             delete a single Report
+            </summary>
+            <param name="Id"></param>
+            <returns> an empty object </returns>
+            <response code="204"> no content </response>
+        </member>
+        <member name="M:newsroom.Controllers.SavedWordsController.GetKeyWords">
+            <summary>
+            all the savedwords from the search
+            </summary>
+            <returns> A list of all the savedwords from the search </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.SavedWordsController.QueryWord(newsroom.DTO.FilterFromUserDTO)">
+            <summary>
+            a filtered list of the savedword from the userId
+            </summary>
+            <returns> A list of all the filtered savedwords from the user's search </returns>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.SavedWordsController.GetKeyWord(System.Int32)">
+            <summary>
+            a single savedword
+            </summary>
+            <returns> a single Savedword based on the Id </returns>
+            <param name="Id"></param>
+            <response code="200"> ok </response>
+        </member>
+        <member name="M:newsroom.Controllers.SavedWordsController.PostKeyWord(newsroom.DTO.AddWordDTO)">
+            <summary>
+            add a new word in the savedword table
+            </summary>
+            <param name="addkeyWord"></param>
+            <returns> a newly created savedword in the database </returns>
+            <response code="201"> created </response>
+        </member>
+        <member name="M:newsroom.Controllers.SavedWordsController.DeleteKeyWord(System.Int32)">
+            <summary>
+            delete a single savedword 
             </summary>
             <param name="Id"></param>
             <returns> an empty object </returns>

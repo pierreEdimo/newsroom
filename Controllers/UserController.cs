@@ -16,7 +16,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper; 
 
-
 namespace newsroom.Controllers
 {
     [Authorize]
@@ -30,7 +29,6 @@ namespace newsroom.Controllers
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper; 
         private readonly DatabaseContext _context;
-
 
         public UserController(UserManager<UserEntity> userManager,
                               SignInManager<UserEntity> signInManager,
