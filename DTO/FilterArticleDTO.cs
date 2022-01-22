@@ -9,6 +9,7 @@ namespace newsroom.DTO
     {
         public int TopicId { get; set; }
         public String Title { get; set; }
-        public String Author { get; set;  }
+        public String Author { get; set; }
+        public String UserId { get; set; }
     }
 }

@@ -96,6 +96,11 @@ namespace newsroom.Controllers
                 articleQueryable = articleQueryable.Where(x => x.Author.Name.ToLower().Contains(filterDTO.Author.ToLower())); 
             }
 
+            if (!String.IsNullOrWhiteSpace(filterDTO.UserId))
+            {
+                articleQueryable = articleQueryable.Where(x => x.HasFavorites[].OwnerId == filterDTO.UserId); 
+            }
+
             articleQueryable = articleQueryable.Take(filterDTO.Size); 
 
             var articles = await articleQueryable.Include(x => x.Author)
