@@ -98,7 +98,7 @@ namespace newsroom.Controllers
 
             if (!String.IsNullOrWhiteSpace(filterDTO.UserId))
             {
-                articleQueryable = articleQueryable.Where(x => x.HasFavorites[].OwnerId == filterDTO.UserId); 
+                articleQueryable = articleQueryable.Where(x => x.HasFavorites == x.HasFavorites.Where(x => x.OwnerId == filterDTO.UserId)); 
             }
 
             articleQueryable = articleQueryable.Take(filterDTO.Size); 
