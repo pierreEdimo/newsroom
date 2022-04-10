@@ -10,10 +10,11 @@ namespace newsroom.Model
     public class Author
     {
         [Key]
-        public int Id { get; set;  }
+        public int Id { get; set; }
         [Required]
-        public String Name { get; set;  }
+        public String Name { get; set; }
         [JsonIgnore]
-        public List<Article> Articles { get; set;  }
+        public List<Article> Articles { get; set; }
+        public List<PodCast> PodCasts { get; set; }
     }
 }
