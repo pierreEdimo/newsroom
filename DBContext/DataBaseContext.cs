@@ -36,7 +36,11 @@ namespace newsroom.DBContext
             modelBuilder.Entity<Report>().HasOne(x => x.Comment).WithMany(x => x.Reports).HasForeignKey(x => x.CommentId); 
 
             modelBuilder.Entity<Comment>().HasMany(x => x.Reports).WithOne(x => x.Comment).HasForeignKey(x => x.CommentId);
-                                                     
+
+            modelBuilder.Entity<PodCast>().HasMany(x => x.Episodes).WithOne(x => x.PodCast).HasForeignKey(x => x.PodCastId); 
+
+            modelBuilder.Entity<PodCast>().HasOne(x => x.Author).WithMany(x => x.PodCasts).HasForeignKey(x => x.AuthorId); 
+
             modelBuilder.Seed();
         }
 
@@ -48,5 +52,7 @@ namespace newsroom.DBContext
         public DbSet<SavedWord> SavedWords { get; set;  }
         public DbSet<Report> Reports {get; set;}
         public DbSet<FavoritesArticles> Favorites { get; set;  }
+        public DbSet<PodCast> PodCasts { get; set;  }
+        public DbSet<Episode> Episodes { get; set; }
     }
 }
