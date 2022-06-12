@@ -20,13 +20,13 @@ namespace newsroom.Controllers
     public class CommentsController : ControllerBase
     {
         private readonly DatabaseContext _context;
-        private readonly IMapper _mapper; 
+        private readonly IMapper _mapper;
 
-        public CommentsController(DatabaseContext context, 
-                                  IMapper mapper  )
+        public CommentsController(DatabaseContext context,
+                                  IMapper mapper)
         {
             _context = context;
-            _mapper = mapper; 
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace newsroom.Controllers
         {
             var comments = await _context.Comments.Include(x => x.Author).ToListAsync();
 
-            return _mapper.Map<List<CommentDTO>>(comments); 
+            return _mapper.Map<List<CommentDTO>>(comments);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace newsroom.Controllers
                 return NotFound();
             }
 
-            var commentDTO = _mapper.Map<CommentDTO>(comment); 
+            var commentDTO = _mapper.Map<CommentDTO>(comment);
 
             return commentDTO;
         }
@@ -73,26 +73,26 @@ namespace newsroom.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<List<CommentDTO>>> FilterComments([FromQuery] FilterCommentDTO filterDTO)
         {
-            var commentQueryable = _context.Comments.AsQueryable(); 
+            var commentQueryable = _context.Comments.AsQueryable();
 
-            if( filterDTO.ArticleId != 0)
+            if (filterDTO.ArticleId != 0)
             {
-                commentQueryable = commentQueryable.Where(x => x.Article.Id == filterDTO.ArticleId); 
+                commentQueryable = commentQueryable.Where(x => x.Article.Id == filterDTO.ArticleId);
             }
 
             if (!String.IsNullOrWhiteSpace(filterDTO.sortBy))
             {
-                if(typeof(Comment).GetProperty(filterDTO.sortBy) != null)
+                if (typeof(Comment).GetProperty(filterDTO.sortBy) != null)
                 {
-                    commentQueryable = commentQueryable.OrderByCustom(filterDTO.sortBy, filterDTO.SortOrder); 
+                    commentQueryable = commentQueryable.OrderByCustom(filterDTO.sortBy, filterDTO.SortOrder);
                 }
             }
 
-            commentQueryable = commentQueryable.Take(filterDTO.Size); 
+            commentQueryable = commentQueryable.Take(filterDTO.Size);
 
             var comments = await commentQueryable.Include(x => x.Author).ToListAsync();
 
-            return _mapper.Map<List<CommentDTO>>(comments); 
+            return _mapper.Map<List<CommentDTO>>(comments);
         }
 
 
@@ -106,16 +106,16 @@ namespace newsroom.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutComment(int Id, CreateCommentDTO updateCommentDTO)
         {
-            var commentDB = await _context.Comments.FirstOrDefaultAsync(x => x.Id == Id); 
+            var commentDB = await _context.Comments.FirstOrDefaultAsync(x => x.Id == Id);
 
-            if(commentDB == null)
+            if (commentDB == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             commentDB = _mapper.Map(updateCommentDTO, commentDB);
 
-            await _context.SaveChangesAsync(); 
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -131,11 +131,11 @@ namespace newsroom.Controllers
         {
             var comment = _mapper.Map<Comment>(createComment);
 
-            _context.Add(comment); 
-            
+            _context.Add(comment);
+
             await _context.SaveChangesAsync();
 
-            var commentDTO = _mapper.Map<CommentDTO>(comment); 
+            var commentDTO = _mapper.Map<CommentDTO>(comment);
 
             return CreatedAtAction("GetComment", new { id = commentDTO.Id }, commentDTO);
         }
@@ -149,22 +149,17 @@ namespace newsroom.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteComment(int Id)
         {
-            var exist = _context.Comments.AnyAsync(x => x.Id == Id); 
+            var exist = _context.Comments.AnyAsync(x => x.Id == Id);
 
-            if(!await exist)
+            if (!await exist)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
-            _context.Remove(new Comment() { Id = Id }); 
+            _context.Remove(new Comment() { Id = Id });
             await _context.SaveChangesAsync();
 
             return NoContent();
-        }
-
-        private bool CommentExists(int id)
-        {
-            return _context.Comments.Any(e => e.Id == id);
         }
     }
 }
