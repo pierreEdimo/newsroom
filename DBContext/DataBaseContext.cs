@@ -37,10 +37,6 @@ namespace newsroom.DBContext
 
             modelBuilder.Entity<Comment>().HasMany(x => x.Reports).WithOne(x => x.Comment).HasForeignKey(x => x.CommentId);
 
-            modelBuilder.Entity<PodCast>().HasMany(x => x.Episodes).WithOne(x => x.PodCast).HasForeignKey(x => x.PodCastId);
-
-            modelBuilder.Entity<PodCast>().HasOne(x => x.Author).WithMany(x => x.PodCasts).HasForeignKey(x => x.AuthorId);
-
             modelBuilder.Seed();
         }
 
