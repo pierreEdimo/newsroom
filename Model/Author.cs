@@ -15,6 +15,5 @@ namespace newsroom.Model
         public String Name { get; set; }
         [JsonIgnore]
         public List<Article> Articles { get; set; }
-        public List<PodCast> PodCasts { get; set; }
     }
 }
